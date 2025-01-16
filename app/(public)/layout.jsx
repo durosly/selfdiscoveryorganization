@@ -51,8 +51,6 @@ export default function PublicLayout({ children }) {
 						{/* Sidebar content here */}
 						<LinksWrapper />
 					</CascadeAnimation>
-					{/* <ul className="menu ">
-					</ul> */}
 				</div>
 			</div>
 		</div>

@@ -689,7 +689,7 @@ function PublicHomePage() {
 			</div>
 
 			<div className="px-10">
-				<div>
+				<CascadeAnimation animationDirection="up">
 					<h2 className="text-xl">
 						<LuNewspaper className="inline-block stroke-indigo-700" />{" "}
 						Latest Blog
@@ -697,8 +697,12 @@ function PublicHomePage() {
 					<p className="text-4xl font-bold">
 						Latest news, articles and events
 					</p>
-				</div>
-				<div className="flex flex-col sm:flex-row gap-5 flex-wrap mt-10">
+				</CascadeAnimation>
+
+				<CascadeAnimation
+					animationDirection="down"
+					animationDelay={0.5}
+					parentClassName="flex flex-col sm:flex-row gap-5 flex-wrap mt-10">
 					<div className="sm:w-[calc((100%_-_2_*_1.25rem_)_/_3)] rounded-xl overflow-hidden p-3 bg-primary/10">
 						<div className=" h-32 relative rounded-xl overflow-hidden">
 							<Image
@@ -859,7 +863,7 @@ function PublicHomePage() {
 							</div>
 						</div>
 					</div>
-				</div>
+				</CascadeAnimation>
 			</div>
 		</>
 	);
