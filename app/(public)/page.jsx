@@ -485,7 +485,7 @@ function PublicHomePage() {
 						<div className="relative w-40 mx-auto aspect-square rounded-full overflow-hidden border-4">
 							<Image
 								fill
-								src="/images/teams/chioma.jpg"
+								src="https://images.pexels.com/photos/4584095/pexels-photo-4584095.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt="Self Discovery"
 								className="object-cover"
 							/>
@@ -501,15 +501,13 @@ function PublicHomePage() {
 						<div className="relative w-40 mx-auto aspect-square rounded-full overflow-hidden border-4">
 							<Image
 								fill
-								src="/images/teams/janet.jpg"
-								alt="Janet De Sanctis"
+								src="https://images.pexels.com/photos/20335722/pexels-photo-20335722/free-photo-of-a-black-and-white-photo-of-a-woman-with-a-head-wrap.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								alt="Janet"
 								className="object-cover"
 							/>
 						</div>
 						<div className="text-center">
-							<h3 className="font-bold">
-								Janet De Sanctis
-							</h3>
+							<h3 className="font-bold">Janet Jones</h3>
 							<p>Team Manager/ Volunteer</p>
 						</div>
 					</div>
@@ -517,15 +515,13 @@ function PublicHomePage() {
 						<div className="relative w-40 mx-auto aspect-square rounded-full overflow-hidden border-4">
 							<Image
 								fill
-								src="/images/teams/effmann.jpg"
-								alt="Pierre Eggmann"
+								src="https://images.pexels.com/photos/20336005/pexels-photo-20336005/free-photo-of-a-black-and-white-photo-of-a-woman-with-a-head-wrap.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								alt="Pierre"
 								className="object-cover"
 							/>
 						</div>
 						<div className="text-center">
-							<h3 className="font-bold">
-								Pierre Eggmann
-							</h3>
+							<h3 className="font-bold">Pierre Egg</h3>
 							<p>Team Assistant</p>
 						</div>
 					</div>
@@ -534,18 +530,13 @@ function PublicHomePage() {
 						<div className="relative w-40 mx-auto aspect-square rounded-full overflow-hidden border-4">
 							<Image
 								fill
-								src="/images/teams/grace.jpg"
+								src="https://images.pexels.com/photos/30140701/pexels-photo-30140701/free-photo-of-stylish-portrait-of-a-person-with-red-curly-hair.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt="Self Discovery"
 								className="object-cover"
 							/>
 						</div>
 						<div className="text-center">
-							<h3 className="font-bold">
-								Grace C. EDIGBUE, <br />
-								Esq. LL.B, <br />
-								M.Sc (Social Works), <br />
-								AICMC.
-							</h3>
+							<h3 className="font-bold">Grace C.,</h3>
 							<p>Legal Adviser</p>
 						</div>
 					</div>
