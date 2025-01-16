@@ -1,3 +1,4 @@
+import CascadeAnimation from "@/app/components/animations/cascade-animation";
 import logo from "@/public/images/logo.png";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,14 +9,14 @@ function Footer() {
 	return (
 		<>
 			<footer className="footer p-10 bg-base-200 text-base-content mt-20">
-				<nav>
+				<CascadeAnimation parentElement="nav">
 					<header className="footer-title">Services</header>
 					<a className="link link-hover">Health</a>
 					<a className="link link-hover">Education</a>
 					<a className="link link-hover">Housing</a>
 					<a className="link link-hover">And more...</a>
-				</nav>
-				<nav>
+				</CascadeAnimation>
+				<CascadeAnimation parentElement="nav" animationDelay={0.5}>
 					<header className="footer-title">Company</header>
 					<Link href="/about-us" className="link link-hover">
 						About us
@@ -32,8 +33,8 @@ function Footer() {
 					<Link href="/legal" className="link link-hover">
 						Legal
 					</Link>
-				</nav>
-				<nav>
+				</CascadeAnimation>
+				<CascadeAnimation parentElement="nav" animationDelay={1}>
 					<header className="footer-title">Contact Us</header>
 					<a
 						href="tel:+2348111461988"
@@ -53,7 +54,7 @@ function Footer() {
 					</a>
 					{/* <a className="link link-hover">Privacy policy</a>
 					<a className="link link-hover">Cookie policy</a> */}
-				</nav>
+				</CascadeAnimation>
 			</footer>
 			<footer className="footer px-10 py-4 border-t bg-base-200 text-base-content border-base-300">
 				<aside className="items-center grid-flow-col">
