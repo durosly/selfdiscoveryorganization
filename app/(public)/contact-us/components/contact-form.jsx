@@ -1,5 +1,6 @@
 "use client";
 
+import CascadeAnimation from "@/app/components/animations/cascade-animation";
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -40,25 +41,64 @@ function ContactForm() {
 	}
 
 	return (
-		<form
-			action="/nice"
-			onSubmit={sendMessage}
-			className="flex-1"
-		>
-			<div className="flex flex-col sm:flex-row sm:gap-10">
-				<div className="form-control flex-1">
-					<label
-						className="label justify-start"
-						htmlFor="name"
-					>
-						Your Name <span className="text-red-600">*</span>
+		<form action="/nice" onSubmit={sendMessage} className="flex-1">
+			<CascadeAnimation>
+				<div className="flex flex-col sm:flex-row sm:gap-10">
+					<div className="form-control flex-1">
+						<label
+							className="label justify-start"
+							htmlFor="name">
+							Your Name{" "}
+							<span className="text-red-600">*</span>
+						</label>
+						<input
+							type="text"
+							name="name"
+							id="name"
+							className="input input-bordered"
+							value={entry.name}
+							onChange={(e) =>
+								setEntry({
+									...entry,
+									[e.target.name]:
+										e.target.value,
+								})
+							}
+						/>
+					</div>
+					<div className="form-control flex-1">
+						<label
+							className="label justify-start"
+							htmlFor="email">
+							Your Email{" "}
+							<span className="text-red-600">*</span>
+						</label>
+						<input
+							type="email"
+							name="email"
+							id="email"
+							className="input input-bordered"
+							value={entry.email}
+							onChange={(e) =>
+								setEntry({
+									...entry,
+									[e.target.name]:
+										e.target.value,
+								})
+							}
+						/>
+					</div>
+				</div>
+				<div className="form-control">
+					<label className="label justify-start" htmlFor="address">
+						Address
 					</label>
 					<input
 						type="text"
-						name="name"
-						id="name"
+						name="address"
+						id="address"
 						className="input input-bordered"
-						value={entry.name}
+						value={entry.address}
 						onChange={(e) =>
 							setEntry({
 								...entry,
@@ -67,79 +107,32 @@ function ContactForm() {
 						}
 					/>
 				</div>
-				<div className="form-control flex-1">
-					<label
-						className="label justify-start"
-						htmlFor="email"
-					>
-						Your Email <span className="text-red-600">*</span>
+				<div className="form-control">
+					<label htmlFor="message" className="label justify-start">
+						Message <span className="text-red-600">*</span>
 					</label>
-					<input
-						type="email"
-						name="email"
-						id="email"
-						className="input input-bordered"
-						value={entry.email}
+					<textarea
+						name="message"
+						id="message"
+						cols="30"
+						rows="5"
+						className="textarea textarea-bordered"
+						value={entry.message}
 						onChange={(e) =>
 							setEntry({
 								...entry,
 								[e.target.name]: e.target.value,
 							})
-						}
-					/>
+						}></textarea>
 				</div>
-			</div>
-			<div className="form-control">
-				<label
-					className="label justify-start"
-					htmlFor="address"
-				>
-					Address
-				</label>
-				<input
-					type="text"
-					name="address"
-					id="address"
-					className="input input-bordered"
-					value={entry.address}
-					onChange={(e) =>
-						setEntry({
-							...entry,
-							[e.target.name]: e.target.value,
-						})
-					}
-				/>
-			</div>
-			<div className="form-control">
-				<label
-					htmlFor="message"
-					className="label justify-start"
-				>
-					Message <span className="text-red-600">*</span>
-				</label>
-				<textarea
-					name="message"
-					id="message"
-					cols="30"
-					rows="5"
-					className="textarea textarea-bordered"
-					value={entry.message}
-					onChange={(e) =>
-						setEntry({
-							...entry,
-							[e.target.name]: e.target.value,
-						})
-					}
-				></textarea>
-			</div>
-			<div className="form-control mt-5">
-				<button
-					disabled={isLoading}
-					className="btn btn-primary btn-block"
-				>
-					Send message
-				</button>
-			</div>
+				<div className="form-control mt-5">
+					<button
+						disabled={isLoading}
+						className="btn btn-primary btn-block">
+						Send message
+					</button>
+				</div>
+			</CascadeAnimation>
 		</form>
 	);
 }

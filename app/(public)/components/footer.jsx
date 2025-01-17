@@ -24,6 +24,9 @@ function Footer() {
 					<Link href="/programs" className="link link-hover">
 						Programs / events
 					</Link>
+					<Link href="/blogs" className="link link-hover">
+						Blogs
+					</Link>
 
 					{/* <a className="link link-hover">Contact</a> */}
 					{/* <a className="link link-hover">Volunter</a> */}

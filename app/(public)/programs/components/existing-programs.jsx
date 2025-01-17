@@ -1,5 +1,6 @@
 "use client";
 
+import CascadeAnimation from "@/app/components/animations/cascade-animation";
 import convertTo12HourFormat from "@/lib/formatTime";
 import axios from "axios";
 import { DateTime } from "luxon";
@@ -7,13 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import {
-	LuArrowLeft,
-	LuArrowRight,
-	LuCalendar,
-	LuClock5,
-	LuMapPin,
-} from "react-icons/lu";
+import { LuArrowLeft, LuArrowRight, LuCalendar, LuClock5, LuMapPin } from "react-icons/lu";
 
 function ExistingPrograms() {
 	const [isLoading, setIsLoading] = useState(true);
@@ -24,9 +19,7 @@ function ExistingPrograms() {
 	async function loadData(current) {
 		setIsLoading(true);
 		try {
-			const response = await axios(
-				`/api/programs?page=${current}&q=${search}`
-			);
+			const response = await axios(`/api/programs?page=${current}&q=${search}`);
 
 			if (response.data.status) {
 				const { data: programData } = response.data;
@@ -58,11 +51,7 @@ function ExistingPrograms() {
 	}, []);
 	return (
 		<>
-			<form
-				action="/find-event"
-				className="my-5"
-				onSubmit={queryNewData}
-			>
+			<form action="/find-event" className="my-5" onSubmit={queryNewData}>
 				<div className="join join-vertical sm:join-horizontal">
 					<input
 						type="search"
@@ -73,8 +62,7 @@ function ExistingPrograms() {
 					/>
 					<button
 						disabled={isLoading}
-						className="btn join-item rounded-r-md"
-					>
+						className="btn join-item rounded-r-md">
 						Search
 					</button>
 				</div>
@@ -83,10 +71,10 @@ function ExistingPrograms() {
 			<div className="flex flex-col md:flex-row flex-wrap gap-5">
 				{isLoading ? (
 					new Array(3).fill(4).map((_, i) => (
-						<div
+						<CascadeAnimation
+							animationDirection="down"
 							key={i}
-							className="sm:w-[calc(50%-1.25rem)] flex flex-col sm:flex-row gap-3 border p-3 sm:p-5 rounded-2xl"
-						>
+							parentClassName="sm:w-[calc(50%-1.25rem)] flex flex-col sm:flex-row gap-3 border p-3 sm:p-5 rounded-2xl">
 							<div className="relative h-32 aspect-video sm:aspect-square rounded-xl overflow-hidden animate-pulse bg-slate-400"></div>
 							<div className="flex-1">
 								<h2 className="text-xl font-bold bg-slate-400 rounded-md animate-pulse">
@@ -102,14 +90,14 @@ function ExistingPrograms() {
 									</button>
 								</div>
 							</div>
-						</div>
+						</CascadeAnimation>
 					))
 				) : data && data?.docs?.length && data.docs.length > 0 ? (
 					data.docs.map((d) => (
-						<div
+						<CascadeAnimation
+							animationDirection="down"
 							key={d._id}
-							className="md:w-[calc(50%-1.25rem)] flex flex-col sm:flex-row gap-3 border p-3 sm:p-5 rounded-2xl"
-						>
+							className="md:w-[calc(50%-1.25rem)] flex flex-col sm:flex-row gap-3 border p-3 sm:p-5 rounded-2xl">
 							<div className="relative h-32 aspect-video sm:aspect-square rounded-xl overflow-hidden">
 								<Image
 									fill
@@ -123,7 +111,9 @@ function ExistingPrograms() {
 								<h2 className="text-2xl font-bold">
 									{d.title}
 								</h2>
-								<p className="line-clamp">{d.desc}</p>
+								<p className="line-clamp">
+									{d.desc}
+								</p>
 								<div className="mt-5 text-sm">
 									<div>
 										<p className="flex items-center gap-2 ">
@@ -172,13 +162,12 @@ function ExistingPrograms() {
 								<div className="text-right">
 									<Link
 										href={`/programs/${d.slug}`}
-										className="btn btn-sm btn-primary"
-									>
+										className="btn btn-sm btn-primary">
 										View Event
 									</Link>
 								</div>
 							</div>
-						</div>
+						</CascadeAnimation>
 					))
 				) : (
 					<div>Nothing to see here </div>
@@ -189,15 +178,13 @@ function ExistingPrograms() {
 				<button
 					disabled={!data.hasPrevPage}
 					onClick={() => loadNew(page - 1)}
-					className="btn btn-sm btn-primary btn-outline"
-				>
+					className="btn btn-sm btn-primary btn-outline">
 					<LuArrowLeft />
 				</button>
 				<button
 					disabled={!data.hasNextPage}
 					onClick={() => loadNew(page + 1)}
-					className="btn btn-sm btn-primary btn-outline"
-				>
+					className="btn btn-sm btn-primary btn-outline">
 					<LuArrowRight />
 				</button>
 			</div>

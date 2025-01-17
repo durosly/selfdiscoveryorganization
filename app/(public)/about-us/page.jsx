@@ -22,7 +22,9 @@ function AboutUsPage() {
 		<>
 			<CoverImage title="About Us" />
 
-			<div className="text-center px-10 py-20 sm:p-20">
+			<CascadeAnimation
+				animationDirection="down"
+				parentClassName="text-center px-10 py-20 sm:p-20">
 				<h2 className="text-4xl sm:text-6xl font-bold">
 					Making a Difference Together
 				</h2>
@@ -31,13 +33,15 @@ function AboutUsPage() {
 					mission is to empower individuals and communities, providing
 					the support and resources they need to thrive.
 				</p>
-			</div>
+			</CascadeAnimation>
 
 			<div className="px-10">
-				<h2 className="text-center text-2xl">
-					<LuBook className="stroke-orange-400 inline-block" /> Our
-					Story
-				</h2>
+				<CascadeAnimation animationDirection="up">
+					<h2 className="text-center text-2xl">
+						<LuBook className="stroke-orange-400 inline-block" />{" "}
+						Our Story
+					</h2>
+				</CascadeAnimation>
 				<div className="flex flex-col sm:flex-row gap-5 mt-10">
 					<div className="relative flex-1 h-48 aspect-video sm:aspect-auto sm:h-auto rounded-2xl overflow-hidden">
 						<Image
@@ -48,10 +52,14 @@ function AboutUsPage() {
 						/>
 					</div>
 					<div className="flex-1">
-						<h3 className="text-4xl font-bold">
-							The Struggle to Make a Difference
-						</h3>
-						<div className="space-y-3 my-5">
+						<CascadeAnimation animationDirection="up">
+							<h3 className="text-4xl font-bold">
+								The Struggle to Make a Difference
+							</h3>
+						</CascadeAnimation>
+						<CascadeAnimation
+							animationDirection="down"
+							parentClassName="space-y-3 my-5">
 							<p>
 								In the early days, the journey to
 								establish Choima Organization was
@@ -96,7 +104,7 @@ function AboutUsPage() {
 								that passion continues to drive us
 								forward.
 							</p>
-						</div>
+						</CascadeAnimation>
 
 						<div>
 							<p className="font-bold">Self Discovery</p>
@@ -109,7 +117,9 @@ function AboutUsPage() {
 			</div>
 
 			<div className="flex flex-col sm:flex-row">
-				<div className="flex-1 border border-l-0 p-10 space-y-4">
+				<CascadeAnimation
+					animationDirection="up"
+					parentClassName="flex-1 border border-l-0 p-10 space-y-4">
 					<h2 className="text-3xl font-bold">Our Mission</h2>
 					<p>
 						At Self Discovery organization, our mission is to
@@ -135,8 +145,10 @@ function AboutUsPage() {
 						</li>
 						<li>Advocating for social justice and equality.</li>
 					</ul>
-				</div>
-				<div className="flex-1 bg-primary/10 p-10 space-y-4">
+				</CascadeAnimation>
+				<CascadeAnimation
+					animationDirection="up"
+					parentClassName="flex-1 bg-primary/10 p-10 space-y-4">
 					<h2 className="text-3xl font-bold">Our Vision</h2>
 					<p>
 						Our vision at Self Discovery organization is a world
@@ -171,7 +183,7 @@ function AboutUsPage() {
 							are upheld.
 						</li>
 					</ul>
-				</div>
+				</CascadeAnimation>
 			</div>
 
 			<div className="px-10">
@@ -280,14 +292,19 @@ function AboutUsPage() {
 					</div>
 				</div>
 				<div className="flex-1 space-y-5">
-					<h2 className="flex gap-1 items-center text-primary">
-						<LuHexagon className="w-5 h-5" />
-						TEAMWORK
-					</h2>
-					<h3 className="font-bold text-2xl sm:text-4xl">
-						Empowering the World Through Collaborative Efforts
-					</h3>
-					<div className="space-y-3">
+					<CascadeAnimation animationDirection="up">
+						<h2 className="flex gap-1 items-center text-primary">
+							<LuHexagon className="w-5 h-5" />
+							TEAMWORK
+						</h2>
+						<h3 className="font-bold text-2xl sm:text-4xl">
+							Empowering the World Through Collaborative
+							Efforts
+						</h3>
+					</CascadeAnimation>
+					<CascadeAnimation
+						animationDirection="down"
+						parentClassName="space-y-3">
 						<p>
 							We firmly believe in the power of teamwork
 							and collaboration as catalysts for positive
@@ -326,12 +343,12 @@ function AboutUsPage() {
 							every challenge is an opportunity, and where
 							the power of collaboration knows no bounds.
 						</p>
-					</div>
+					</CascadeAnimation>
 				</div>
 			</div>
 
-			{/* <div className="px-10">
-				<div>
+			<div className="px-10">
+				<CascadeAnimation animationDirection="up">
 					<h2 className="text-xl">
 						<LuNewspaper className="inline-block stroke-indigo-700" />{" "}
 						Latest Blog
@@ -339,8 +356,12 @@ function AboutUsPage() {
 					<p className="text-4xl font-bold">
 						Latest news, articles and events
 					</p>
-				</div>
-				<div className="flex flex-col sm:flex-row gap-5 flex-wrap mt-10">
+				</CascadeAnimation>
+
+				<CascadeAnimation
+					animationDirection="down"
+					animationDelay={0.5}
+					parentClassName="flex flex-col sm:flex-row gap-5 flex-wrap mt-10">
 					<div className="sm:w-[calc((100%_-_2_*_1.25rem_)_/_3)] rounded-xl overflow-hidden p-3 bg-primary/10">
 						<div className=" h-32 relative rounded-xl overflow-hidden">
 							<Image
@@ -359,14 +380,14 @@ function AboutUsPage() {
 								Build secure life for the poor
 							</h2>
 							<p>
-								Lorem ipsum dolor sit amet consectetur,
-								adipisicing elit. Asperiores esse quae veniam...
+								Lorem ipsum dolor sit amet
+								consectetur, adipisicing elit.
+								Asperiores esse quae veniam...
 							</p>
 							<div className="text-right">
 								<Link
 									href="/"
-									className="link link-hover"
-								>
+									className="link link-hover">
 									Read more{" "}
 									<LuMoveRight className="inline stroke-primary" />
 								</Link>
@@ -391,14 +412,14 @@ function AboutUsPage() {
 								Build secure life for the poor
 							</h2>
 							<p>
-								Lorem ipsum dolor sit amet consectetur,
-								adipisicing elit. Asperiores esse quae veniam...
+								Lorem ipsum dolor sit amet
+								consectetur, adipisicing elit.
+								Asperiores esse quae veniam...
 							</p>
 							<div className="text-right">
 								<Link
 									href="/"
-									className="link link-hover"
-								>
+									className="link link-hover">
 									Read more{" "}
 									<LuMoveRight className="inline stroke-primary" />
 								</Link>
@@ -423,14 +444,14 @@ function AboutUsPage() {
 								Build secure life for the poor
 							</h2>
 							<p>
-								Lorem ipsum dolor sit amet consectetur,
-								adipisicing elit. Asperiores esse quae veniam...
+								Lorem ipsum dolor sit amet
+								consectetur, adipisicing elit.
+								Asperiores esse quae veniam...
 							</p>
 							<div className="text-right">
 								<Link
 									href="/"
-									className="link link-hover"
-								>
+									className="link link-hover">
 									Read more{" "}
 									<LuMoveRight className="inline stroke-primary" />
 								</Link>
@@ -455,14 +476,14 @@ function AboutUsPage() {
 								Build secure life for the poor
 							</h2>
 							<p>
-								Lorem ipsum dolor sit amet consectetur,
-								adipisicing elit. Asperiores esse quae veniam...
+								Lorem ipsum dolor sit amet
+								consectetur, adipisicing elit.
+								Asperiores esse quae veniam...
 							</p>
 							<div className="text-right">
 								<Link
 									href="/"
-									className="link link-hover"
-								>
+									className="link link-hover">
 									Read more{" "}
 									<LuMoveRight className="inline stroke-primary" />
 								</Link>
@@ -487,22 +508,22 @@ function AboutUsPage() {
 								Build secure life for the poor
 							</h2>
 							<p>
-								Lorem ipsum dolor sit amet consectetur,
-								adipisicing elit. Asperiores esse quae veniam...
+								Lorem ipsum dolor sit amet
+								consectetur, adipisicing elit.
+								Asperiores esse quae veniam...
 							</p>
 							<div className="text-right">
 								<Link
 									href="/"
-									className="link link-hover"
-								>
+									className="link link-hover">
 									Read more{" "}
 									<LuMoveRight className="inline stroke-primary" />
 								</Link>
 							</div>
 						</div>
 					</div>
-				</div>
-			</div> */}
+				</CascadeAnimation>
+			</div>
 		</>
 	);
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { BsPaypal } from "react-icons/bs";
 import CoverImage from "../components/cover";
+import CascadeAnimation from "@/app/components/animations/cascade-animation";
 
 export const metadata = {
 	title: "Support",
@@ -16,7 +17,7 @@ function SupportPage() {
 			<div className="px-5">
 				<div className="max-w-md p-5 mx-auto bg-slate-100 rounded-md">
 					<h3 className="text-2xl font-bold">Donation methods</h3>
-					<div className="space-y-3">
+					<CascadeAnimation parentClassName="space-y-3">
 						<div>
 							<h4 className="font-bold">Bank Transfer</h4>
 							<p className="flex flex-wrap gap-2 text-sm">
@@ -50,14 +51,14 @@ function SupportPage() {
 						<div>
 							<h4 className="font-bold">Paypal</h4>
 							<a
-								href="https://www.paypal.me/ChiomaOnwenonye"
+								href="https://www.paypal.me/"
 								target="_blank"
 								className="btn btn-primary">
 								<BsPaypal />
 								<span>PayPal</span>
 							</a>
 						</div>
-					</div>
+					</CascadeAnimation>
 				</div>
 			</div>
 		</>
