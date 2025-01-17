@@ -12,6 +12,7 @@ import {
 	FcPlanner,
 } from "react-icons/fc";
 import {
+	LuAward,
 	LuCalendarDays,
 	LuCheck,
 	LuDroplets,
@@ -137,14 +138,14 @@ function PublicHomePage() {
 						<div className="relative overflow-hidden w-full rounded-full aspect-square">
 							<Image
 								fill
-								src="/images/vision.jpg"
+								src="https://images.pexels.com/photos/30230055/pexels-photo-30230055/free-photo-of-aerial-view-of-refugee-camp-with-blue-tarps.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt=""
 							/>
 						</div>
 						<div className="absolute w-1/3 aspect-square rounded-full border-4 overflow-hidden bottom-0 right-10">
 							<Image
 								fill
-								src="/images/vision-alt.jpg"
+								src="https://images.pexels.com/photos/30224779/pexels-photo-30224779/free-photo-of-joyful-woman-holding-aid-supplies-in-africa.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt=""
 								className="object-cover"
 							/>
@@ -382,7 +383,7 @@ function PublicHomePage() {
 				<div className="flex-1 relative overflow-hidden">
 					<Image
 						fill
-						src="/images/more-people.jpg"
+						src="https://images.pexels.com/photos/6646894/pexels-photo-6646894.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 						alt=""
 						className="object-cover"
 					/>
@@ -635,12 +636,15 @@ function PublicHomePage() {
 						}
 						className="border text-2xl rounded-xl italic border-dashed inline-block p-5"
 					/>
-					{/* <p className="text-2xl rounded-xl italic border border-dashed inline-block p-5">
-							
-						</p> */}
 				</div>
 			</div>
 			<div className="px-5">
+				<div className="flex justify-center">
+					<h2 className="flex gap-1 items-center text-secondary">
+						<LuAward className="w-5 h-5" />
+						Testimonials
+					</h2>
+				</div>
 				<AnimatedTestimonials
 					testimonials={[
 						{
