@@ -22,7 +22,7 @@ function SupportPage() {
 							<h4 className="font-bold">Bank Transfer</h4>
 							<p className="flex flex-wrap gap-2 text-sm">
 								<span>Bank name:</span>
-								<span>FCMB</span>
+								<span>Virgin Moneh</span>
 							</p>
 							<p className="flex flex-wrap gap-2 text-sm">
 								<span>Account Name:</span>
@@ -31,11 +31,27 @@ function SupportPage() {
 								</span>
 							</p>
 							<p className="flex flex-wrap gap-2 text-sm">
+								<span>Account Type:</span>
+								<span>Business</span>
+							</p>
+							<p className="flex flex-wrap gap-2 text-sm">
+								<span>BIC:</span>
+								<span>CLYDGB21842</span>
+							</p>
+							<p className="flex flex-wrap gap-2 text-sm">
+								<span>IBAN:</span>
+								<span>GB19CLYD82120800079508</span>
+							</p>
+							<p className="flex flex-wrap gap-2 text-sm">
+								<span>Sort Code:</span>
+								<span>82-12-08</span>
+							</p>
+							<p className="flex flex-wrap gap-2 text-sm">
 								<span>Account Number:</span>
-								<span>2001075110</span>
+								<span>00079508</span>
 							</p>
 						</div>
-						<div>
+						{/* <div>
 							<h4 className="font-bold">Crypto</h4>
 							<p className="flex flex-wrap gap-2 text-sm">
 								<span>Token:</span>
@@ -57,7 +73,7 @@ function SupportPage() {
 								<BsPaypal />
 								<span>PayPal</span>
 							</a>
-						</div>
+						</div> */}
 					</CascadeAnimation>
 				</div>
 			</div>
