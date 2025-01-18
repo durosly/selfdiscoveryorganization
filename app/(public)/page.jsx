@@ -44,9 +44,9 @@ function PublicHomePage() {
 					"https://images.pexels.com/photos/2406271/pexels-photo-2406271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
 					"https://images.pexels.com/photos/5905492/pexels-photo-5905492.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
 				]}
-				className={"h-screen"}
+				className={"h-[calc(100dvh_-_4rem)]"}
 				direction="down">
-				<div className="relative z-50 text-center text-neutral-content">
+				<div className="relative z-50 text-center text-neutral-content px-5">
 					<div className="max-w-xl">
 						<h1 className="mb-5  font-bold flex flex-col">
 							<span>Welcome to</span>
@@ -216,7 +216,8 @@ function PublicHomePage() {
 
 				<CascadeAnimation
 					animationDirection="down"
-					parentClassName="flex flex-col sm:flex-row gap-5 flex-wrap">
+					threshold={0.1}
+					parentClassName="sm:flex flex-col sm:flex-row gap-5 flex-wrap">
 					<div className="sm:w-[calc((100%_-_2_*_1.25rem_)_/_3)] rounded-xl overflow-hidden">
 						<div className=" h-48 relative">
 							<Image
@@ -697,6 +698,7 @@ function PublicHomePage() {
 				<CascadeAnimation
 					animationDirection="down"
 					animationDelay={0.5}
+					threshold={0.1}
 					parentClassName="flex flex-col sm:flex-row gap-5 flex-wrap mt-10">
 					<div className="sm:w-[calc((100%_-_2_*_1.25rem_)_/_3)] rounded-xl overflow-hidden p-3 bg-primary/10">
 						<div className=" h-32 relative rounded-xl overflow-hidden">
