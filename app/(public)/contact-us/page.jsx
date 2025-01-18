@@ -1,4 +1,4 @@
-import { LuGrip, LuMail, LuMapPin, LuPhoneCall } from "react-icons/lu";
+import { LuGrip, LuLink, LuMail, LuMapPin, LuPhoneCall, LuSend } from "react-icons/lu";
 import ContactForm from "./components/contact-form";
 import CoverImage from "../components/cover";
 import CascadeAnimation from "@/app/components/animations/cascade-animation";
@@ -46,9 +46,11 @@ function ContactUsPage() {
 								<h3 className="font-bold mb-2">
 									Email Us
 								</h3>
-								<p className="capitalize text-sm">
-									team@chiomaorganization.com
-								</p>
+								<a
+									href="mailto:selfdisoveryorganiztion@gmail.com"
+									className="text-sm">
+									selfdisoveryorganiztion@gmail.com
+								</a>
 							</div>
 						</div>
 						<div className="flex gap-4 sm:gap-10">
@@ -57,21 +59,79 @@ function ContactUsPage() {
 								<h3 className="font-bold mb-2">
 									Phonenumbers
 								</h3>
-								<div className="flex flex-col">
-									<a href="tel:+2348111461988">
+								<div className="flex flex-col gap-0.5 text-sm">
+									<a href="tel:+447301046564">
 										<span>Call:</span>
 										<span>
-											+2348111461988
+											+447301046564
 										</span>
 									</a>
 									<a
-										href="https://wa.me/+41779084193"
+										href="https://wa.me/+447301046564"
 										target="_blank">
 										<span>
 											Whatsapp:
 										</span>
 										<span>
-											+41779084193
+											+447301046564
+										</span>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div className="flex gap-4 sm:gap-10">
+							<LuSend className="stroke-primary w-10 md:w-20 h-10 md:h-20" />
+							<div>
+								<h3 className="font-bold mb-2">
+									Social Media
+								</h3>
+								<div className="flex flex-col text-sm gap-0.5">
+									<a
+										href="https://x.com/selfdiscoveryog"
+										target="_blank"
+										rel="noreferrer"
+										className="flex gap-2 items-center">
+										<span className="inline-flex items-center gap-1">
+											X:
+										</span>
+										<span>
+											@selfdiscoveryog
+										</span>
+									</a>
+									<a
+										href="https://tiktok.com/@selfdiscoveryorg"
+										target="_blank"
+										rel="noreferrer"
+										className="flex gap-2 items-center">
+										<span className="inline-flex items-center gap-1">
+											TikTok:
+										</span>
+										<span>
+											@selfdiscoveryorg
+										</span>
+									</a>
+									<a
+										href="https://instagram.com/selfdiscoveryorganization"
+										target="_blank"
+										rel="noreferrer"
+										className="flex gap-2 items-center">
+										<span className="inline-flex items-center gap-1">
+											IG:
+										</span>
+										<span>
+											@selfdiscoveryorganization
+										</span>
+									</a>
+									<a
+										href="https://threads.net/selfdiscoveryorganization"
+										target="_blank"
+										rel="noreferrer"
+										className="flex gap-2 items-center">
+										<span className="inline-flex items-center gap-1">
+											Thread:
+										</span>
+										<span>
+											@selfdiscoveryorganization
 										</span>
 									</a>
 								</div>
