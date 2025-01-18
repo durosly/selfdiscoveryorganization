@@ -1,22 +1,32 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { useCallback } from "react";
 import { useEffect, useState } from "react";
 import { LuArrowLeft, LuArrowRight } from "react-icons/lu";
 
 export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
 	const [active, setActive] = useState(0);
+	const [isHydrated, setIsHydrated] = useState(false);
 
-	const handleNext = () => {
+	useEffect(() => {
+		// Mark component as hydrated on the client side
+		setIsHydrated(true);
+	}, []);
+
+	const handleNext = useCallback(() => {
 		setActive((prev) => (prev + 1) % testimonials.length);
-	};
+	}, [testimonials.length]);
 
-	const handlePrev = () => {
+	const handlePrev = useCallback(() => {
 		setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-	};
+	}, [testimonials.length]);
 
-	const isActive = (index) => {
-		return index === active;
+	const isActive = (index) => index === active;
+
+	const randomRotateY = () => {
+		// Only generate random values after hydration
+		return isHydrated ? Math.floor(Math.random() * 21) - 10 : 0;
 	};
 
 	useEffect(() => {
@@ -24,14 +34,11 @@ export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
 			const interval = setInterval(handleNext, 5000);
 			return () => clearInterval(interval);
 		}
-	}, [autoplay]);
+	}, [autoplay, handleNext]);
 
-	const randomRotateY = () => {
-		return Math.floor(Math.random() * 21) - 10;
-	};
 	return (
 		<div className="max-w-sm md:max-w-4xl mx-auto antialiased font-sans px-4 md:px-8 lg:px-12 py-20">
-			<div className="relative grid grid-cols-1 md:grid-cols-2  gap-20">
+			<div className="relative grid grid-cols-1 md:grid-cols-2 gap-20">
 				<div>
 					<div className="relative h-52 md:h-80 w-full">
 						<AnimatePresence>
