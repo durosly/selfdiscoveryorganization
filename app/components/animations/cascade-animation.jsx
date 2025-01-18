@@ -15,13 +15,14 @@ const CascadeAnimation = ({
 	stiffness = 100,
 	damping = 8,
 	parentClassName = "",
+	threshold = 0.4,
 	parentElement = "div",
 	animationDelay = 0, // New prop for delay before animation trigger
 	...restProps
 }) => {
 	const { ref, inView } = useInView({
 		triggerOnce,
-		threshold: 0.4,
+		threshold,
 	});
 
 	const containerRef = useRef(null);
