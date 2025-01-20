@@ -5,11 +5,11 @@ import connectMongo from "@/lib/connectDB";
 import ProgramModel from "@/models/program";
 import convertTo12HourFormat from "@/lib/formatTime";
 import { DateTime } from "luxon";
+import { notFound } from "next/navigation";
 
-export const dynamic = "force-dynamic";
-
-export async function generateMetadata({ params: { slug } }) {
+export async function generateMetadata({ params }) {
 	await connectMongo();
+	const { slug } = await params;
 
 	const program = await ProgramModel.findOne({ slug });
 
@@ -26,9 +26,9 @@ export async function generateMetadata({ params: { slug } }) {
 	}
 }
 
-async function ProgramsDetailsPage({ params: { slug } }) {
+async function ProgramsDetailsPage({ params }) {
 	await connectMongo();
-
+	const { slug } = await params;
 	const program = await ProgramModel.findOne({ slug });
 
 	if (!program) {
@@ -55,13 +55,17 @@ async function ProgramsDetailsPage({ params: { slug } }) {
 								<LuCalendar className="inline-block" />{" "}
 								{DateTime.fromJSDate(
 									program.start_date
-								).toLocaleString(DateTime.DATE_MED)}{" "}
+								).toLocaleString(
+									DateTime.DATE_MED
+								)}{" "}
 								{!!program?.end_date && (
 									<>
 										-{" "}
 										{DateTime.fromJSDate(
 											program.end_date
-										).toLocaleString(DateTime.DATE_MED)}
+										).toLocaleString(
+											DateTime.DATE_MED
+										)}
 									</>
 								)}
 							</p>
@@ -69,7 +73,9 @@ async function ProgramsDetailsPage({ params: { slug } }) {
 						<div>
 							<p className="flex items-center gap-2 ">
 								<LuClock5 className="inline-block" />{" "}
-								{convertTo12HourFormat(program.start_time)}{" "}
+								{convertTo12HourFormat(
+									program.start_time
+								)}{" "}
 								{!!program?.end_time && (
 									<>
 										-{" "}
