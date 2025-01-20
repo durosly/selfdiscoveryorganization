@@ -50,10 +50,7 @@ function TimelineForm({ id }) {
 	return (
 		<form onSubmit={addToTimeline}>
 			<div className="form-control">
-				<label
-					htmlFor="title"
-					className="label"
-				>
+				<label htmlFor="title" className="label">
 					Title
 				</label>
 				<input
@@ -71,10 +68,7 @@ function TimelineForm({ id }) {
 				/>
 			</div>
 			<div className="form-control">
-				<label
-					htmlFor="sub-title"
-					className="label"
-				>
+				<label htmlFor="sub-title" className="label">
 					Sub Title
 				</label>
 				<input
@@ -92,11 +86,8 @@ function TimelineForm({ id }) {
 				/>
 			</div>
 			<div className="form-control">
-				<label
-					htmlFor="summary"
-					className="label"
-				>
-					Sub Title
+				<label htmlFor="summary" className="label">
+					Summary
 				</label>
 				<textarea
 					name="summary"
@@ -110,14 +101,10 @@ function TimelineForm({ id }) {
 							...timeline,
 							[e.target.name]: e.target.value,
 						})
-					}
-				></textarea>
+					}></textarea>
 			</div>
 			<div className="form-control">
-				<label
-					htmlFor="date"
-					className="label"
-				>
+				<label htmlFor="date" className="label">
 					Date
 				</label>
 				<input
@@ -135,10 +122,7 @@ function TimelineForm({ id }) {
 				/>
 			</div>
 			<div className="form-control mt-5">
-				<button
-					disabled={isLoading}
-					className="btn btn-primary"
-				>
+				<button disabled={isLoading} className="btn btn-primary">
 					Submit
 				</button>
 			</div>
