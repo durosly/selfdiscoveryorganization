@@ -384,7 +384,7 @@ function PublicHomePage() {
 				<div className="flex-1 relative overflow-hidden">
 					<Image
 						fill
-						src="https://images.pexels.com/photos/6646894/pexels-photo-6646894.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+						src="/images/more-people.jpg"
 						alt=""
 						className="object-cover"
 					/>
