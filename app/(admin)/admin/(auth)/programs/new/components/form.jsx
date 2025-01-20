@@ -55,10 +55,7 @@ function NewProgramForm() {
 			{step === 1 && (
 				<>
 					<div className="form-control">
-						<label
-							htmlFor="title"
-							className="label"
-						>
+						<label htmlFor="title" className="label">
 							Title
 						</label>
 						<input
@@ -70,16 +67,14 @@ function NewProgramForm() {
 							onChange={(e) =>
 								setData({
 									...data,
-									[e.target.name]: e.target.value,
+									[e.target.name]:
+										e.target.value,
 								})
 							}
 						/>
 					</div>
 					<div className="form-control">
-						<label
-							htmlFor="desc"
-							className="label"
-						>
+						<label htmlFor="desc" className="label">
 							Description
 						</label>
 						<input
@@ -91,16 +86,14 @@ function NewProgramForm() {
 							onChange={(e) =>
 								setData({
 									...data,
-									[e.target.name]: e.target.value,
+									[e.target.name]:
+										e.target.value,
 								})
 							}
 						/>
 					</div>
 					<div className="form-control">
-						<label
-							htmlFor="location"
-							className="label"
-						>
+						<label htmlFor="location" className="label">
 							Location
 						</label>
 						<input
@@ -112,7 +105,8 @@ function NewProgramForm() {
 							onChange={(e) =>
 								setData({
 									...data,
-									[e.target.name]: e.target.value,
+									[e.target.name]:
+										e.target.value,
 								})
 							}
 						/>
@@ -120,8 +114,7 @@ function NewProgramForm() {
 					<div className="mt-3">
 						<button
 							className="btn btn-primary"
-							onClick={() => setStep((prev) => prev + 1)}
-						>
+							onClick={() => setStep((prev) => prev + 1)}>
 							Next
 						</button>
 					</div>
@@ -130,10 +123,7 @@ function NewProgramForm() {
 			{step === 2 && (
 				<>
 					<div className="form-control">
-						<label
-							htmlFor="start-date"
-							className="label"
-						>
+						<label htmlFor="start-date" className="label">
 							Start Date
 						</label>
 						<input
@@ -145,16 +135,14 @@ function NewProgramForm() {
 							onChange={(e) =>
 								setData({
 									...data,
-									[e.target.name]: e.target.value,
+									[e.target.name]:
+										e.target.value,
 								})
 							}
 						/>
 					</div>
 					<div className="form-control">
-						<label
-							htmlFor="end-date"
-							className="label"
-						>
+						<label htmlFor="end-date" className="label">
 							End Date
 						</label>
 						<input
@@ -166,22 +154,19 @@ function NewProgramForm() {
 							onChange={(e) =>
 								setData({
 									...data,
-									[e.target.name]: e.target.value,
+									[e.target.name]:
+										e.target.value,
 								})
 							}
 						/>
 						<label
 							htmlFor="end-date"
-							className="label-text-alt"
-						>
+							className="label-text-alt">
 							Leave empty for single day activities
 						</label>
 					</div>
 					<div className="form-control">
-						<label
-							htmlFor="start-time"
-							className="label"
-						>
+						<label htmlFor="start-time" className="label">
 							Start Time
 						</label>
 						<input
@@ -193,16 +178,14 @@ function NewProgramForm() {
 							onChange={(e) =>
 								setData({
 									...data,
-									[e.target.name]: e.target.value,
+									[e.target.name]:
+										e.target.value,
 								})
 							}
 						/>
 					</div>
 					<div className="form-control">
-						<label
-							htmlFor="end-time"
-							className="label"
-						>
+						<label htmlFor="end-time" className="label">
 							End Time
 						</label>
 						<input
@@ -214,7 +197,8 @@ function NewProgramForm() {
 							onChange={(e) =>
 								setData({
 									...data,
-									[e.target.name]: e.target.value,
+									[e.target.name]:
+										e.target.value,
 								})
 							}
 						/>
@@ -222,8 +206,7 @@ function NewProgramForm() {
 					<div className="my-5 space-x-5">
 						<button
 							className="btn btn-neutral"
-							onClick={() => setStep((prev) => prev - 1)}
-						>
+							onClick={() => setStep((prev) => prev - 1)}>
 							Prev
 						</button>
 						<button className="btn btn-primary">
