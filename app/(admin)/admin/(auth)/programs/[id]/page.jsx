@@ -9,11 +9,9 @@ import convertTo12HourFormat from "@/lib/formatTime";
 import StatusBtn from "./components/status-btn";
 import DeleteBtn from "./components/delete-btn";
 
-export const dynamic = "force-dynamic";
-
-async function AdminProgramsDetailsPage({ params: { id } }) {
+async function AdminProgramsDetailsPage({ params }) {
 	await connectMongo();
-
+	const { id } = await params;
 	const program = await ProgramModel.findById(id);
 
 	if (!program) {
@@ -22,11 +20,7 @@ async function AdminProgramsDetailsPage({ params: { id } }) {
 
 	return (
 		<div className="px-5 sm:px-10">
-			<CoverImage
-				url={program.cover_image}
-				title={program.title}
-				id={id}
-			/>
+			<CoverImage url={program.cover_image} title={program.title} id={id} />
 			<div className="flex-1">
 				<h2 className="text-2xl font-bold">{program.title}</h2>
 				<p>{program.desc}</p>
@@ -42,7 +36,9 @@ async function AdminProgramsDetailsPage({ params: { id } }) {
 									-{" "}
 									{DateTime.fromJSDate(
 										program.end_date
-									).toLocaleString(DateTime.DATE_MED)}
+									).toLocaleString(
+										DateTime.DATE_MED
+									)}
 								</>
 							)}
 						</p>
@@ -52,7 +48,12 @@ async function AdminProgramsDetailsPage({ params: { id } }) {
 							<LuClock5 className="inline-block" />{" "}
 							{convertTo12HourFormat(program.start_time)}{" "}
 							{!!program?.end_time && (
-								<>- {convertTo12HourFormat(program.end_time)}</>
+								<>
+									-{" "}
+									{convertTo12HourFormat(
+										program.end_time
+									)}
+								</>
 							)}
 						</p>
 					</div>
@@ -65,16 +66,11 @@ async function AdminProgramsDetailsPage({ params: { id } }) {
 				</div>
 			</div>
 			<div className="mt-5">
-				<h3 className="text-2xl font-bold text-center mb-3">
-					Activities
-				</h3>
+				<h3 className="text-2xl font-bold text-center mb-3">Activities</h3>
 				<TimelineDisplay id={id} />
 			</div>
 			<div className="divider">Actions</div>
-			<StatusBtn
-				id={id}
-				status={program.status}
-			/>
+			<StatusBtn id={id} status={program.status} />
 			<DeleteBtn id={id} />
 		</div>
 	);
