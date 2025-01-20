@@ -1,8 +1,5 @@
 import connectMongo from "@/lib/connectDB";
 import ProgramModel from "@/models/program";
-import { NextResponse } from "next/server";
-
-export const dynamic = "force-dynamic";
 
 async function getPrograms(request) {
 	try {
@@ -28,16 +25,18 @@ async function getPrograms(request) {
 			sort: { start_date: -1, start_time: 1 },
 		});
 
-		return NextResponse.json({
+		return Response.json({
 			status: true,
 			message: "success",
 			data,
 		});
 	} catch (error) {
-		return new Response(JSON.stringify({ status: false, message: error }), {
-			status: 500,
-			headers: { "Content-Type": `application/json` },
-		});
+		return Response.json(
+			{ status: false, message: error },
+			{
+				status: 500,
+			}
+		);
 	}
 }
 
