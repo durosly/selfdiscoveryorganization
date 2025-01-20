@@ -1,3 +1,4 @@
+import ClientWrapper from "./components/client-wrapper";
 import ToastWrapper from "./components/toastWrapper";
 import "./globals.css";
 
@@ -42,8 +43,10 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				{children}
-				<ToastWrapper />
+				<ClientWrapper>
+					{children}
+					<ToastWrapper />
+				</ClientWrapper>
 			</body>
 		</html>
 	);
