@@ -1,7 +1,7 @@
-import { LuGrip, LuLink, LuMail, LuMapPin, LuPhoneCall, LuSend } from "react-icons/lu";
-import ContactForm from "./components/contact-form";
-import CoverImage from "../components/cover";
 import CascadeAnimation from "@/app/components/animations/cascade-animation";
+import { LuMail, LuMapPin, LuPhoneCall, LuSend } from "react-icons/lu";
+import CoverImage from "../components/cover";
+import ContactForm from "./components/contact-form";
 
 export const metadata = {
 	title: "Contact Us",
