@@ -1,12 +1,15 @@
 "use client";
+import dynamic from "next/dynamic"; // Dynamically import client-side libraries
 import { handleError } from "@/lib/handleError";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
-import SimpleMDE from "react-simplemde-editor";
 import Markdown from "react-markdown";
+
+// Dynamically import SimpleMDE (only in the browser)
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), { ssr: false });
 
 function ArticleSummary({ initialData, program_id }) {
 	const router = useRouter();
@@ -26,11 +29,11 @@ function ArticleSummary({ initialData, program_id }) {
 
 	const { mutate, isPending } = useMutation({
 		mutationFn: async (data) => {
-			const respone = await axios.post(
+			const response = await axios.post(
 				`/api/admin/programs/${program_id}/article`,
 				data
 			);
-			return respone.data;
+			return response.data;
 		},
 		onMutate: () => {
 			toastRef.current = toast.loading("Saving...");
@@ -55,7 +58,7 @@ function ArticleSummary({ initialData, program_id }) {
 		<div>
 			<div className="mb-5">
 				{showEditor ? (
-					<form onSubmit={handleSubmit} action="">
+					<form onSubmit={handleSubmit}>
 						<SimpleMDE value={value} onChange={onChange} />
 						<button
 							className="btn btn-primary btn-sm"
@@ -65,7 +68,7 @@ function ArticleSummary({ initialData, program_id }) {
 						</button>
 					</form>
 				) : !!initialData ? (
-					<div className="prose bg-base-200 p-2 rounded-lg  line-clamp-4 max-w-none">
+					<div className="prose bg-base-200 p-2 rounded-lg line-clamp-4 max-w-none">
 						<Markdown>{initialData.body}</Markdown>
 					</div>
 				) : (

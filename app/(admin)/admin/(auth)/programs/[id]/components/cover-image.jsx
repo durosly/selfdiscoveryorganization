@@ -18,7 +18,7 @@ function CoverImage({ url, title, id }) {
 	function loadScript() {
 		if (typeof window !== "undefined" && !widgetHandlerRef.current) {
 			const cloudName = "dktzdjwsg"; // replace with your own cloud name
-			const uploadPreset = "organization_preset"; // replace with your own upload preset
+			const uploadPreset = "foundation_preset"; // replace with your own upload preset
 
 			// Remove the comments from the code below to add
 			// additional functionality.

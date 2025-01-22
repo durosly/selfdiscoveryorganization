@@ -11,6 +11,8 @@ import DeleteBtn from "./components/delete-btn";
 import ArticleSummary from "./components/article-summary";
 import ArticleModel from "@/models/program-article";
 import "easymde/dist/easymde.min.css";
+import ProgramGallery from "./components/gallery";
+import GalleryModel from "@/models/program-images";
 
 async function AdminProgramsDetailsPage({ params }) {
 	await connectMongo();
@@ -22,6 +24,7 @@ async function AdminProgramsDetailsPage({ params }) {
 	}
 
 	const article = await ArticleModel.findOne({ program_id: id });
+	const articleGallery = await GalleryModel.findOne({ program_id: id });
 
 	return (
 		<div className="px-5 sm:px-10">
@@ -79,6 +82,12 @@ async function AdminProgramsDetailsPage({ params }) {
 			<ArticleSummary
 				initialData={JSON.parse(JSON.stringify(article))}
 				program_id={id}
+			/>
+
+			<div className="divider">Program gallery</div>
+			<ProgramGallery
+				program_id={id}
+				initialData={JSON.parse(JSON.stringify(articleGallery))}
 			/>
 
 			<div className="divider">Actions</div>
