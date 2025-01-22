@@ -7,6 +7,9 @@ import convertTo12HourFormat from "@/lib/formatTime";
 import { DateTime } from "luxon";
 import { notFound } from "next/navigation";
 import DisplayArticle from "./components/article";
+import ProgramGallery from "./components/gallery";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export async function generateMetadata({ params }) {
 	await connectMongo();
@@ -99,6 +102,8 @@ async function ProgramsDetailsPage({ params }) {
 				<TimelineDisplay id={program._id} />
 
 				<DisplayArticle id={program._id} />
+
+				<ProgramGallery id={program._id} />
 			</div>
 		</>
 	);
