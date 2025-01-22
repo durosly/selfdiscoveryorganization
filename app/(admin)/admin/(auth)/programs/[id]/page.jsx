@@ -8,6 +8,9 @@ import TimelineDisplay from "./components/timeline";
 import convertTo12HourFormat from "@/lib/formatTime";
 import StatusBtn from "./components/status-btn";
 import DeleteBtn from "./components/delete-btn";
+import ArticleSummary from "./components/article-summary";
+import ArticleModel from "@/models/program-article";
+import "easymde/dist/easymde.min.css";
 
 async function AdminProgramsDetailsPage({ params }) {
 	await connectMongo();
@@ -17,6 +20,8 @@ async function AdminProgramsDetailsPage({ params }) {
 	if (!program) {
 		notFound();
 	}
+
+	const article = await ArticleModel.findOne({ program_id: id });
 
 	return (
 		<div className="px-5 sm:px-10">
@@ -69,6 +74,13 @@ async function AdminProgramsDetailsPage({ params }) {
 				<h3 className="text-2xl font-bold text-center mb-3">Activities</h3>
 				<TimelineDisplay id={id} />
 			</div>
+			<div className="divider">Article</div>
+
+			<ArticleSummary
+				initialData={JSON.parse(JSON.stringify(article))}
+				program_id={id}
+			/>
+
 			<div className="divider">Actions</div>
 			<StatusBtn id={id} status={program.status} />
 			<DeleteBtn id={id} />

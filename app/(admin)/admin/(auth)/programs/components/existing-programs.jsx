@@ -51,19 +51,14 @@ function ExistingPrograms() {
 	}, []);
 	return (
 		<>
-			<form
-				action="/find-event"
-				className="my-5"
-				onSubmit={queryNewData}
-			>
+			<form action="/find-event" className="my-5" onSubmit={queryNewData}>
 				<div className="join join-vertical sm:join-horizontal">
 					<select
 						className="select select-bordered join-item flex-1"
 						name="status"
 						id="status"
 						value={status}
-						onChange={(e) => setStatus(e.target.value)}
-					>
+						onChange={(e) => setStatus(e.target.value)}>
 						<option value="all">All</option>
 						<option value="publish">Published</option>
 						<option value="unpublished">Unpublished</option>
@@ -77,8 +72,7 @@ function ExistingPrograms() {
 					/>
 					<button
 						disabled={isLoading}
-						className="btn join-item rounded-r-md"
-					>
+						className="btn join-item rounded-r-md">
 						Search
 					</button>
 				</div>
@@ -89,8 +83,7 @@ function ExistingPrograms() {
 					new Array(3).fill(4).map((_, i) => (
 						<div
 							key={i}
-							className=" flex flex-col sm:flex-row gap-3 border p-3 sm:p-5 rounded-2xl"
-						>
+							className=" flex flex-col sm:flex-row gap-3 border p-3 sm:p-5 rounded-2xl">
 							<div className="relative h-32 aspect-video sm:aspect-square rounded-xl overflow-hidden animate-pulse bg-slate-400"></div>
 							<div className="flex-1">
 								<h2 className="text-xl font-bold bg-slate-400 rounded-md animate-pulse">
@@ -112,8 +105,7 @@ function ExistingPrograms() {
 					data.docs.map((d) => (
 						<div
 							key={d._id}
-							className=" flex flex-col sm:flex-row gap-3 border p-3 sm:p-5 rounded-2xl"
-						>
+							className=" flex flex-col sm:flex-row gap-3 border p-3 sm:p-5 rounded-2xl">
 							<div className="relative h-32 aspect-video sm:aspect-square rounded-xl overflow-hidden">
 								<Image
 									fill
@@ -127,24 +119,26 @@ function ExistingPrograms() {
 								<h2 className="text-2xl font-bold">
 									{d.title}
 								</h2>
-								<p className="line-clamp">{d.desc}</p>
+								<p className="line-clamp">
+									{d.desc}
+								</p>
 								<span
 									className={`badge ${
-										d.status === "publish"
+										d.status ===
+										"publish"
 											? "badge-success"
-											: d.status === "unpublished"
+											: d.status ===
+											  "unpublished"
 											? "badge-warning"
 											: "badge-error"
-									}`}
-								>
+									}`}>
 									{d.status}
 								</span>
 
 								<div className="text-right">
 									<Link
 										href={`/admin/programs/${d._id}`}
-										className="btn btn-sm btn-primary"
-									>
+										className="btn btn-sm btn-primary">
 										View Event
 									</Link>
 								</div>
@@ -160,15 +154,13 @@ function ExistingPrograms() {
 				<button
 					disabled={!data.hasPrevPage}
 					onClick={() => loadNew(page - 1)}
-					className="btn btn-sm btn-primary btn-outline"
-				>
+					className="btn btn-sm btn-primary btn-outline">
 					<LuArrowLeft />
 				</button>
 				<button
 					disabled={!data.hasNextPage}
 					onClick={() => loadNew(page + 1)}
-					className="btn btn-sm btn-primary btn-outline"
-				>
+					className="btn btn-sm btn-primary btn-outline">
 					<LuArrowRight />
 				</button>
 			</div>
