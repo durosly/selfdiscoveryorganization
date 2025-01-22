@@ -6,6 +6,7 @@ import ProgramModel from "@/models/program";
 import convertTo12HourFormat from "@/lib/formatTime";
 import { DateTime } from "luxon";
 import { notFound } from "next/navigation";
+import DisplayArticle from "./components/article";
 
 export async function generateMetadata({ params }) {
 	await connectMongo();
@@ -94,12 +95,10 @@ async function ProgramsDetailsPage({ params }) {
 						</div>
 					</div>
 				</div>
-				<div className="mt-5">
-					<h3 className="text-2xl font-bold text-center mb-3">
-						Activities
-					</h3>
-					<TimelineDisplay id={program._id} />
-				</div>
+
+				<TimelineDisplay id={program._id} />
+
+				<DisplayArticle id={program._id} />
 			</div>
 		</>
 	);
