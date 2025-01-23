@@ -24,12 +24,6 @@ function Footer() {
 					<Link href="/programs" className="link link-hover">
 						Programs / events
 					</Link>
-					<Link href="/blogs" className="link link-hover">
-						Blogs
-					</Link>
-
-					{/* <a className="link link-hover">Contact</a> */}
-					{/* <a className="link link-hover">Volunter</a> */}
 					<Link href="/support" className="link link-hover">
 						Become a sponsor
 					</Link>
@@ -55,8 +49,6 @@ function Footer() {
 						<LuMapPin className="stroke-current" />
 						20, digbori street
 					</a>
-					{/* <a className="link link-hover">Privacy policy</a>
-					<a className="link link-hover">Cookie policy</a> */}
 				</CascadeAnimation>
 			</footer>
 			<footer className="footer px-10 py-4 border-t bg-base-200 text-base-content border-base-300">
