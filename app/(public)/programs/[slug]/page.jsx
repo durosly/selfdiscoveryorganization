@@ -45,9 +45,10 @@ async function ProgramsDetailsPage({ params }) {
 				<div className="relative h-44 w-full rounded-xl overflow-hidden">
 					<Image
 						fill
-						src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}/${program.cover_image}`}
+						src={`${program.cover_image}`}
 						alt={program.title}
 						className="object-cover"
+						sizes="(min-width: 640px) calc(100vw - 80px), calc(100vw - 40px)"
 					/>
 				</div>
 				<div className="flex-1 mt-5">

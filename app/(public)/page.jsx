@@ -140,6 +140,7 @@ function PublicHomePage() {
 								fill
 								src="https://images.pexels.com/photos/30230055/pexels-photo-30230055/free-photo-of-aerial-view-of-refugee-camp-with-blue-tarps.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt=""
+								sizes="(min-width: 640px) calc(50vw - 60px), calc(100vw - 80px)"
 							/>
 						</div>
 						<div className="absolute w-1/3 aspect-square rounded-full border-4 overflow-hidden bottom-0 right-10">
@@ -148,6 +149,7 @@ function PublicHomePage() {
 								src="https://images.pexels.com/photos/30224779/pexels-photo-30224779/free-photo-of-joyful-woman-holding-aid-supplies-in-africa.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt=""
 								className="object-cover"
+								sizes="(min-width: 640px) calc(16.65vw - 28px), calc(33.44vw - 35px)"
 							/>
 						</div>
 					</div>
@@ -225,6 +227,7 @@ function PublicHomePage() {
 								src="https://images.pexels.com/photos/5905857/pexels-photo-5905857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt=""
 								className="object-cover"
+								sizes="(min-width: 1040px) calc(33.32vw - 39px), (min-width: 640px) calc(3.16vw + 268px), (min-width: 400px) calc(100vw - 80px), calc(13.75vw + 248px)"
 							/>
 							<div className="flex justify-center items-center absolute top-5 left-5 w-10 aspect-square rounded-full bg-white/80">
 								<LuGraduationCap className="w-6 h-6 stroke-primary " />
@@ -257,6 +260,7 @@ function PublicHomePage() {
 								src="https://images.pexels.com/photos/5452201/pexels-photo-5452201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt=""
 								className="object-cover"
+								sizes="(min-width: 1040px) calc(33.32vw - 39px), (min-width: 640px) calc(3.16vw + 268px), (min-width: 400px) calc(100vw - 80px), calc(13.75vw + 248px)"
 							/>
 							<div className="flex justify-center items-center absolute top-5 left-5 w-10 aspect-square rounded-full bg-white/80">
 								<LuSyringe className="w-6 h-6 stroke-secondary " />
@@ -290,6 +294,7 @@ function PublicHomePage() {
 								src="https://images.pexels.com/photos/861414/pexels-photo-861414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt=""
 								className="object-cover"
+								sizes="(min-width: 1040px) calc(33.32vw - 39px), (min-width: 640px) calc(3.16vw + 268px), (min-width: 400px) calc(100vw - 80px), calc(13.75vw + 248px)"
 							/>
 							<div className="flex justify-center items-center absolute top-5 left-5 w-10 aspect-square rounded-full bg-white/80">
 								<LuGlassWater className="w-6 h-6 stroke-primary " />
@@ -323,6 +328,7 @@ function PublicHomePage() {
 								src="https://images.pexels.com/photos/18025831/pexels-photo-18025831/free-photo-of-man-making-pottery.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt=""
 								className="object-cover"
+								sizes="(min-width: 1040px) calc(33.32vw - 39px), (min-width: 640px) calc(3.16vw + 268px), (min-width: 400px) calc(100vw - 80px), calc(13.75vw + 248px)"
 							/>
 							<div className="flex justify-center items-center absolute top-5 left-5 w-10 aspect-square rounded-full bg-white/80">
 								<LuHammer className="w-6 h-6 stroke-accent " />
@@ -355,6 +361,7 @@ function PublicHomePage() {
 								src="https://images.pexels.com/photos/9090750/pexels-photo-9090750.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt=""
 								className="object-cover"
+								sizes="(min-width: 1040px) calc(33.32vw - 39px), (min-width: 640px) calc(3.16vw + 268px), (min-width: 400px) calc(100vw - 80px), calc(13.75vw + 248px)"
 							/>
 							<div className="flex justify-center items-center absolute top-5 left-5 w-10 aspect-square rounded-full bg-white/80">
 								<LuSoup className="w-6 h-6 stroke-primary " />
@@ -387,6 +394,7 @@ function PublicHomePage() {
 						src="/images/more-people.jpg"
 						alt=""
 						className="object-cover"
+						sizes="(min-width: 1560px) 50vw, (min-width: 1360px) 776px, (min-width: 1100px) calc(-14.17vw + 1008px), (min-width: 960px) calc(-128.33vw + 2238px), (min-width: 640px) calc(-109.67vw + 2036px), 100vw"
 					/>
 				</div>
 				<div className="flex-1 px-5 py-10 space-y-7 bg-base-200/50 overflow-hidden">
@@ -490,6 +498,7 @@ function PublicHomePage() {
 								src="https://images.pexels.com/photos/4584095/pexels-photo-4584095.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt="Self Discovery"
 								className="object-cover"
+								sizes="152px"
 							/>
 						</div>
 						<div className="text-center">
@@ -506,6 +515,7 @@ function PublicHomePage() {
 								src="https://images.pexels.com/photos/20335722/pexels-photo-20335722/free-photo-of-a-black-and-white-photo-of-a-woman-with-a-head-wrap.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt="Janet"
 								className="object-cover"
+								sizes="152px"
 							/>
 						</div>
 						<div className="text-center">
@@ -520,6 +530,7 @@ function PublicHomePage() {
 								src="https://images.pexels.com/photos/20336005/pexels-photo-20336005/free-photo-of-a-black-and-white-photo-of-a-woman-with-a-head-wrap.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt="Pierre"
 								className="object-cover"
+								sizes="152px"
 							/>
 						</div>
 						<div className="text-center">
@@ -535,6 +546,7 @@ function PublicHomePage() {
 								src="https://images.pexels.com/photos/30140701/pexels-photo-30140701/free-photo-of-stylish-portrait-of-a-person-with-red-curly-hair.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt="Self Discovery"
 								className="object-cover"
+								sizes="152px"
 							/>
 						</div>
 						<div className="text-center">
@@ -707,6 +719,7 @@ function PublicHomePage() {
 								src="https://images.pexels.com/photos/5905857/pexels-photo-5905857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt=""
 								className="object-cover"
+								sizes="(min-width: 820px) calc(33.35vw - 64px), (min-width: 640px) calc(6.88vw + 148px), calc(100vw - 104px)"
 							/>
 						</div>
 						<div className=" space-y-2 mt-5">
@@ -739,6 +752,7 @@ function PublicHomePage() {
 								src="https://images.pexels.com/photos/5905857/pexels-photo-5905857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt=""
 								className="object-cover"
+								sizes="(min-width: 820px) calc(33.35vw - 64px), (min-width: 640px) calc(6.88vw + 148px), calc(100vw - 104px)"
 							/>
 						</div>
 						<div className=" space-y-2 mt-5">
@@ -771,6 +785,7 @@ function PublicHomePage() {
 								src="https://images.pexels.com/photos/5905857/pexels-photo-5905857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt=""
 								className="object-cover"
+								sizes="(min-width: 820px) calc(33.35vw - 64px), (min-width: 640px) calc(6.88vw + 148px), calc(100vw - 104px)"
 							/>
 						</div>
 						<div className=" space-y-2 mt-5">
@@ -803,6 +818,7 @@ function PublicHomePage() {
 								src="https://images.pexels.com/photos/5905857/pexels-photo-5905857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt=""
 								className="object-cover"
+								sizes="(min-width: 820px) calc(33.35vw - 64px), (min-width: 640px) calc(6.88vw + 148px), calc(100vw - 104px)"
 							/>
 						</div>
 						<div className=" space-y-2 mt-5">
@@ -835,6 +851,7 @@ function PublicHomePage() {
 								src="https://images.pexels.com/photos/5905857/pexels-photo-5905857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt=""
 								className="object-cover"
+								sizes="(min-width: 820px) calc(33.35vw - 64px), (min-width: 640px) calc(6.88vw + 148px), calc(100vw - 104px)"
 							/>
 						</div>
 						<div className=" space-y-2 mt-5">

@@ -2,56 +2,63 @@
 
 import CascadeAnimation from "@/app/components/animations/cascade-animation";
 import convertTo12HourFormat from "@/lib/formatTime";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { DateTime } from "luxon";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { LuArrowLeft, LuArrowRight, LuCalendar, LuClock5, LuMapPin } from "react-icons/lu";
 
-function ExistingPrograms() {
-	const [isLoading, setIsLoading] = useState(true);
-	const [data, setData] = useState([]);
-	const [page, setPage] = useState(0);
+function ExistingPrograms({ initialData }) {
+	const ref = useRef(null);
+	const [status] = useState("all");
 	const [search, setSearch] = useState("");
+	const [page, setPage] = useState(1);
 
-	async function loadData(current) {
-		setIsLoading(true);
-		try {
-			const response = await axios(`/api/programs?page=${current}&q=${search}`);
+	const fetchPrograms = async () => {
+		const response = await axios(
+			`/api/programs?page=${page}&status=${status}&q=${search}`
+		);
 
-			if (response.data.status) {
-				const { data: programData } = response.data;
-				setData(programData);
-				setPage(current);
-			} else {
-				throw new Error(response.data.message);
+		if (response.data.status) {
+			if (ref.current) {
+				ref.current.scrollIntoView({ behavior: "smooth" });
 			}
-		} catch (error) {
-			toast.error(error.message);
-		} finally {
-			setIsLoading(false);
+			return response.data.data;
+		} else {
+			throw new Error(response.data.message);
 		}
-	}
+	};
+
+	const { data, isPending, isError, error } = useQuery({
+		queryKey: ["programs", { page, status, search }],
+		queryFn: fetchPrograms,
+		initialData,
+	});
 
 	function loadNew(newPage) {
-		loadData(newPage);
+		setPage(newPage);
 	}
 
 	function queryNewData(e) {
 		e.preventDefault();
-
-		loadNew(page);
+		setPage(1);
 	}
 
 	useEffect(() => {
-		loadData(1);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+		if (isError) {
+			toast.error(error.message);
+		}
+	}, [isError, error]);
 	return (
 		<>
-			<form action="/find-event" className="my-5" onSubmit={queryNewData}>
+			<form
+				ref={ref}
+				action="/find-event"
+				className="my-5"
+				onSubmit={queryNewData}>
 				<div className="join join-vertical sm:join-horizontal">
 					<input
 						type="search"
@@ -61,7 +68,7 @@ function ExistingPrograms() {
 						onChange={(e) => setSearch(e.target.value)}
 					/>
 					<button
-						disabled={isLoading}
+						disabled={isPending}
 						className="btn join-item rounded-r-md">
 						Search
 					</button>
@@ -69,7 +76,7 @@ function ExistingPrograms() {
 			</form>
 
 			<div className="flex flex-col md:flex-row flex-wrap gap-5">
-				{isLoading ? (
+				{isPending ? (
 					new Array(3).fill(4).map((_, i) => (
 						<CascadeAnimation
 							animationDirection="down"

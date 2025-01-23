@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Slider from "react-slick";
+import { LuX } from "react-icons/lu";
 
 const settings = {
 	dots: true,
@@ -30,10 +31,16 @@ const settings = {
 
 function ProgramGalleryDisplay({ images }) {
 	const [view, setView] = useState("grid");
+	const [currentImage, setCurrentImage] = useState(null);
 
 	const handleViewChange = (newView) => {
 		setView(newView);
 	};
+
+	function handleClickedImage({ image }) {
+		setCurrentImage(image);
+		document.getElementById("image-modal").showModal();
+	}
 
 	return (
 		<>
@@ -54,16 +61,20 @@ function ProgramGalleryDisplay({ images }) {
 				</button>
 			</div>
 			{view === "grid" ? (
-				<div className="grid grid-cols-3 gap-4">
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
 					{images.map((image, index) => (
 						<div
 							key={index}
-							className="relative w-full h-64 rounded-2xl overflow-hidden">
+							className="relative w-full h-64 rounded-2xl overflow-hidden cursor-pointer"
+							onClick={() =>
+								handleClickedImage({ image })
+							}>
 							<Image
-								src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}/${image}`}
+								src={`${image}`}
 								alt={`Gallery Image ${index + 1}`}
 								fill
 								className="object-cover"
+								sizes="(min-width: 780px) calc(33.33vw - 37px), (min-width: 640px) calc(50vw - 48px), calc(100vw - 40px)"
 							/>
 						</div>
 					))}
@@ -73,17 +84,50 @@ function ProgramGalleryDisplay({ images }) {
 					{images.map((image, index) => (
 						<div
 							key={index}
-							className="relative w-full h-64 rounded-2xl overflow-hidden">
+							className="relative w-full h-64 rounded-2xl overflow-hidden cursor-pointer"
+							onClick={() =>
+								handleClickedImage({ image })
+							}>
 							<Image
-								src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}/${image}`}
+								src={`${image}`}
 								alt={`Gallery Image ${index + 1}`}
 								fill
 								className="object-cover"
+								sizes="(min-width: 780px) calc(33.33vw - 37px), (min-width: 640px) calc(50vw - 48px), calc(100vw - 40px)"
 							/>
 						</div>
 					))}
 				</Slider>
 			)}
+
+			{/* Open the modal using document.getElementById('ID').showModal() method */}
+			{/* <button className="btn" onClick={()=>document.getElementById('image-modal').showModal()}>open modal</button> */}
+			<dialog id="image-modal" className="modal">
+				<div className="modal-box">
+					<form method="dialog">
+						{/* if there is a button in form, it will close the modal */}
+						<button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+							<LuX />
+						</button>
+					</form>
+					{currentImage && (
+						<div className="relative w-full h-96 rounded-2xl overflow-hidden">
+							<Image
+								src={`${currentImage}`}
+								alt="Gallery Image"
+								fill
+								className="object-contain"
+							/>
+						</div>
+					)}
+					<p className="py-4">
+						Press ESC key or click outside to close
+					</p>
+				</div>
+				<form method="dialog" className="modal-backdrop">
+					<button>close</button>
+				</form>
+			</dialog>
 		</>
 	);
 }

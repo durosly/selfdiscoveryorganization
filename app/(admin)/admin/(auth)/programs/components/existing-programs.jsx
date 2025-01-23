@@ -6,49 +6,41 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { LuArrowLeft, LuArrowRight } from "react-icons/lu";
+import { useQuery } from "@tanstack/react-query";
 
-function ExistingPrograms() {
-	const [isLoading, setIsLoading] = useState(true);
-	const [data, setData] = useState([]);
-	const [page, setPage] = useState(0);
+function ExistingPrograms({ initialData }) {
 	const [status, setStatus] = useState("all");
 	const [search, setSearch] = useState("");
+	const [page, setPage] = useState(1);
 
-	async function loadData(current) {
-		setIsLoading(true);
-		try {
-			const response = await axios(
-				`/api/admin/programs?page=${current}&status=${status}&q=${search}`
-			);
+	const fetchPrograms = async () => {
+		const response = await axios(
+			`/api/admin/programs?page=${page}&status=${status}&q=${search}`
+		);
 
-			if (response.data.status) {
-				const { data: programData } = response.data;
-				setData(programData);
-				setPage(current);
-			} else {
-				throw new Error(response.data.message);
-			}
-		} catch (error) {
-			toast.error(error.message);
-		} finally {
-			setIsLoading(false);
+		if (response.data.status) {
+			return response.data.data;
+		} else {
+			throw new Error(response.data.message);
 		}
-	}
+	};
 
-	function loadNew(newPage) {
-		loadData(newPage);
-	}
+	const { data, isPending, isError, error } = useQuery({
+		queryKey: ["programs", { page, status, search }],
+		queryFn: fetchPrograms,
+		initialData,
+	});
 
 	function queryNewData(e) {
 		e.preventDefault();
-
-		loadNew(page);
+		setPage(1);
 	}
 
 	useEffect(() => {
-		loadData(1);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+		if (isError) {
+			toast.error(error.message);
+		}
+	}, [isError, error]);
 	return (
 		<>
 			<form action="/find-event" className="my-5" onSubmit={queryNewData}>
@@ -71,7 +63,7 @@ function ExistingPrograms() {
 						onChange={(e) => setSearch(e.target.value)}
 					/>
 					<button
-						disabled={isLoading}
+						disabled={isPending}
 						className="btn join-item rounded-r-md">
 						Search
 					</button>
@@ -79,7 +71,7 @@ function ExistingPrograms() {
 			</form>
 
 			<div className="flex flex-col gap-5">
-				{isLoading ? (
+				{isPending ? (
 					new Array(3).fill(4).map((_, i) => (
 						<div
 							key={i}
@@ -109,9 +101,9 @@ function ExistingPrograms() {
 							<div className="relative h-32 aspect-video sm:aspect-square rounded-xl overflow-hidden">
 								<Image
 									fill
-									src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}/${d.cover_image}`}
+									src={`${d.cover_image}`}
 									alt={d.title}
-									sizes="100vw"
+									sizes="(min-width: 640px) 171px, calc(100vw - 66px)"
 									className="object-cover"
 								/>
 							</div>
@@ -149,24 +141,27 @@ function ExistingPrograms() {
 					<div>Nothing to see here </div>
 				)}
 			</div>
-
-			<div className="flex gap-2 my-4">
-				<button
-					disabled={!data.hasPrevPage}
-					onClick={() => loadNew(page - 1)}
-					className="btn btn-sm btn-primary btn-outline">
-					<LuArrowLeft />
-				</button>
-				<button
-					disabled={!data.hasNextPage}
-					onClick={() => loadNew(page + 1)}
-					className="btn btn-sm btn-primary btn-outline">
-					<LuArrowRight />
-				</button>
-			</div>
-			<div className="flex justify-center ">
-				Page {data.page} of {data.totalPages}
-			</div>
+			{isPending ? null : (
+				<>
+					<div className="flex gap-2 my-4">
+						<button
+							disabled={!data.hasPrevPage}
+							onClick={() => loadNew(page - 1)}
+							className="btn btn-sm btn-primary btn-outline">
+							<LuArrowLeft />
+						</button>
+						<button
+							disabled={!data.hasNextPage}
+							onClick={() => loadNew(page + 1)}
+							className="btn btn-sm btn-primary btn-outline">
+							<LuArrowRight />
+						</button>
+					</div>
+					<div className="flex justify-center ">
+						Page {data.page} of {data.totalPages}
+					</div>
+				</>
+			)}
 		</>
 	);
 }

@@ -92,9 +92,10 @@ function CoverImage({ url, title, id }) {
 			<div className="relative h-44 w-full rounded-xl overflow-hidden mb-5">
 				<Image
 					fill
-					src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}/${url}`}
+					src={`${url}`}
 					alt={title}
 					className="object-cover"
+					sizes="(min-width: 1040px) calc(100vw - 440px), (min-width: 640px) calc(100vw - 120px), (min-width: 400px) calc(100vw - 80px), 81.25vw"
 				/>
 				<button
 					onClick={handleWidget}

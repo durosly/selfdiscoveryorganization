@@ -1,8 +1,17 @@
 import Link from "next/link";
 import React from "react";
 import ExistingPrograms from "./components/existing-programs";
+import connectMongo from "@/lib/connectDB";
+import ProgramModel from "@/models/program";
 
-function AdminProgramsPage() {
+async function AdminProgramsPage() {
+	await connectMongo();
+	const query = {};
+	const data = await ProgramModel.paginate(query, {
+		page: 1,
+		sort: { start_date: -1, start_time: 1 },
+	});
+
 	return (
 		<>
 			<div>
@@ -13,7 +22,7 @@ function AdminProgramsPage() {
 				</Link>
 			</div>
 			<div className="divider">Existing events</div>
-			<ExistingPrograms />
+			<ExistingPrograms initialData={JSON.parse(JSON.stringify(data))} />
 		</>
 	);
 }

@@ -14,18 +14,17 @@ function ProgramGallery({ program_id, initialData }) {
 						key={image}
 						className="flex gap-2 items-center flex-wrap">
 						<Link
-							href={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}/${image}`}
+							href={`${image}`}
 							className="relative h-10 w-10 rounded-xl overflow-hidden">
 							<Image
-								src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}/${image}`}
+								src={`${image}`}
 								fill
 								alt="gallery image"
+								sizes="40px"
 							/>
 						</Link>
 						<div className="space-x-1">
-							<GalleryLinkCopyBtn
-								link={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}/${image}`}
-							/>
+							<GalleryLinkCopyBtn link={`${image}`} />
 							<GalleryDeleteBtn
 								image={image}
 								id={program_id}

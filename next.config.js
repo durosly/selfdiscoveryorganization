@@ -4,6 +4,8 @@ const { NormalModuleReplacementPlugin } = require("webpack");
 
 const nextConfig = {
 	images: {
+		loader: "custom",
+		loaderFile: "./image-loader.js",
 		remotePatterns: [
 			{
 				protocol: "https",
