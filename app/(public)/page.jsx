@@ -16,12 +16,13 @@ import {
 	LuCalendarDays,
 	LuCheck,
 	LuDroplets,
-	LuGlassWater,
 	LuGraduationCap,
-	LuHammer,
+	LuHandHeart,
 	LuHeart,
 	LuHexagon,
+	LuMicVocal,
 	LuMoveRight,
+	LuNetwork,
 	LuNewspaper,
 	LuPersonStanding,
 	LuShrub,
@@ -30,9 +31,9 @@ import {
 	LuSyringe,
 } from "react-icons/lu";
 import { TbSchool } from "react-icons/tb";
-import { ImagesSlider } from "../components/ui/images-slider";
 import CascadeAnimation from "../components/animations/cascade-animation";
 import { AnimatedTestimonials } from "../components/ui/animated-testimonials";
+import { ImagesSlider } from "../components/ui/images-slider";
 import { TextGenerateEffect } from "../components/ui/text-generate-effect";
 
 function PublicHomePage() {
@@ -224,31 +225,31 @@ function PublicHomePage() {
 						<div className=" h-48 relative">
 							<Image
 								fill
-								src="https://images.pexels.com/photos/5905857/pexels-photo-5905857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								src="/images/fapi.jpg"
 								alt=""
-								className="object-cover"
+								className="object-cover brightness-[0.7]"
 								sizes="(min-width: 1040px) calc(33.32vw - 39px), (min-width: 640px) calc(3.16vw + 268px), (min-width: 400px) calc(100vw - 80px), calc(13.75vw + 248px)"
 							/>
-							<div className="flex justify-center items-center absolute top-5 left-5 w-10 aspect-square rounded-full bg-white/80">
-								<LuGraduationCap className="w-6 h-6 stroke-primary " />
+							<div className="flex justify-center items-center absolute top-5 left-5 w-10 aspect-square rounded-full bg-white">
+								<LuHandHeart className="w-6 h-6 stroke-primary " />
 							</div>
 						</div>
 						<div className="p-5 bg-primary/10 space-y-5">
 							<h2 className="font-bold text-2xl">
-								Build Secure and care-free life for
-								the needy
+								Families and Prisoners Initiative
+								(FAPI)
 							</h2>
 							<p>
-								Prioritizing the safety and
-								well-being of the communities we
-								serve. Through our initiatives,
-								essential protection and security
-								measures can be given, ensuring
-								lives can be lived without fear
+								Reuniting families and restoring
+								hope to incarcerated individuals and
+								their loved ones. FAPI bridges the
+								gap by offering support, advocacy,
+								and resources, fostering resilience
+								and stronger communities.
 							</p>
 							<div className="text-right">
 								<span className="badge badge-primary rounded-2xl">
-									Education
+									Social Justice
 								</span>
 							</div>
 						</div>
@@ -257,32 +258,30 @@ function PublicHomePage() {
 						<div className=" h-48 relative">
 							<Image
 								fill
-								src="https://images.pexels.com/photos/5452201/pexels-photo-5452201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								src="/images/pad.jpg"
 								alt=""
-								className="object-cover"
+								className="object-cover brightness-[0.7]"
 								sizes="(min-width: 1040px) calc(33.32vw - 39px), (min-width: 640px) calc(3.16vw + 268px), (min-width: 400px) calc(100vw - 80px), calc(13.75vw + 248px)"
 							/>
-							<div className="flex justify-center items-center absolute top-5 left-5 w-10 aspect-square rounded-full bg-white/80">
+							<div className="flex justify-center items-center absolute top-5 left-5 w-10 aspect-square rounded-full bg-white">
 								<LuSyringe className="w-6 h-6 stroke-secondary " />
 							</div>
 						</div>
 						<div className="p-5 bg-secondary/10 space-y-5">
 							<h2 className="font-bold text-2xl">
-								Ensuring Access to Quality
-								Healthcare for All
+								Menstrual Hygiene Day
 							</h2>
 							<p>
-								Our unwavering commitment is to
-								provide comprehensive medical
-								attention to individuals from all
-								walks of life. We firmly believe
-								that everyone deserves access to
-								quality healthcare services.
+								Empowering women and girls through
+								awareness and access to menstrual
+								hygiene products. Together, we break
+								the stigma, ensure dignity, and
+								promote healthier lives for all.
 							</p>
 
 							<div className="text-right">
 								<span className="badge badge-secondary rounded-2xl">
-									Medical
+									Health and Gender Equality
 								</span>
 							</div>
 						</div>
@@ -291,32 +290,31 @@ function PublicHomePage() {
 						<div className=" h-48 relative">
 							<Image
 								fill
-								src="https://images.pexels.com/photos/861414/pexels-photo-861414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								src="/images/debate.jpg"
 								alt=""
-								className="object-cover"
+								className="object-cover brightness-[0.7]"
 								sizes="(min-width: 1040px) calc(33.32vw - 39px), (min-width: 640px) calc(3.16vw + 268px), (min-width: 400px) calc(100vw - 80px), calc(13.75vw + 248px)"
 							/>
-							<div className="flex justify-center items-center absolute top-5 left-5 w-10 aspect-square rounded-full bg-white/80">
-								<LuGlassWater className="w-6 h-6 stroke-primary " />
+							<div className="flex justify-center items-center absolute top-5 left-5 w-10 aspect-square rounded-full bg-white">
+								<LuNetwork className="w-6 h-6 stroke-primary " />
 							</div>
 						</div>
 						<div className="p-5 bg-primary/10 space-y-5">
 							<h2 className="font-bold text-2xl">
-								Every one deserves clean water
+								Debate and Quiz Competition
 							</h2>
 							<p>
-								we are passionate about ensuring
-								that every individual has access to
-								clean and safe drinking water. We
-								believe that access to clean water
-								is a basic human right, and we are
-								committed to making this a reality
-								for communities around the world.
+								Inspiring young minds to think
+								critically and creatively. This
+								initiative promotes education,
+								teamwork, and confidence, shaping
+								the leaders of tomorrow through
+								intellectual engagement.
 							</p>
 
 							<div className="text-right">
 								<span className="badge badge-primary rounded-2xl">
-									Water
+									Education
 								</span>
 							</div>
 						</div>
@@ -325,31 +323,30 @@ function PublicHomePage() {
 						<div className=" h-48 relative">
 							<Image
 								fill
-								src="https://images.pexels.com/photos/18025831/pexels-photo-18025831/free-photo-of-man-making-pottery.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								src="/images/child-to-school.jpg"
 								alt=""
-								className="object-cover"
+								className="object-cover brightness-[0.7]"
 								sizes="(min-width: 1040px) calc(33.32vw - 39px), (min-width: 640px) calc(3.16vw + 268px), (min-width: 400px) calc(100vw - 80px), calc(13.75vw + 248px)"
 							/>
-							<div className="flex justify-center items-center absolute top-5 left-5 w-10 aspect-square rounded-full bg-white/80">
-								<LuHammer className="w-6 h-6 stroke-accent " />
+							<div className="flex justify-center items-center absolute top-5 left-5 w-10 aspect-square rounded-full bg-white">
+								<LuGraduationCap className="w-6 h-6 stroke-accent " />
 							</div>
 						</div>
 						<div className="p-5 bg-accent/10 space-y-5">
 							<h2 className="font-bold text-2xl">
-								Nurturing Talents and Creating
-								opportunities
+								Send a Child to School Scheme
+								(SACTS)
 							</h2>
 							<p>
-								Every individual has unique talents
-								waiting to be discovered. Our care
-								organization provides opportunities
-								for those in need, empowering them
-								to unleash their potential and
-								create a brighter future.
+								Building brighter futures through
+								access to education. SACTS ensures
+								that underprivileged children can
+								pursue their dreams with the tools
+								and support they need to succeed.
 							</p>
 							<div className="text-right">
 								<span className="badge badge-accent rounded-2xl">
-									Training
+									Education
 								</span>
 							</div>
 						</div>
@@ -358,28 +355,30 @@ function PublicHomePage() {
 						<div className=" h-48 relative">
 							<Image
 								fill
-								src="https://images.pexels.com/photos/9090750/pexels-photo-9090750.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								src="https://images.pexels.com/photos/6144023/pexels-photo-6144023.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt=""
-								className="object-cover"
+								className="object-cover brightness-[0.7]"
 								sizes="(min-width: 1040px) calc(33.32vw - 39px), (min-width: 640px) calc(3.16vw + 268px), (min-width: 400px) calc(100vw - 80px), calc(13.75vw + 248px)"
 							/>
-							<div className="flex justify-center items-center absolute top-5 left-5 w-10 aspect-square rounded-full bg-white/80">
-								<LuSoup className="w-6 h-6 stroke-primary " />
+							<div className="flex justify-center items-center absolute top-5 left-5 w-10 aspect-square rounded-full bg-white">
+								<LuMicVocal className="w-6 h-6 stroke-primary " />
 							</div>
 						</div>
 						<div className="p-5 bg-primary/10 space-y-5">
 							<h2 className="font-bold text-2xl">
-								Feed the hungry
+								Monthly Podcast: My Self-Discovery
+								Story
 							</h2>
 							<p>
-								With your support, nutritious meals
-								and access to clean water for
-								underserved communities can be made
-								possible.
+								Sharing transformative journeys of
+								purpose and growth. This podcast
+								inspires listeners to embrace their
+								true potential and live meaningfully
+								through real stories of change.
 							</p>
 							<div className="text-right">
 								<span className="badge badge-primary rounded-2xl">
-									Education
+									Personal Development
 								</span>
 							</div>
 						</div>
@@ -393,7 +392,7 @@ function PublicHomePage() {
 						fill
 						src="/images/more-people.jpg"
 						alt=""
-						className="object-cover"
+						className="object-cover brightness-[0.7]"
 						sizes="(min-width: 1560px) 50vw, (min-width: 1360px) 776px, (min-width: 1100px) calc(-14.17vw + 1008px), (min-width: 960px) calc(-128.33vw + 2238px), (min-width: 640px) calc(-109.67vw + 2036px), 100vw"
 					/>
 				</div>

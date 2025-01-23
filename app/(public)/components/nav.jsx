@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { LuPhone, LuMail, LuDroplet, LuGanttChart } from "react-icons/lu";
+import { LuPhone, LuMail, LuDroplet, LuMenu } from "react-icons/lu";
 import logo from "@/public/images/logo.png";
 import LinksWrapper from "@/app/(public)/components/links-container";
 
@@ -32,7 +32,7 @@ function NavBar() {
 						<label
 							htmlFor="my-drawer-3"
 							className="btn btn-square btn-ghost">
-							<LuGanttChart className="inline-block w-6 h-6 stroke-current" />
+							<LuMenu className="inline-block w-6 h-6 stroke-current" />
 						</label>
 					</div>
 					<div className="flex-1 px-2 mx-2 space-x-2">
