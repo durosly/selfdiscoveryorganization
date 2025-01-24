@@ -33,32 +33,36 @@ async function ProgramListSummary() {
 				animationDelay={0.5}
 				threshold={0.1}
 				parentClassName="flex flex-col sm:flex-row gap-5 flex-wrap mt-10">
-				{programs.map((program) => (
-					<Link
-						key={program._id}
-						href={`/programs/${program.slug}`}
-						className="sm:w-[calc((100%_-_2_*_1.25rem_)_/_3)] rounded-xl overflow-hidden p-3 bg-primary/10 hover:bg-primary/20 transition-all duration-300">
-						<div className="h-32 relative rounded-xl overflow-hidden">
-							<Image
-								fill
-								src={program.cover_image}
-								alt={program.title}
-								className="object-cover brightness-90"
-								sizes="(min-width: 820px) calc(33.35vw - 64px), (min-width: 640px) calc(6.88vw + 148px), calc(100vw - 104px)"
-							/>
-						</div>
-						<div className=" space-y-2 mt-5">
-							<p className="text-slate-500 flex gap-2 items-center">
-								<LuCalendarDays className="inline-block stroke-current" />{" "}
-								27/04/2024
-							</p>
-							<h2 className="font-semibold text-2xl">
-								{program.title}
-							</h2>
-							<p className="clamp-3">{program.desc}</p>
-						</div>
-					</Link>
-				))}
+				<>
+					{programs.map((program) => (
+						<Link
+							key={program._id}
+							href={`/programs/${program.slug}`}
+							className="sm:w-[calc((100%_-_2_*_1.25rem_)_/_3)] rounded-xl overflow-hidden p-3 bg-primary/10 hover:bg-primary/20 transition-all duration-300">
+							<div className="h-32 relative rounded-xl overflow-hidden">
+								<Image
+									fill
+									src={program.cover_image}
+									alt={program.title}
+									className="object-cover brightness-90"
+									sizes="(min-width: 820px) calc(33.35vw - 64px), (min-width: 640px) calc(6.88vw + 148px), calc(100vw - 104px)"
+								/>
+							</div>
+							<div className=" space-y-2 mt-5">
+								<p className="text-slate-500 flex gap-2 items-center">
+									<LuCalendarDays className="inline-block stroke-current" />{" "}
+									27/04/2024
+								</p>
+								<h2 className="font-semibold text-2xl">
+									{program.title}
+								</h2>
+								<p className="clamp-3">
+									{program.desc}
+								</p>
+							</div>
+						</Link>
+					))}
+				</>
 			</CascadeAnimation>
 
 			<div className="text-right mt-5">

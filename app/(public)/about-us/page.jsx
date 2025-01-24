@@ -171,48 +171,55 @@ function AboutUsPage() {
 							animationDirection="down"
 							parentClassName="space-y-3 my-5">
 							<p>
-								In the early days, the journey to
-								establish Choima Organization was
-								far from easy. It began with a
-								simple yet powerful idea: to make a
-								meaningful impact on the world and
-								uplift those in need. But turning
-								that vision into reality was a
-								formidable challenge.
+								SDO was founded in 2017 in Ukraine
+								and officially registered in the UK
+								in 2023. Our charitable incorporated
+								organization is committed to healing
+								the world of its infirmities by
+								uniting people with a sense of
+								purpose. We currently operate in the
+								UK, Nigeria, and Zimbabwe.
 							</p>
 							<p>
-								The path was marked by numerous
-								obstacles and setbacks, each one a
-								testament to the magnitude of the
-								mission. Financial constraints,
-								bureaucratic hurdles, and doubts
-								from some quarters made the struggle
-								very real. But the founders were
-								undeterred, fueled by an unwavering
-								commitment to their cause.
+								Through our Families and Prisoners
+								Initiative(FAPI), we provide support
+								to indigent families, homeless
+								individuals, and prisoners, ensuring
+								they receive the resources needed to
+								thrive in society.
 							</p>
 							<p>
-								Through perseverance, dedication,
-								and the support of like-minded
-								individuals, Self Discovery
-								organization slowly but steadily
-								gained momentum. It grew from a
-								small idea into a full-fledged
-								organization, determined to bring
-								positive change to communities and
-								lives around the world.
+								Our Send a Child to School Scheme
+								supplies academic materials to
+								underprivileged children, empowering
+								them to achieve academic excellence.
 							</p>
 							<p>
-								Today, Choima Organization stands as
-								a testament to the power of
-								determination and the belief that
-								even the most significant challenges
-								can be overcome when people come
-								together with a shared purpose. The
-								struggle was real, but so was the
-								passion to make a difference, and
-								that passion continues to drive us
-								forward.
+								In commemoration of World Menstrual
+								Hygiene Day, we distribute sanitary
+								products to young girls and women,
+								promoting health, dignity, and
+								menstrual education.
+							</p>
+							<p>
+								In commemoration of World Menstrual
+								Hygiene Day, we distribute sanitary
+								products to young girls and women,
+								promoting health, dignity, and
+								menstrual education.
+							</p>
+							<p>
+								We also host a monthly podcast where
+								we encourage people to live
+								purpose-driven lives.
+							</p>
+							<p>
+								At the heart of our mission is a
+								commitment to empower individuals
+								and communities to overcome
+								challenges and thrive through
+								self-discovery, personal
+								development, and collective action.
 							</p>
 						</CascadeAnimation>
 
