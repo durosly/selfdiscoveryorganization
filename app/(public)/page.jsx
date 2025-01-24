@@ -43,9 +43,13 @@ function PublicHomePage() {
 		<>
 			<ImagesSlider
 				images={[
-					"https://images.pexels.com/photos/6647116/pexels-photo-6647116.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-					"https://images.pexels.com/photos/2406271/pexels-photo-2406271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-					"https://images.pexels.com/photos/5905492/pexels-photo-5905492.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+					`/images/slide/1.jpg`,
+					`/images/slide/2.jpg`,
+					`/images/slide/3.jpg`,
+					`/images/slide/4.jpg`,
+					`/images/slide/5.jpg`,
+					`/images/slide/6.jpg`,
+					`/images/slide/7.jpg`,
 				]}
 				className={"h-[calc(100dvh_-_4rem)]"}
 				direction="down">
@@ -68,12 +72,12 @@ function PublicHomePage() {
 						</p>
 						<div className="flex flex-wrap gap-2 justify-center">
 							<Link
-								href="/support"
+								href={`${process.env.NEXT_PUBLIC_URL}/support`}
 								className="btn btn-primary">
 								Get Involved
 							</Link>
 							<Link
-								href="/about-us"
+								href={`${process.env.NEXT_PUBLIC_URL}/about-us`}
 								className="btn btn-outline btn-secondary">
 								Learn more
 							</Link>
