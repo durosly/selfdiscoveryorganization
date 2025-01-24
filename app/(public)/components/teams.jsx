@@ -20,7 +20,7 @@ function Teams() {
 					<div className="relative w-40 mx-auto aspect-square rounded-full overflow-hidden border-4">
 						<Image
 							fill
-							src="/images/president.jpg"
+							src="/images/team/president.jpg"
 							alt="Dr. Uchenna John"
 							className="object-cover"
 							sizes="152px"
@@ -35,7 +35,7 @@ function Teams() {
 					<div className="relative w-40 mx-auto aspect-square rounded-full overflow-hidden border-4">
 						<Image
 							fill
-							src="/images/co-president.jpg"
+							src="/images/team/co-president.jpg"
 							alt="Dr. Jessica John"
 							className="object-cover"
 							sizes="152px"
@@ -53,7 +53,7 @@ function Teams() {
 					<div className="relative w-40 mx-auto aspect-square rounded-full overflow-hidden border-4">
 						<Image
 							fill
-							src="https://images.pexels.com/photos/20336005/pexels-photo-20336005/free-photo-of-a-black-and-white-photo-of-a-woman-with-a-head-wrap.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+							src="/images/team/admin.jpg"
 							alt="Pierre"
 							className="object-cover"
 							sizes="152px"

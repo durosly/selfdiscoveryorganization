@@ -38,7 +38,7 @@ const content = [
 		content: (
 			<div className="h-full w-full  flex items-center justify-center text-white">
 				<Image
-					src="/images/president.jpg"
+					src="/images/team/president.jpg"
 					width={300}
 					height={300}
 					className="h-full w-full object-cover"
@@ -70,7 +70,7 @@ const content = [
 		content: (
 			<div className="h-full w-full  flex items-center justify-center text-white">
 				<Image
-					src="/images/co-president.jpg"
+					src="/images/team/co-president.jpg"
 					width={300}
 					height={300}
 					className="h-full w-full object-cover"
@@ -116,11 +116,11 @@ const content = [
 		content: (
 			<div className="h-full w-full  flex items-center justify-center text-white">
 				<Image
-					src="https://images.pexels.com/photos/20336005/pexels-photo-20336005/free-photo-of-a-black-and-white-photo-of-a-woman-with-a-head-wrap.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+					src="/images/team/admin.jpg"
 					width={300}
 					height={300}
 					className="h-full w-full object-cover"
-					alt="linear board demo"
+					alt="Director of operations and administration"
 				/>
 			</div>
 		),
