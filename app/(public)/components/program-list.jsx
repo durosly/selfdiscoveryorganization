@@ -38,7 +38,7 @@ async function ProgramListSummary() {
 						<Link
 							key={program._id}
 							href={`/programs/${program.slug}`}
-							className="sm:w-[calc((100%_-_2_*_1.25rem_)_/_3)] rounded-xl overflow-hidden p-3 bg-primary/10 hover:bg-primary/20 transition-all duration-300">
+							className="sm:w-[calc((100%_-_2_*_1.25rem_)_/_3)] rounded-xl overflow-hidden p-3 bg-primary/10 hover:bg-primary/20 transition-colors duration-300">
 							<div className="h-32 relative rounded-xl overflow-hidden">
 								<Image
 									fill
