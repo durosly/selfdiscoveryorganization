@@ -21,7 +21,6 @@ export const metadata = {
 	metadataBase: new URL(process.env.NEXT_PUBLIC_URL),
 
 	openGraph: {
-		images: "/images/cover.png",
 		title: "Self Discovery organization",
 		description:
 			"At Self Discovery organization, we believe in making a positive impact, one step at a time. Our organization is built on the pillars of compassion, empowerment, and change. With a heartfelt commitment to bettering the world around us, we are dedicated to creating a brighter future for all",
@@ -34,8 +33,6 @@ export const metadata = {
 		title: "Self Discovery organization",
 		description:
 			"At Self Discovery organization, we believe in making a positive impact, one step at a time. Our organization is built on the pillars of compassion, empowerment, and change. With a heartfelt commitment to bettering the world around us, we are dedicated to creating a brighter future for all",
-
-		images: ["/images/cover.png"],
 	},
 };
 
