@@ -1,22 +1,131 @@
+import CascadeAnimation from "@/app/components/animations/cascade-animation";
+import { StickyScroll } from "@/app/components/ui/sticky-scroll-reveal";
 import roundImg from "@/public/images/banner-round.png";
 import Image from "next/image";
-import Link from "next/link";
-import {
-	LuBook,
-	LuCalendarDays,
-	LuGrip,
-	LuHexagon,
-	LuMoveRight,
-	LuNewspaper,
-	LuStar,
-} from "react-icons/lu";
+import { LuBook, LuHexagon, LuStar } from "react-icons/lu";
 import CoverImage from "../components/cover";
-import CascadeAnimation from "@/app/components/animations/cascade-animation";
+import ProgramListSummary from "../components/program-list";
 import Teams from "../components/teams";
 
 export const metadata = {
 	title: "About Us",
 };
+
+const content = [
+	{
+		title: "President/Founder",
+		description: (
+			<div className="space-y-2">
+				<p>
+					Dr. Uchenna John is an author, inspiring speaker, and
+					visionary leader dedicated to transforming lives and
+					empowering humanity. He is the founder of the Self-Discovery
+					Organization, a charitable incorporated organization, a
+					charitable incorporated organization with a vision to heal
+					the world of its infirmities by uniting people with a sense
+					of purpose.
+				</p>
+				<p>
+					Guided by a deep passion for service to God and humanity,
+					Dr. John is committed to uplifting individuals and
+					communities through powerful sermons, insightful writings,
+					and impactful charitable initiatives. His unwavering
+					dedication continues to inspire countless lives, leaving a
+					legacy of hope, unity, and transformation.
+				</p>
+			</div>
+		),
+		content: (
+			<div className="h-full w-full  flex items-center justify-center text-white">
+				<Image
+					src="/images/president.jpg"
+					width={300}
+					height={300}
+					className="h-full w-full object-cover"
+					alt="President/Founder"
+				/>
+			</div>
+		),
+	},
+	{
+		title: "Co-founder and project manager",
+		description: (
+			<div className="space-y-2">
+				<p>
+					Dr. Jessica John is a General Practitioner and an
+					accomplished entrepreneur. As the co-founder and project
+					manager of the Self-Discovery Organization, she plays a
+					pivotal role in leading initiatives that inspire purpose and
+					empower communities.
+				</p>
+				<p>
+					Dr John is Passionate about improving lives and combines her
+					medical expertise, entrepreneurial spirit, and leadership
+					skills to create meaningful impact. With an unwavering
+					commitment to service, she continues to contribute to the
+					betterment of individuals and society as a whole.
+				</p>
+			</div>
+		),
+		content: (
+			<div className="h-full w-full  flex items-center justify-center text-white">
+				<Image
+					src="/images/co-president.jpg"
+					width={300}
+					height={300}
+					className="h-full w-full object-cover"
+					alt="Co founder and project manager"
+				/>
+			</div>
+		),
+	},
+	{
+		title: "Director of operations and administration",
+		description: (
+			<div className="space-y-2">
+				<p>
+					Kingsley Chinedum Egbuchulam is a distinguished educator,
+					administrator, human resource professional, and teens&apos;
+					coach with an undying passion for shaping young minds and
+					fostering personal growth in the younger generation. With
+					years of experience, Kingsley has dedicated his life to the
+					holistic development of individuals, especially teenagers,
+					by providing them with the tools they need to thrive
+					academically, emotionally, and socially. His mentorship has
+					positively impacted countless young lives, instilling values
+					that resonate far beyond the classroom.
+				</p>
+				<p>
+					As an administrator, Kingsley has demonstrated exceptional
+					leadership and organizational skills. He has successfully
+					managed educational institutions and programs, ensuring they
+					run efficiently while fostering an environment that
+					encourages collaboration and growth. He also possesses a
+					knack for identifying talent, nurturing potential, and
+					creating strategies that align organizational goals with
+					individual growth.
+				</p>
+				<p>
+					Kingsley is an ardent lover of God, a musician, and a born
+					leader who has served in diverse capacities. He is currently
+					serving as the Director of Operations and Administration at
+					the Self Discovery Organization International.
+				</p>
+			</div>
+		),
+		content: (
+			<div className="h-full w-full  flex items-center justify-center text-white">
+				<Image
+					src="https://images.pexels.com/photos/20336005/pexels-photo-20336005/free-photo-of-a-black-and-white-photo-of-a-woman-with-a-head-wrap.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+					width={300}
+					height={300}
+					className="h-full w-full object-cover"
+					alt="linear board demo"
+				/>
+			</div>
+		),
+	},
+];
 
 function AboutUsPage() {
 	return (
@@ -189,6 +298,21 @@ function AboutUsPage() {
 
 			<Teams />
 
+			<div className="px-10 py-20">
+				<CascadeAnimation
+					animationDirection="up"
+					parentClassName="text-center">
+					<h2 className="text-2xl text-center">
+						<LuStar className="inline-block stroke-success" />{" "}
+						Team Bio
+					</h2>
+					<p className="text-4xl sm:text-6xl font-bold">
+						Learn more about each member of the team
+					</p>
+				</CascadeAnimation>
+				<StickyScroll content={content} />
+			</div>
+
 			<div className="flex flex-col sm:flex-row-reverse gap-10 px-10">
 				<div className="flex-1 relative">
 					<div className="relative">
@@ -272,183 +396,7 @@ function AboutUsPage() {
 				</div>
 			</div>
 
-			<div className="px-10">
-				<CascadeAnimation animationDirection="up">
-					<h2 className="text-xl">
-						<LuNewspaper className="inline-block stroke-indigo-700" />{" "}
-						Latest Blog
-					</h2>
-					<p className="text-4xl font-bold">
-						Latest news, articles and events
-					</p>
-				</CascadeAnimation>
-
-				<CascadeAnimation
-					animationDirection="down"
-					animationDelay={0.5}
-					parentClassName="flex flex-col sm:flex-row gap-5 flex-wrap mt-10">
-					<div className="sm:w-[calc((100%_-_2_*_1.25rem_)_/_3)] rounded-xl overflow-hidden p-3 bg-primary/10">
-						<div className=" h-32 relative rounded-xl overflow-hidden">
-							<Image
-								fill
-								src="https://images.pexels.com/photos/5905857/pexels-photo-5905857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-								alt=""
-								className="object-cover"
-							/>
-						</div>
-						<div className=" space-y-2 mt-5">
-							<p className="text-slate-500 flex gap-2 items-center">
-								<LuCalendarDays className="inline-block stroke-current" />{" "}
-								27/04/2024
-							</p>
-							<h2 className="font-semibold text-2xl">
-								Build secure life for the poor
-							</h2>
-							<p>
-								Lorem ipsum dolor sit amet
-								consectetur, adipisicing elit.
-								Asperiores esse quae veniam...
-							</p>
-							<div className="text-right">
-								<Link
-									href="/"
-									className="link link-hover">
-									Read more{" "}
-									<LuMoveRight className="inline stroke-primary" />
-								</Link>
-							</div>
-						</div>
-					</div>
-					<div className="sm:w-[calc((100%_-_2_*_1.25rem_)_/_3)] rounded-xl overflow-hidden p-3 bg-primary/10">
-						<div className=" h-32 relative rounded-xl overflow-hidden">
-							<Image
-								fill
-								src="https://images.pexels.com/photos/5905857/pexels-photo-5905857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-								alt=""
-								className="object-cover"
-							/>
-						</div>
-						<div className=" space-y-2 mt-5">
-							<p className="text-slate-500 flex gap-2 items-center">
-								<LuCalendarDays className="inline-block stroke-current" />{" "}
-								27/04/2024
-							</p>
-							<h2 className="font-semibold text-2xl">
-								Build secure life for the poor
-							</h2>
-							<p>
-								Lorem ipsum dolor sit amet
-								consectetur, adipisicing elit.
-								Asperiores esse quae veniam...
-							</p>
-							<div className="text-right">
-								<Link
-									href="/"
-									className="link link-hover">
-									Read more{" "}
-									<LuMoveRight className="inline stroke-primary" />
-								</Link>
-							</div>
-						</div>
-					</div>
-					<div className="sm:w-[calc((100%_-_2_*_1.25rem_)_/_3)] rounded-xl overflow-hidden p-3 bg-primary/10">
-						<div className=" h-32 relative rounded-xl overflow-hidden">
-							<Image
-								fill
-								src="https://images.pexels.com/photos/5905857/pexels-photo-5905857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-								alt=""
-								className="object-cover"
-							/>
-						</div>
-						<div className=" space-y-2 mt-5">
-							<p className="text-slate-500 flex gap-2 items-center">
-								<LuCalendarDays className="inline-block stroke-current" />{" "}
-								27/04/2024
-							</p>
-							<h2 className="font-semibold text-2xl">
-								Build secure life for the poor
-							</h2>
-							<p>
-								Lorem ipsum dolor sit amet
-								consectetur, adipisicing elit.
-								Asperiores esse quae veniam...
-							</p>
-							<div className="text-right">
-								<Link
-									href="/"
-									className="link link-hover">
-									Read more{" "}
-									<LuMoveRight className="inline stroke-primary" />
-								</Link>
-							</div>
-						</div>
-					</div>
-					<div className="sm:w-[calc((100%_-_2_*_1.25rem_)_/_3)] rounded-xl overflow-hidden p-3 bg-primary/10">
-						<div className=" h-32 relative rounded-xl overflow-hidden">
-							<Image
-								fill
-								src="https://images.pexels.com/photos/5905857/pexels-photo-5905857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-								alt=""
-								className="object-cover"
-							/>
-						</div>
-						<div className=" space-y-2 mt-5">
-							<p className="text-slate-500 flex gap-2 items-center">
-								<LuCalendarDays className="inline-block stroke-current" />{" "}
-								27/04/2024
-							</p>
-							<h2 className="font-semibold text-2xl">
-								Build secure life for the poor
-							</h2>
-							<p>
-								Lorem ipsum dolor sit amet
-								consectetur, adipisicing elit.
-								Asperiores esse quae veniam...
-							</p>
-							<div className="text-right">
-								<Link
-									href="/"
-									className="link link-hover">
-									Read more{" "}
-									<LuMoveRight className="inline stroke-primary" />
-								</Link>
-							</div>
-						</div>
-					</div>
-					<div className="sm:w-[calc((100%_-_2_*_1.25rem_)_/_3)] rounded-xl overflow-hidden p-3 bg-primary/10">
-						<div className=" h-32 relative rounded-xl overflow-hidden">
-							<Image
-								fill
-								src="https://images.pexels.com/photos/5905857/pexels-photo-5905857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-								alt=""
-								className="object-cover"
-							/>
-						</div>
-						<div className=" space-y-2 mt-5">
-							<p className="text-slate-500 flex gap-2 items-center">
-								<LuCalendarDays className="inline-block stroke-current" />{" "}
-								27/04/2024
-							</p>
-							<h2 className="font-semibold text-2xl">
-								Build secure life for the poor
-							</h2>
-							<p>
-								Lorem ipsum dolor sit amet
-								consectetur, adipisicing elit.
-								Asperiores esse quae veniam...
-							</p>
-							<div className="text-right">
-								<Link
-									href="/"
-									className="link link-hover">
-									Read more{" "}
-									<LuMoveRight className="inline stroke-primary" />
-								</Link>
-							</div>
-						</div>
-					</div>
-				</CascadeAnimation>
-			</div>
+			<ProgramListSummary />
 		</>
 	);
 }
