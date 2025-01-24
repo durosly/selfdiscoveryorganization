@@ -63,7 +63,10 @@ function Teams() {
 						<h3 className="font-bold">
 							Kingsley Chinedum Egbuchulam
 						</h3>
-						<p>Director of operations and administration</p>
+						<p>
+							Director of operations <br />
+							&amp; administration
+						</p>
 					</div>
 				</div>
 
