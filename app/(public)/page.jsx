@@ -2,6 +2,7 @@ import roundImg from "@/public/images/banner-round.png";
 import logo from "@/public/images/logo.png";
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
 import {
 	FcBiotech,
 	FcConferenceCall,
@@ -13,7 +14,6 @@ import {
 } from "react-icons/fc";
 import {
 	LuAward,
-	LuCalendarDays,
 	LuCheck,
 	LuDroplets,
 	LuGraduationCap,
@@ -21,13 +21,10 @@ import {
 	LuHeart,
 	LuHexagon,
 	LuMicVocal,
-	LuMoveRight,
 	LuNetwork,
-	LuNewspaper,
 	LuPersonStanding,
 	LuShrub,
 	LuSoup,
-	LuStar,
 	LuSyringe,
 } from "react-icons/lu";
 import { TbSchool } from "react-icons/tb";
@@ -35,9 +32,10 @@ import CascadeAnimation from "../components/animations/cascade-animation";
 import { AnimatedTestimonials } from "../components/ui/animated-testimonials";
 import { ImagesSlider } from "../components/ui/images-slider";
 import { TextGenerateEffect } from "../components/ui/text-generate-effect";
-import Teams from "./components/teams";
 import ProgramListSummary from "./components/program-list";
-import { Suspense } from "react";
+import Teams from "./components/teams";
+
+export const revalidate = 60;
 
 function PublicHomePage() {
 	return (

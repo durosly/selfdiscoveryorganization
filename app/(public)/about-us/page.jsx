@@ -8,6 +8,8 @@ import ProgramListSummary from "../components/program-list";
 import Teams from "../components/teams";
 import { Suspense } from "react";
 
+export const revalidate = 60;
+
 export const metadata = {
 	title: "About Us",
 };
