@@ -1,4 +1,5 @@
 import cloudinary from "@/lib/cloudinary";
+import connectMongo from "@/lib/connectDB";
 import GalleryModel, { GalleryValidationSchema } from "@/models/program-images";
 
 async function deleteGalleryImage(req) {
@@ -15,6 +16,7 @@ async function deleteGalleryImage(req) {
 
 		const { id: program_id, image } = data;
 
+		await connectMongo();
 		const gallery = await GalleryModel.findOne({ program_id });
 		if (gallery) {
 			const imageIndex = gallery.images.indexOf(image);

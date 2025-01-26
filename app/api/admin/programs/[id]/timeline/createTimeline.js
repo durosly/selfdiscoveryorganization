@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import connectMongo from "@/lib/connectDB";
 import TimelineModel, { TimelineValidationSchema } from "@/models/timeline";
 
 async function createTimeline(request, { params: { id } }) {
@@ -8,55 +8,47 @@ async function createTimeline(request, { params: { id } }) {
 		const safe = TimelineValidationSchema.safeParse(body);
 
 		if (!id) {
-			return new Response(
-				JSON.stringify({
+			return Response.json(
+				{
 					status: false,
 					message: "No program selected",
-				}),
+				},
 				{
 					status: 400,
-					headers: {
-						"Content-Type": "application/json",
-					},
 				}
 			);
 		}
 
 		if (!safe.success) {
-			return new Response(
-				JSON.stringify({
+			return Response.json(
+				{
 					status: false,
 					message:
 						safe.error.issues[0].message +
 						" for " +
 						safe.error.issues[0].path[0],
-				}),
+				},
 				{
 					status: 400,
-					headers: {
-						"Content-Type": "application/json",
-					},
 				}
 			);
 		}
 
+		await connectMongo();
 		await TimelineModel.create({ ...safe.data, program_id: id });
 
-		return NextResponse.json({
+		return Response.json({
 			status: true,
 			message: "Timeline added successfully",
 		});
 	} catch (error) {
-		return new Response(
-			JSON.stringify({
+		return Response.json(
+			{
 				status: false,
 				message: error.message,
-			}),
+			},
 			{
 				status: 500,
-				headers: {
-					"Content-Type": "application/json",
-				},
 			}
 		);
 	}

@@ -1,8 +1,5 @@
 import connectMongo from "@/lib/connectDB";
 import MessageModel from "@/models/message";
-import { NextResponse } from "next/server";
-
-export const dynamic = "force-dynamic";
 
 async function getMessages(request) {
 	try {
@@ -25,16 +22,18 @@ async function getMessages(request) {
 
 		const data = await MessageModel.paginate(query, { page });
 
-		return NextResponse.json({
+		return Response.json({
 			status: true,
 			message: "success",
 			data,
 		});
 	} catch (error) {
-		return new Response(JSON.stringify({ status: false, message: error }), {
-			status: 500,
-			headers: { "Content-Type": `application/json` },
-		});
+		return Response.json(
+			{ status: false, message: error },
+			{
+				status: 500,
+			}
+		);
 	}
 }
 

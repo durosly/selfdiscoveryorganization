@@ -21,6 +21,7 @@ async function createProgram(request) {
 				}
 			);
 		}
+
 		await connectMongo();
 		await ProgramModel.create(safe.data);
 

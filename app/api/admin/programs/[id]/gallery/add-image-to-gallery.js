@@ -1,3 +1,4 @@
+import connectMongo from "@/lib/connectDB";
 import GalleryModel, { GalleryValidationSchema } from "@/models/program-images";
 
 async function createUpdateGallery(req) {
@@ -14,6 +15,7 @@ async function createUpdateGallery(req) {
 
 		const { id: program_id, image } = data;
 
+		await connectMongo();
 		const gallery = await GalleryModel.findOne({ program_id });
 		if (gallery) {
 			gallery.images.push(image);

@@ -1,7 +1,6 @@
+import connectMongo from "@/lib/connectDB";
 import ProgramModel from "@/models/program";
 import { v2 as cloudinary } from "cloudinary";
-
-const { NextResponse } = require("next/server");
 
 async function updateCover(request, { params: { id } }) {
 	try {
@@ -11,19 +10,17 @@ async function updateCover(request, { params: { id } }) {
 			throw new Error("Empty parameters");
 		}
 
+		await connectMongo();
 		const program = await ProgramModel.findById(id);
 
 		if (!program) {
-			return new Response(
-				JSON.stringify({
+			return Response.json(
+				{
 					status: false,
 					message: "Program not found",
-				}),
+				},
 				{
 					status: 404,
-					headers: {
-						"Content-Type": "application/json",
-					},
 				}
 			);
 		}
@@ -37,24 +34,21 @@ async function updateCover(request, { params: { id } }) {
 
 		const cover_image = program.cover_image;
 
-		if (!!cover_image) {
+		if (!!cover_image && cover_image !== "default.png") {
 			await cloudinary.uploader.destroy(cover_image);
 		}
 
 		await ProgramModel.findByIdAndUpdate(id, { cover_image: image });
 
-		return NextResponse.json({ status: true, message: "success" });
+		return Response.json({ status: true, message: "success" });
 	} catch (error) {
-		return new Response(
-			JSON.stringify({
+		return Response.json(
+			{
 				status: false,
 				message: error.message,
-			}),
+			},
 			{
 				status: 500,
-				headers: {
-					"Content-Type": "application/json",
-				},
 			}
 		);
 	}

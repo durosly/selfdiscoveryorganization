@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import connectMongo from "@/lib/connectDB";
 import ProgramModel from "@/models/program";
 
 async function updateProgramStatus(request, { params: { id } }) {
@@ -6,34 +6,29 @@ async function updateProgramStatus(request, { params: { id } }) {
 		const { status } = await request.json();
 
 		if (!["publish", "unpublish"].includes(status)) {
-			return new Response(
-				JSON.stringify({
+			return Response.json(
+				{
 					status: false,
 					message: "invalid status option",
-				}),
+				},
 				{
 					status: 400,
-					headers: {
-						"Content-Type": "application/json",
-					},
 				}
 			);
 		}
 
+		await connectMongo();
 		await ProgramModel.findByIdAndUpdate(id, { status });
 
-		return NextResponse.json({ status: true, message: "success" });
+		return Response.json({ status: true, message: "success" });
 	} catch (error) {
-		return new Response(
-			JSON.stringify({
+		return Response.json(
+			{
 				status: false,
 				message: error.message,
-			}),
+			},
 			{
 				status: 500,
-				headers: {
-					"Content-Type": "application/json",
-				},
 			}
 		);
 	}

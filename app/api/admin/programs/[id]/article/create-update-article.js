@@ -1,3 +1,4 @@
+import connectMongo from "@/lib/connectDB";
 import ArticleModel, { ArticleValidationSchema } from "@/models/program-article";
 
 async function createUpdateArticle(req) {
@@ -14,6 +15,7 @@ async function createUpdateArticle(req) {
 
 		const { program_id, body } = data;
 
+		await connectMongo();
 		const article = await ArticleModel.findOne({ program_id });
 		if (article) {
 			article.body = body;

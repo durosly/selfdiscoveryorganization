@@ -1,6 +1,5 @@
 import connectMongo from "@/lib/connectDB";
 import MessageModel from "@/models/message";
-import { NextResponse } from "next/server";
 
 async function deleteMessages(request) {
 	try {
@@ -10,15 +9,17 @@ async function deleteMessages(request) {
 
 		await MessageModel.deleteMany({ _id: { $in: ids } });
 
-		return NextResponse.json({
+		return Response.json({
 			status: true,
 			message: "success",
 		});
 	} catch (error) {
-		return new Response(JSON.stringify({ status: false, message: error }), {
-			status: 500,
-			headers: { "Content-Type": `application/json` },
-		});
+		return Response.json(
+			{ status: false, message: error },
+			{
+				status: 500,
+			}
+		);
 	}
 }
 
