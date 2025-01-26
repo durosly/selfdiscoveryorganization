@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 export const TextGenerateEffect = ({ words, className, filter = true, duration = 0.5 }) => {
 	const [scope, animate] = useAnimate();
-	const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+	const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 	let wordsArray = words.split(" ");
 
 	useEffect(() => {
