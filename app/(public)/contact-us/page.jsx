@@ -33,10 +33,10 @@ function ContactUsPage() {
 									Address
 								</h3>
 								<p className="capitalize text-sm">
-									No. 20 Digbori Street,{" "}
-									<br />
-									Essi Layout, Warri, <br />
-									Nigeria
+									40 saint Austell avenue
+									Macclesfield,
+									<br /> SK10 3nn England,
+									<br /> United Kingdom
 								</p>
 							</div>
 						</div>

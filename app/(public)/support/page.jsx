@@ -22,7 +22,7 @@ function SupportPage() {
 							<h4 className="font-bold">Bank Transfer</h4>
 							<p className="flex flex-wrap gap-2 text-sm">
 								<span>Bank name:</span>
-								<span>Virgin Moneh</span>
+								<span>Virgin Money</span>
 							</p>
 							<p className="flex flex-wrap gap-2 text-sm">
 								<span>Account Name:</span>

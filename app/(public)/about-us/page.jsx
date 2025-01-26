@@ -227,9 +227,11 @@ function AboutUsPage() {
 						</CascadeAnimation>
 
 						<div>
-							<p className="font-bold">Self Discovery</p>
+							<p className="font-bold">
+								Self Discovery organization
+							</p>
 							<p className="text-xs italic">
-								CEO/Founder
+								president/Founder
 							</p>
 						</div>
 					</div>
@@ -259,10 +261,6 @@ function AboutUsPage() {
 					<ul className="list-disc list-inside">
 						<li>Empowering individuals and communities.</li>
 						<li>Promoting education and healthcare access.</li>
-						<li>
-							Protecting the environment and natural
-							resources.
-						</li>
 						<li>Advocating for social justice and equality.</li>
 					</ul>
 				</CascadeAnimation>
@@ -271,36 +269,43 @@ function AboutUsPage() {
 					parentClassName="flex-1 bg-primary/10 p-10 space-y-4">
 					<h2 className="text-3xl font-bold">Our Vision</h2>
 					<p>
-						Our vision at Self Discovery organization is a world
-						where hope, opportunity, and well-being are
-						accessible to all. We envision a future where our
-						mission has been realized, and communities thrive,
-						individuals prosper, and the planet flourishes.
+						At Self Discovery Organization, we envision a world
+						where people can thrive, harness their full
+						potential, and accomplish their purpose, regardless
+						of who they are or where they come from. A world
+						where opportunities are accessible to all, and the
+						well-being of individuals is prioritized.
 					</p>
 					<p>
-						To achieve this vision, we work tirelessly, guided
-						by our values of compassion, integrity, and
-						innovation. We believe in a world where
-						collaboration and unity are the driving forces
-						behind progress, and we are committed to being a
-						catalyst for positive change.
+						Guided by our values of compassion, integrity, and
+						innovation, we believe in the transformative power
+						of collaboration and unity to create lasting change.
+						We are committed to being a catalyst for positive
+						transformation, working tirelessly toward a
+						brighter, more inclusive future.
 					</p>
+
+					<p>Our goals are clear:</p>
 					<ul className="list-disc list-inside">
 						<li>
 							A world where every child has access to
 							quality education.
 						</li>
 						<li>
-							A world where healthcare is a basic right,
-							not a privilege.
+							A world where healthcare is a universal
+							right, not a privilege.
 						</li>
 						<li>
-							A world where the environment is protected
-							for future generations.
+							A world where individuals are empowered to
+							become the best versions of themselves.
 						</li>
 						<li>
-							A world where social justice and equality
-							are upheld.
+							A world where global poverty is reduced, and
+							no one has to go to bed hungry.
+						</li>
+						<li>
+							A world where global poverty is reduced, and
+							no one has to go to bed hungry.
 						</li>
 					</ul>
 				</CascadeAnimation>
