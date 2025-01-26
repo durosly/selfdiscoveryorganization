@@ -32,7 +32,6 @@ export default function PublicLayout({ children }) {
 								alt="Self Discovery organization"
 								placeholder="blur"
 								fill
-								priority
 								sizes="40px"
 							/>
 						</div>
