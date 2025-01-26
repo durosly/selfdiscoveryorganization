@@ -37,6 +37,7 @@ import { ImagesSlider } from "../components/ui/images-slider";
 import { TextGenerateEffect } from "../components/ui/text-generate-effect";
 import Teams from "./components/teams";
 import ProgramListSummary from "./components/program-list";
+import { Suspense } from "react";
 
 function PublicHomePage() {
 	return (
@@ -622,8 +623,9 @@ function PublicHomePage() {
 					]}
 				/>
 			</div>
-
-			<ProgramListSummary />
+			<Suspense fallback={<div>Loading...</div>}>
+				<ProgramListSummary />
+			</Suspense>
 		</>
 	);
 }

@@ -6,6 +6,7 @@ import { LuBook, LuHexagon, LuStar } from "react-icons/lu";
 import CoverImage from "../components/cover";
 import ProgramListSummary from "../components/program-list";
 import Teams from "../components/teams";
+import { Suspense } from "react";
 
 export const metadata = {
 	title: "About Us",
@@ -404,7 +405,9 @@ function AboutUsPage() {
 				</div>
 			</div>
 
-			<ProgramListSummary />
+			<Suspense fallback={<div>Loading...</div>}>
+				<ProgramListSummary />
+			</Suspense>
 		</>
 	);
 }

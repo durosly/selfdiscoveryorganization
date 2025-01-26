@@ -8,7 +8,10 @@ import { LuCalendarDays, LuMoveRight, LuNewspaper } from "react-icons/lu";
 
 async function ProgramListSummary() {
 	await connectMongo();
-	const programs = await ProgramModel.find({}, "_id desc title cover_image slug start_date")
+	const programs = await ProgramModel.find(
+		{ status: "publish" },
+		"_id desc title cover_image slug start_date"
+	)
 		.sort({ createdAt: -1 })
 		.limit(6);
 
