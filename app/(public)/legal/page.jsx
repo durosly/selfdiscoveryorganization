@@ -25,25 +25,29 @@ function LegalPage() {
 					<CascadeAnimation
 						animationDirection="up"
 						parentClassName="flex flex-wrap gap-10 mt-10">
-						<a target="_blank" href="/docs/">
+						<a
+							target="_blank"
+							href="/docs/self-discovery-organization-governing-document.docx">
 							<BsFileEarmarkPdf className="w-10 h-10 mx-auto" />
-							Certificate
+							Governing Document
 						</a>
-						<a target="_blank" href="/docs/">
+						<a
+							target="_blank"
+							href="/docs/Registration_Certificate_1206176-20241023143925320PARULKHL.pdf">
 							<BsFileEarmarkPdf className="w-10 h-10 mx-auto" />
-							Constitution
+							Registration Certificate
 						</a>
-						<a target="_blank" href="/docs/">
+						{/* <a target="_blank" href="/docs/">
 							<BsFileEarmarkPdf className="w-10 h-10 mx-auto" />
 							Trustees
-						</a>
+						</a> */}
 					</CascadeAnimation>
 				</div>
 				<CascadeAnimation>
 					<p className="text-xs font-bold">
 						For enquiries or complain, you can email us at{" "}
-						<a href="mailto:team@chiomaorganization.com">
-							team@chiomaorganization.com
+						<a href="mailto:selfdisoveryorganiztion@gmail.com">
+							selfdisoveryorganiztion@gmail.com
 						</a>
 					</p>
 				</CascadeAnimation>
