@@ -487,7 +487,7 @@ function PublicHomePage() {
 			<div
 				style={{
 					backgroundImage:
-						"linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url(https://images.pexels.com/photos/3280130/pexels-photo-3280130.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)",
+						"linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.4)), url(/images/collab-2.jpg)",
 				}}
 				className="text-center py-20 px-10 space-y-5 bg-no-repeat bg-cover bg-center text-white overflow-hidden">
 				<CascadeAnimation animationDirection="left">
