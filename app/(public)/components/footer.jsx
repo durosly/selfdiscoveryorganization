@@ -57,7 +57,9 @@ function Footer() {
 					</a>
 					<a className=" inline-flex gap-2 items-center">
 						<LuMapPin className="stroke-current" />
-						20, digbori street
+						40 saint Austell avenue Macclesfield,
+						<br /> SK10 3nn England,
+						<br /> United Kingdom
 					</a>
 				</CascadeAnimation>
 			</footer>

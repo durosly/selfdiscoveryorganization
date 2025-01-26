@@ -145,15 +145,16 @@ function PublicHomePage() {
 						<div className="relative overflow-hidden w-full rounded-full aspect-square">
 							<Image
 								fill
-								src="https://images.pexels.com/photos/30230055/pexels-photo-30230055/free-photo-of-aerial-view-of-refugee-camp-with-blue-tarps.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								src="/images/global-happiness-1.jpg"
 								alt=""
+								className="object-cover brightness-75"
 								sizes="(min-width: 640px) calc(50vw - 60px), calc(100vw - 80px)"
 							/>
 						</div>
 						<div className="absolute w-1/3 aspect-square rounded-full border-4 overflow-hidden bottom-0 right-10">
 							<Image
 								fill
-								src="https://images.pexels.com/photos/30224779/pexels-photo-30224779/free-photo-of-joyful-woman-holding-aid-supplies-in-africa.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								src="/images/global-happiness-2.jpg"
 								alt=""
 								className="object-cover"
 								sizes="(min-width: 640px) calc(16.65vw - 28px), calc(33.44vw - 35px)"
@@ -361,7 +362,7 @@ function PublicHomePage() {
 						<div className=" h-48 relative">
 							<Image
 								fill
-								src="https://images.pexels.com/photos/6144023/pexels-photo-6144023.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								src="/images/podcast.jpg"
 								alt=""
 								className="object-cover brightness-[0.7]"
 								sizes="(min-width: 1040px) calc(33.32vw - 39px), (min-width: 640px) calc(3.16vw + 268px), (min-width: 400px) calc(100vw - 80px), calc(13.75vw + 248px)"

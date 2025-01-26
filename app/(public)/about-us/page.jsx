@@ -156,9 +156,9 @@ function AboutUsPage() {
 					<div className="relative flex-1 h-48 aspect-video sm:aspect-auto sm:h-auto rounded-2xl overflow-hidden">
 						<Image
 							fill
-							src="https://images.pexels.com/photos/11742874/pexels-photo-11742874.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+							src="/images/make-difference.jpg"
 							alt="Self Discovery"
-							className="object-cover"
+							className="object-cover brightness-75"
 						/>
 					</div>
 					<div className="flex-1">
@@ -326,16 +326,17 @@ function AboutUsPage() {
 						<div className="relative overflow-hidden w-full rounded-2xl aspect-square">
 							<Image
 								fill
-								src="https://images.pexels.com/photos/1198171/pexels-photo-1198171.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								src="/images/collab-1.jpg"
 								alt=""
+								className="object-cover brightness-50"
 							/>
 						</div>
 						<div className="absolute w-1/3 aspect-square rounded-full border-4 overflow-hidden bottom-0 right-10">
 							<Image
 								fill
-								src="https://images.pexels.com/photos/3205568/pexels-photo-3205568.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								src="/images/collab-2.jpg"
 								alt=""
-								className="object-cover"
+								className="object-cover brightness-50"
 							/>
 						</div>
 					</div>

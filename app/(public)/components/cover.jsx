@@ -4,10 +4,10 @@ import { LuGrip } from "react-icons/lu";
 function CoverImage({ title }) {
 	return (
 		<div
-			className="px-10 h-52 relative bg-center bg-fixed"
+			className="px-10 h-52 relative bg-bottom bg-fixed bg-no-repeat bg-cover"
 			style={{
 				backgroundImage:
-					"linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url(https://images.pexels.com/photos/939702/pexels-photo-939702.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)",
+					"linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url(/images/fapi.jpg)",
 			}}>
 			<div className="inline-block text-right absolute bottom-4 left-10">
 				<h1 className="text-2xl sm:text-6xl text-left text-white">
