@@ -246,12 +246,14 @@ function PublicHomePage() {
 								(FAPI)
 							</h2>
 							<p>
-								Reuniting families and restoring
-								hope to incarcerated individuals and
-								their loved ones. FAPI bridges the
-								gap by offering support, advocacy,
-								and resources, fostering resilience
-								and stronger communities.
+								Our primary aim is to extend
+								God&apos;s love to families in need
+								and bring hope to incarcerated
+								individuals. FAPI bridges the gap by
+								providing essential resources,
+								offering support, and fostering
+								resilience to build stronger
+								communities.
 							</p>
 							<div className="text-right">
 								<span className="badge badge-primary rounded-2xl">

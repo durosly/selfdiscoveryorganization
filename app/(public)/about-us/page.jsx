@@ -303,10 +303,6 @@ function AboutUsPage() {
 							A world where global poverty is reduced, and
 							no one has to go to bed hungry.
 						</li>
-						<li>
-							A world where global poverty is reduced, and
-							no one has to go to bed hungry.
-						</li>
 					</ul>
 				</CascadeAnimation>
 			</div>
