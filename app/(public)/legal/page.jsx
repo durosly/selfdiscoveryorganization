@@ -1,4 +1,4 @@
-import { BsFileEarmarkPdf } from "react-icons/bs";
+import { BsFileEarmarkPdf, BsFileEarmarkWord } from "react-icons/bs";
 import CoverImage from "../components/cover";
 import CascadeAnimation from "@/app/components/animations/cascade-animation";
 
@@ -28,7 +28,7 @@ function LegalPage() {
 						<a
 							target="_blank"
 							href="/docs/self-discovery-organization-governing-document.docx">
-							<BsFileEarmarkPdf className="w-10 h-10 mx-auto" />
+							<BsFileEarmarkWord className="w-10 h-10 mx-auto" />
 							Governing Document
 						</a>
 						<a
