@@ -583,10 +583,11 @@ function PublicHomePage() {
 				<div className="flex justify-center">
 					<h2 className="flex gap-1 items-center text-secondary">
 						<LuAward className="w-5 h-5" />
-						Nationwide Associates
+						Associates
 					</h2>
 				</div>
 				<AnimatedTestimonials
+					autoplay={true}
 					testimonials={[
 						{
 							quote: "The impact of charity isn’t in the size of the gift but in the love, care, and hope it carries into someone’s heart.",
@@ -635,6 +636,12 @@ function PublicHomePage() {
 							name: "Tola Abigael Aiyegbayo",
 							designation: "Admin, Ibadan",
 							src: "/images/team/team-8.jpg",
+						},
+						{
+							quote: "Charity is the bridge that connects those who can give with those in need, creating a world where kindness knows no limits.",
+							name: "Dr Naison Gumbo",
+							designation: "Regional Leader, Zimbabwe",
+							src: "/images/team/team-9.jpg",
 						},
 					]}
 				/>
