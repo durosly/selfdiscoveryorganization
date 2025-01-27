@@ -583,42 +583,58 @@ function PublicHomePage() {
 				<div className="flex justify-center">
 					<h2 className="flex gap-1 items-center text-secondary">
 						<LuAward className="w-5 h-5" />
-						Testimonials
+						Nationwide Associates
 					</h2>
 				</div>
 				<AnimatedTestimonials
 					testimonials={[
 						{
-							quote: "The attention to detail and innovative features have completely transformed our workflow. This is exactly what we've been looking for.",
-							name: "Sarah Chen",
-							designation: "Product Manager at TechFlow",
-							src: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=3560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+							quote: "The impact of charity isn’t in the size of the gift but in the love, care, and hope it carries into someone’s heart.",
+							name: "Rosemary Emmanuel",
+							designation: "Team Lead, FCT",
+							src: "/images/team/team-1.jpg",
 						},
 						{
-							quote: "Implementation was seamless and the results exceeded our expectations. The platform's flexibility is remarkable.",
-							name: "Michael Rodriguez",
-							designation: "CTO at InnovateSphere",
-							src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+							quote: "True giving is when you expect nothing in return but offer everything you can to light up someone else’s life.",
+							name: "Temi Esther Aiyegbayo",
+							designation: "Team Lead, Ibadan",
+							src: "/images/team/team-2.jpg",
 						},
 						{
-							quote: "This solution has significantly improved our team's productivity. The intuitive interface makes complex tasks simple.",
-							name: "Emily Watson",
-							designation:
-								"Operations Director at CloudScale",
-							src: "https://images.unsplash.com/photo-1623582854588-d60de57fa33f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+							quote: "Charity is a universal language of love that reminds us we are never too small to make a difference in someone else’s life.",
+							name: "Wisdom Madunwe",
+							designation: "Admin, FCT",
+							src: "/images/team/team-3.jpg",
 						},
 						{
-							quote: "Outstanding support and robust features. It's rare to find a product that delivers on all its promises.",
-							name: "James Kim",
-							designation: "Engineering Lead at DataPro",
-							src: "https://images.unsplash.com/photo-1636041293178-808a6762ab39?q=80&w=3464&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+							quote: "Helping one person might not change the world, but it could change the world for that one person. That’s the beauty of charity.",
+							name: "Thompson Ubong",
+							designation: "Team Lead, Lagos",
+							src: "/images/team/team-4.jpg",
 						},
 						{
-							quote: "The scalability and performance have been game-changing for our organization. Highly recommend to any growing business.",
-							name: "Lisa Thompson",
-							designation:
-								"VP of Technology at FutureNet",
-							src: "https://images.unsplash.com/photo-1624561172888-ac93c696e10c?q=80&w=2592&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+							quote: "Charity is not measured by how much you give but by the joy and hope your giving inspires in those who receive it.",
+							name: "Faith Ojo",
+							designation: "Admin, Lagos",
+							src: "/images/team/team-5.jpg",
+						},
+						{
+							quote: "When we give with open hands and hearts, we remind others that humanity is connected by compassion, love, and a shared purpose to uplift.",
+							name: "Prosper Fortune",
+							designation: "Team Lead, Imo",
+							src: "/images/team/team-6.jpg",
+						},
+						{
+							quote: "Every act of kindness, no matter how simple, plants a seed of hope in someone’s life and blossoms into a brighter tomorrow.",
+							name: "Rhema Obadife",
+							designation: "Admin, Imo",
+							src: "/images/team/team-7.jpg",
+						},
+						{
+							quote: "True charity isn’t about giving what’s easy; it’s about giving what makes a difference, no matter how small it seems to you.",
+							name: "Tola Abigael Aiyegbayo",
+							designation: "Admin, Ibadan",
+							src: "/images/team/team-8.jpg",
 						},
 					]}
 				/>
