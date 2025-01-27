@@ -3,8 +3,8 @@ import connectMongo from "@/lib/connectDB";
 import ProgramModel from "@/models/program";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import { LuCalendarDays, LuMoveRight, LuNewspaper } from "react-icons/lu";
+import { DateTime } from "luxon";
 
 async function ProgramListSummary() {
 	await connectMongo();
@@ -54,7 +54,9 @@ async function ProgramListSummary() {
 							<div className=" space-y-2 mt-5">
 								<p className="text-slate-500 flex gap-2 items-center">
 									<LuCalendarDays className="inline-block stroke-current" />{" "}
-									27/04/2024
+									{DateTime.fromJSDate(
+										program.start_date
+									).toFormat("dd/LLL/yyyy")}
 								</p>
 								<h2 className="font-semibold text-2xl">
 									{program.title}
