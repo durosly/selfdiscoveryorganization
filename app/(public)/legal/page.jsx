@@ -46,8 +46,8 @@ function LegalPage() {
 				<CascadeAnimation>
 					<p className="text-xs font-bold">
 						For enquiries or complain, you can email us at{" "}
-						<a href="mailto:selfdisoveryorganiztion@gmail.com">
-							selfdisoveryorganiztion@gmail.com
+						<a href="mailto:selfdiscoveryorganization@gmail.com">
+							selfdiscoveryorganization@gmail.com
 						</a>
 					</p>
 				</CascadeAnimation>

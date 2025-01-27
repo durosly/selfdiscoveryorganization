@@ -50,10 +50,10 @@ function Footer() {
 						+447301046564
 					</a>
 					<a
-						href="mailto:selfdisoveryorganiztion@gmail.com"
+						href="mailto:selfdiscoveryorganization@gmail.com"
 						className="link link-hover inline-flex gap-2 items-center">
 						<LuMail className="stroke-current" />
-						selfdisoveryorganiztion@gmail.com
+						selfdiscoveryorganization@gmail.com
 					</a>
 					<a className=" inline-flex gap-2 items-center">
 						<LuMapPin className="stroke-current" />

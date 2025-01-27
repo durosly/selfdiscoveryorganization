@@ -47,9 +47,9 @@ function ContactUsPage() {
 									Email Us
 								</h3>
 								<a
-									href="mailto:selfdisoveryorganiztion@gmail.com"
+									href="mailto:selfdiscoveryorganization@gmail.com"
 									className="text-sm">
-									selfdisoveryorganiztion@gmail.com
+									selfdiscoveryorganization@gmail.com
 								</a>
 							</div>
 						</div>
