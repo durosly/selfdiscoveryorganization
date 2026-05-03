@@ -4,7 +4,7 @@ import { handleError } from "@/lib/handleError";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { signIn } from "next-auth/react";
+import { signIn } from "@/lib/auth-client";
 
 function LoginForm() {
 	const router = useRouter();
@@ -18,18 +18,16 @@ function LoginForm() {
 		const toastId = toast.loading("Loading...");
 		try {
 			setIsLoading(true);
-			const res = await signIn("credentials", {
-				redirect: false,
-				...info,
+			const res = await signIn.email({
+				email: info.email,
+				password: info.password,
 			});
 
-			if (res && res.ok && !res?.error) {
-				toast.success("Login successful", { id: toastId });
-				router.push("/admin/dashboard");
-				// setIsLoading(false);
-			} else {
-				throw new Error(res?.error || "Something went wrong");
+			if (res?.error) {
+				throw new Error(res.error.message || "Invalid credentials");
 			}
+			toast.success("Login successful", { id: toastId });
+			router.push("/admin/dashboard");
 		} catch (error) {
 			const message = handleError(error);
 			toast.error(message, { id: toastId });

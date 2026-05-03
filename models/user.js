@@ -2,10 +2,16 @@ import mongoose from "mongoose";
 // import bcrypt from "bcryptjs";
 // import referralCodeGenerator from 'referral-code-generator';
 
-const userSchema = new mongoose.Schema({
-	email: String,
-	password: String,
-});
+const userSchema = new mongoose.Schema(
+	{
+		email: String,
+		password: String, // legacy field; credential hash lives in `account` collection for better-auth
+		account_type: { type: String, default: null },
+		emailVerified: { type: Date, default: null },
+		name: String,
+	},
+	{ timestamps: true },
+);
 
 // userSchema.pre("save", function (next) {
 // 	const user = this;

@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { signOut } from "next-auth/react";
+import { signOut } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 
 function LogoutButton() {
@@ -8,8 +8,11 @@ function LogoutButton() {
 	async function logout() {
 		const toastId = toast.loading("Logging out...");
 		try {
-			const data = await signOut({ redirect: false, callbackUrl: "/" });
-			router.push(data.url);
+			const res = await signOut();
+			if (res?.error) {
+				throw new Error(res.error.message || "Logout failed");
+			}
+			router.push("/");
 			toast.success("Successful", { id: toastId });
 		} catch (error) {
 			toast.error(error.message, { id: toastId });
