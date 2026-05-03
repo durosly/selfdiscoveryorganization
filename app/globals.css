@@ -1,5 +1,11 @@
 @import "tailwindcss";
-@config "../tailwind.config.js";
+@import "@tailwindcss/typography";
+
+/* Brand overrides (replaces former bumblebee theme extension) */
+:root {
+	--color-primary: #ffd360;
+	--color-secondary: #ff6600;
+}
 
 /* * {
 	background-color: rgba(0, 255, 0, 0.1);

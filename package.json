@@ -46,6 +46,7 @@
 		"zod": "^3.22.2"
 	},
 	"devDependencies": {
+		"@tailwindcss/postcss": "^4.2.4",
 		"@tailwindcss/typography": "^0.5.16",
 		"daisyui": "^5.5.19",
 		"tailwindcss": "^4.2.4"

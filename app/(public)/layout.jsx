@@ -22,7 +22,7 @@ export default function PublicLayout({ children }) {
 				<main className="space-y-20">{children}</main>
 				<Footer />
 			</div>
-			<div className="drawer-side z-[9999]">
+			<div className="drawer-side z-9999">
 				<label htmlFor="my-drawer-3" className="drawer-overlay"></label>
 				<div className="p-4 w-80 min-h-full bg-base-200">
 					<div className="flex items-center px-2 mx-2 gap-2">

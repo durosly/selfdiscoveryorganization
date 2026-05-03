@@ -50,7 +50,7 @@ function PublicHomePage() {
 					`/images/slide/6.jpg`,
 					`/images/slide/7.jpg`,
 				]}
-				className={"h-[calc(100dvh_-_4rem)]"}
+				className={"h-[calc(100dvh-4rem)]"}
 				direction="down">
 				<div className="relative z-50 text-center text-neutral-content px-5">
 					<div className="max-w-xl">
@@ -87,7 +87,7 @@ function PublicHomePage() {
 			<CascadeAnimation
 				parentClassName="card mx-auto p-10 sm:flex-row flex-wrap gap-5"
 				animationDirection="down">
-				<div className="sm:w-[calc(50%_-_1.25rem)] md:flex-1 flex flex-col gap-3 border p-5 rounded-2xl">
+				<div className="sm:w-[calc(50%-1.25rem)] md:flex-1 flex flex-col gap-3 border p-5 rounded-2xl">
 					<div className="w-16 aspect-square mx-auto bg-rose-600/10 rounded-full flex justify-center items-center">
 						<TbSchool className="w-10 h-10 stroke-rose-600" />
 					</div>
@@ -227,7 +227,7 @@ function PublicHomePage() {
 					animationDirection="down"
 					threshold={0.1}
 					parentClassName="sm:flex flex-col sm:flex-row gap-5 flex-wrap">
-					<div className="sm:w-[calc((100%_-_2_*_1.25rem_)_/_3)] rounded-xl overflow-hidden">
+					<div className="sm:w-[calc((100%-2*1.25rem)/3)] rounded-xl overflow-hidden">
 						<div className=" h-48 relative">
 							<Image
 								fill
@@ -262,7 +262,7 @@ function PublicHomePage() {
 							</div>
 						</div>
 					</div>
-					<div className="sm:w-[calc((100%_-_2_*_1.25rem_)_/_3)] rounded-xl overflow-hidden">
+					<div className="sm:w-[calc((100%-2*1.25rem)/3)] rounded-xl overflow-hidden">
 						<div className=" h-48 relative">
 							<Image
 								fill
@@ -294,7 +294,7 @@ function PublicHomePage() {
 							</div>
 						</div>
 					</div>
-					<div className="sm:w-[calc((100%_-_2_*_1.25rem_)_/_3)] rounded-xl overflow-hidden">
+					<div className="sm:w-[calc((100%-2*1.25rem)/3)] rounded-xl overflow-hidden">
 						<div className=" h-48 relative">
 							<Image
 								fill
@@ -327,7 +327,7 @@ function PublicHomePage() {
 							</div>
 						</div>
 					</div>
-					<div className="sm:w-[calc((100%_-_2_*_1.25rem_)_/_3)] rounded-xl overflow-hidden">
+					<div className="sm:w-[calc((100%-2*1.25rem)/3)] rounded-xl overflow-hidden">
 						<div className=" h-48 relative">
 							<Image
 								fill
@@ -359,7 +359,7 @@ function PublicHomePage() {
 							</div>
 						</div>
 					</div>
-					<div className="sm:w-[calc((100%_-_2_*_1.25rem_)_/_3)] rounded-xl overflow-hidden">
+					<div className="sm:w-[calc((100%-2*1.25rem)/3)] rounded-xl overflow-hidden">
 						<div className=" h-48 relative">
 							<Image
 								fill
@@ -519,38 +519,38 @@ function PublicHomePage() {
 				<>
 					<div className="relative h-full w-full flex items-center justify-center">
 						<div className="profileCard_container relative p-10 border-2 border-dashed rounded-full border-spacing-4 border-gray-400/50">
-							<button className="profile_item left-[45px] -top-[4px] absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
-								<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-[2] bg-white p-1">
+							<button className="profile_item left-[45px] top-[-4px] absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
+								<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-2 bg-white p-1">
 									<FcGraduationCap className="w-[30px] h-[30px]" />
 								</span>
 							</button>
-							<button className="profile_item right-[45px] -top-[4px] absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
-								<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-[2] bg-white p-1">
+							<button className="profile_item right-[45px] top-[-4px] absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
+								<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-2 bg-white p-1">
 									<FcHome className="w-[30px] h-[30px]" />
 								</span>
 							</button>
 							<button className="profile_item -left-4 top-20 absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
-								<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-[2] bg-white p-1">
+								<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-2 bg-white p-1">
 									<FcLike className="w-[30px] h-[30px]" />
 								</span>
 							</button>
 							<button className="profile_item -right-4 top-20 absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
-								<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-[2] bg-white p-1">
+								<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-2 bg-white p-1">
 									<FcPlanner className="w-[30px] h-[30px]" />
 								</span>
 							</button>
-							<button className="profile_item bottom-8 -left-0 absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
-								<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-[2] bg-white p-1">
+							<button className="profile_item bottom-8 left-0 absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
+								<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-2 bg-white p-1">
 									<FcBiotech className="w-[30px] h-[30px]" />
 								</span>
 							</button>
-							<button className="profile_item bottom-8 -right-0 absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
-								<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-[2] bg-white p-1">
+							<button className="profile_item bottom-8 right-0 absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
+								<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-2 bg-white p-1">
 									<FcConferenceCall className="w-[30px] h-[30px]" />
 								</span>
 							</button>
 							<button className="profile_item right-[40%] -bottom-4 absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
-								<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-[2] bg-white p-1">
+								<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-2 bg-white p-1">
 									<FcGlobe className="w-[30px] h-[30px]" />
 								</span>
 							</button>

@@ -8,7 +8,7 @@ function AdminLoginPage() {
 					<h1 className="text-5xl font-bold">Login to dashboard!</h1>
 					<p className="py-6">Only for authorized users</p>
 				</div>
-				<div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+				<div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
 					<LoginForm />
 				</div>
 			</div>
