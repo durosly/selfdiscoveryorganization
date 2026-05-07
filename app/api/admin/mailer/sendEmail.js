@@ -1,6 +1,6 @@
 import MailUser from "@/emails/mail-user";
 import transporter from "@/lib/transporter";
-import { render } from "@react-email/render";
+import { render } from "react-email";
 
 async function sendEmail(request) {
 	try {
@@ -14,7 +14,7 @@ async function sendEmail(request) {
 				},
 				{
 					status: 400,
-				}
+				},
 			);
 		} else if (!message) {
 			return Response.json(
@@ -24,16 +24,13 @@ async function sendEmail(request) {
 				},
 				{
 					status: 500,
-				}
+				},
 			);
 		}
 
-		const html = render(
-			<MailUser title={title} message={message} username={username} />,
-			{
-				pretty: true,
-			}
-		);
+		const html = render(<MailUser title={title} message={message} username={username} />, {
+			pretty: true,
+		});
 
 		const options = {
 			from: `${process.env.SMTP_INFO} <${process.env.SMTP_USERNAME}>`,
@@ -53,7 +50,7 @@ async function sendEmail(request) {
 			},
 			{
 				status: 500,
-			}
+			},
 		);
 	}
 }

@@ -9,7 +9,7 @@ import {
 	Section,
 	Tailwind,
 	Text,
-} from "@react-email/components";
+} from "react-email";
 
 const baseUrl = process.env.NEXT_PUBLIC_URL;
 

@@ -1,5 +1,5 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 import { useCallback } from "react";
 import { useEffect, useState } from "react";
@@ -75,14 +75,14 @@ export const AnimatedTestimonials = ({ testimonials, autoplay = false }) => {
 										)
 											? 999
 											: testimonials.length +
-											  2 -
-											  index,
+											2 -
+											index,
 										y: isActive(index)
 											? [
-													0,
-													-80,
-													0,
-											  ]
+												0,
+												-80,
+												0,
+											]
 											: 0,
 									}}
 									exit={{

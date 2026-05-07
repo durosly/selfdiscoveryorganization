@@ -1,5 +1,9 @@
 @import "tailwindcss";
-@import "@tailwindcss/typography";
+@plugin "@tailwindcss/typography";
+
+@plugin "daisyui" {
+	themes: bumblebee --default;
+}
 
 /* Brand overrides (replaces former bumblebee theme extension) */
 :root {

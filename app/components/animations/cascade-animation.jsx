@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, createElement } from "react";
-import { animate } from "framer-motion";
+import { animate } from "motion/react";
 import { useInView } from "react-intersection-observer";
 
 const CascadeAnimation = ({
@@ -35,20 +35,18 @@ const CascadeAnimation = ({
 			Array.from(elements).forEach((element) => {
 				element.style.opacity = initialOpacity;
 				if (animationDirection === "up" || animationDirection === "down") {
-					element.style.transform = `translateY(${
-						animationDirection === "up"
+					element.style.transform = `translateY(${animationDirection === "up"
 							? initialPosition
 							: -initialPosition
-					}px)`;
+						}px)`;
 				} else if (
 					animationDirection === "left" ||
 					animationDirection === "right"
 				) {
-					element.style.transform = `translateX(${
-						animationDirection === "left"
+					element.style.transform = `translateX(${animationDirection === "left"
 							? initialPosition
 							: -initialPosition
-					}px)`;
+						}px)`;
 				}
 			});
 		}
@@ -62,10 +60,10 @@ const CascadeAnimation = ({
 						animationDirection === "up"
 							? { y: [-initialPosition, 0] }
 							: animationDirection === "down"
-							? { y: [initialPosition, 0] }
-							: animationDirection === "left"
-							? { x: [initialPosition, 0] }
-							: { x: [-initialPosition, 0] };
+								? { y: [initialPosition, 0] }
+								: animationDirection === "left"
+									? { x: [initialPosition, 0] }
+									: { x: [-initialPosition, 0] };
 
 					animate(
 						element,
