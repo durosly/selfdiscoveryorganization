@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { LuArrowLeft, LuArrowRight } from "react-icons/lu";
+import { LuArrowLeft, LuArrowRight, LuUsers } from "react-icons/lu";
 import { useQuery } from "@tanstack/react-query";
 
 function ExistingPrograms({ initialData }) {
@@ -127,7 +127,13 @@ function ExistingPrograms({ initialData }) {
 									{d.status}
 								</span>
 
-								<div className="text-right">
+								<div className="text-right space-x-2">
+									<Link
+										href={`/admin/programs/${d._id}/attendees`}
+										className="btn btn-sm btn-outline">
+										<LuUsers className="w-4 h-4" />
+										Attendees
+									</Link>
 									<Link
 										href={`/admin/programs/${d._id}`}
 										className="btn btn-sm btn-primary">
@@ -146,13 +152,13 @@ function ExistingPrograms({ initialData }) {
 					<div className="flex gap-2 my-4">
 						<button
 							disabled={!data.hasPrevPage}
-							onClick={() => loadNew(page - 1)}
+							onClick={() => setPage((p) => Math.max(1, p - 1))}
 							className="btn btn-sm btn-primary btn-outline">
 							<LuArrowLeft />
 						</button>
 						<button
 							disabled={!data.hasNextPage}
-							onClick={() => loadNew(page + 1)}
+							onClick={() => setPage((p) => p + 1)}
 							className="btn btn-sm btn-primary btn-outline">
 							<LuArrowRight />
 						</button>

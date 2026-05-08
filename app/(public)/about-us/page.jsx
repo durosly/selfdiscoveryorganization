@@ -12,6 +12,13 @@ export const revalidate = 60;
 
 export const metadata = {
 	title: "About Us",
+	description:
+		"Learn about Self Discovery Organization — a UK-registered charity uniting people with a sense of purpose through education, outreach and community support.",
+	openGraph: {
+		title: "About Self Discovery Organization",
+		description:
+			"Meet the team and discover the mission behind Self Discovery Organization.",
+	},
 };
 
 const content = [

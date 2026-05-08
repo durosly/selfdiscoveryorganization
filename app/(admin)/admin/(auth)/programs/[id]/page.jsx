@@ -1,18 +1,26 @@
 import connectMongo from "@/lib/connectDB";
-import ProgramModel from "@/models/program";
-import { notFound } from "next/navigation";
-import { LuCalendar, LuClock5, LuMapPin } from "react-icons/lu";
-import { DateTime } from "luxon";
-import CoverImage from "./components/cover-image";
-import TimelineDisplay from "./components/timeline";
 import convertTo12HourFormat from "@/lib/formatTime";
-import StatusBtn from "./components/status-btn";
-import DeleteBtn from "./components/delete-btn";
-import ArticleSummary from "./components/article-summary";
+import EventRegistrationModel from "@/models/event-registration";
+import ProgramModel from "@/models/program";
 import ArticleModel from "@/models/program-article";
-import "easymde/dist/easymde.min.css";
-import ProgramGallery from "./components/gallery";
 import GalleryModel from "@/models/program-images";
+import "easymde/dist/easymde.min.css";
+import { DateTime } from "luxon";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import {
+	LuCalendar,
+	LuClock5,
+	LuMapPin,
+	LuTag,
+	LuUsers,
+} from "react-icons/lu";
+import ArticleSummary from "./components/article-summary";
+import CoverImage from "./components/cover-image";
+import DeleteBtn from "./components/delete-btn";
+import ProgramGallery from "./components/gallery";
+import StatusBtn from "./components/status-btn";
+import TimelineDisplay from "./components/timeline";
 
 async function AdminProgramsDetailsPage({ params }) {
 	await connectMongo();
@@ -25,6 +33,10 @@ async function AdminProgramsDetailsPage({ params }) {
 
 	const article = await ArticleModel.findOne({ program_id: id });
 	const articleGallery = await GalleryModel.findOne({ program_id: id });
+	const confirmedCount = await EventRegistrationModel.countDocuments({
+		program: program._id,
+		status: "confirmed",
+	});
 
 	return (
 		<div className="px-5 sm:px-10">
@@ -70,6 +82,32 @@ async function AdminProgramsDetailsPage({ params }) {
 							<LuMapPin className="inline-block" />{" "}
 							{program.location}
 						</p>
+					</div>
+					{program.designation ? (
+						<div>
+							<p className="flex items-center gap-2 ">
+								<LuTag className="inline-block" /> Linked
+								cause: {program.designation}
+							</p>
+						</div>
+					) : null}
+					<div>
+						<p className="flex items-center gap-2 ">
+							<LuUsers className="inline-block" />{" "}
+							<strong>{confirmedCount}</strong>
+							{program.attendee_limit
+								? ` of ${program.attendee_limit}`
+								: ""}{" "}
+							attendees ·{" "}
+							{program.registrations_open === false
+								? "registrations closed"
+								: "registrations open"}
+						</p>
+						<Link
+							href={`/admin/programs/${id}/attendees`}
+							className="btn btn-sm btn-outline mt-2">
+							<LuUsers className="w-4 h-4" /> Manage attendees
+						</Link>
 					</div>
 				</div>
 			</div>

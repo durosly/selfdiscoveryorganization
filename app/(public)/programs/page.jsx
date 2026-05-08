@@ -7,6 +7,13 @@ export const dynamic = "force-dynamic";
 
 export const metadata = {
 	title: "Programs",
+	description:
+		"Browse Self Discovery Organization's upcoming events and programmes — register, learn more, or support our work.",
+	openGraph: {
+		title: "Programs & Events — Self Discovery Organization",
+		description:
+			"Discover our upcoming charity events, conferences and outreach programmes.",
+	},
 };
 
 async function ProgramsPage() {
@@ -19,8 +26,11 @@ async function ProgramsPage() {
 
 	return (
 		<>
-			<CoverImage title="Programs/Events" />
-			<div className="px-5 sm:px-10">
+			<CoverImage
+				title="Programs & Events"
+				subtitle="Discover upcoming events you can attend, support, or volunteer with."
+			/>
+			<div className="px-5 sm:px-10 max-w-7xl mx-auto">
 				<ExistingPrograms initialData={JSON.parse(JSON.stringify(data))} />
 			</div>
 		</>

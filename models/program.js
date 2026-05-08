@@ -19,6 +19,9 @@ const programSchema = new mongoose.Schema({
 		enum: ["publish", "unpublished"],
 		default: "unpublished",
 	},
+	attendee_limit: { type: Number, default: null },
+	registrations_open: { type: Boolean, default: true },
+	designation: { type: String, default: null },
 });
 
 programSchema.plugin(paginate);
@@ -62,6 +65,9 @@ const ProgramValidationSchema = z.object({
 	end_date: z.string().optional(),
 	start_time: z.string().min(2),
 	end_time: z.string().optional(),
+	attendee_limit: z.coerce.number().int().positive().nullable().optional(),
+	registrations_open: z.coerce.boolean().optional(),
+	designation: z.string().nullable().optional(),
 });
 
 export { ProgramValidationSchema };

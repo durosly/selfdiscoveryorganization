@@ -1,92 +1,75 @@
 import CascadeAnimation from "@/app/components/animations/cascade-animation";
+import SectionHeading from "@/app/components/ui/section-heading";
 import Image from "next/image";
+import { FaInstagram } from "react-icons/fa";
 import { LuStar } from "react-icons/lu";
+
+const team = [
+	{
+		name: "Dr. Uchenna John",
+		role: "President / Founder",
+		image: "/images/team/president.jpg",
+	},
+	{
+		name: "Dr. Jessica John",
+		role: "Co-founder & PM",
+		image: "/images/team/co-president.jpg",
+	},
+	{
+		name: "Kingsley Chinedum Egbuchulam",
+		role: "Director of Operations & Administration",
+		image: "/images/team/admin.jpg",
+	},
+];
 
 function Teams() {
 	return (
-		<div className="px-10">
-			<CascadeAnimation animationDirection="up" parentClassName="text-center">
-				<h2 className="text-2xl text-center">
-					<LuStar className="inline-block stroke-success" /> Our Team
-				</h2>
-				<p className="text-4xl sm:text-6xl font-bold">
-					Meet the team behind the establishment
-				</p>
-			</CascadeAnimation>
+		<section
+			aria-labelledby="team-heading"
+			className="px-6 sm:px-10 max-w-7xl mx-auto">
+			<SectionHeading
+				eyebrow="Our Team"
+				title="Meet the people behind the mission"
+				subtitle="A purpose-driven team uniting communities across the UK, Nigeria and Zimbabwe."
+				eyebrowIcon={LuStar}
+			/>
 			<CascadeAnimation
 				animationDirection="down"
-				parentClassName="flex flex-wrap gap-5 sm:gap-10 justify-center mt-5">
-				<div>
-					<div className="relative w-40 mx-auto aspect-square rounded-full overflow-hidden border-4">
-						<Image
-							fill
-							src="/images/team/president.jpg"
-							alt="Dr. Uchenna John"
-							className="object-cover"
-							sizes="152px"
-						/>
-					</div>
-					<div className="text-center">
-						<h3 className="font-bold">Dr. Uchenna John</h3>
-						<p>President/Founder</p>
-					</div>
-				</div>
-				<div>
-					<div className="relative w-40 mx-auto aspect-square rounded-full overflow-hidden border-4">
-						<Image
-							fill
-							src="/images/team/co-president.jpg"
-							alt="Dr. Jessica John"
-							className="object-cover"
-							sizes="152px"
-						/>
-					</div>
-					<div className="text-center">
-						<h3 className="font-bold">Dr. Jessica John</h3>
-						<p>
-							Co-founder &amp;{" "}
-							<abbr title="project manager">PM</abbr>
-						</p>
-					</div>
-				</div>
-				<div>
-					<div className="relative w-40 mx-auto aspect-square rounded-full overflow-hidden border-4">
-						<Image
-							fill
-							src="/images/team/admin.jpg"
-							alt="Pierre"
-							className="object-cover"
-							sizes="152px"
-						/>
-					</div>
-					<div className="text-center">
-						<h3 className="font-bold">
-							Kingsley Chinedum Egbuchulam
-						</h3>
-						<p>
-							Director of operations <br />
-							&amp; administration
-						</p>
-					</div>
-				</div>
-
-				{/* <div>
-						<div className="relative w-40 mx-auto aspect-square rounded-full overflow-hidden border-4">
+				parentClassName="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+				{team.map((member) => (
+					<div
+						key={member.name}
+						className="group rounded-3xl overflow-hidden bg-base-100 border border-base-300/60 shadow-sm hover:shadow-xl transition-all">
+						<div className="relative aspect-4/5 overflow-hidden">
 							<Image
 								fill
-								src="https://images.pexels.com/photos/30140701/pexels-photo-30140701/free-photo-of-stylish-portrait-of-a-person-with-red-curly-hair.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-								alt="Self Discovery"
-								className="object-cover"
-								sizes="152px"
+								src={member.image}
+								alt={member.name}
+								className="object-cover transition-transform duration-500 group-hover:scale-105"
+								sizes="(min-width: 1024px) 25vw, (min-width: 640px) 45vw, 90vw"
 							/>
+							<div className="absolute inset-0 bg-linear-to-t from-neutral/70 via-transparent to-transparent" />
+							<div className="absolute bottom-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+								<a
+									href="#"
+									aria-label="Instagram"
+									className="w-9 h-9 rounded-full bg-primary text-primary-content flex items-center justify-center shadow-lg">
+									<FaInstagram className="w-4 h-4" />
+								</a>
+							</div>
 						</div>
-						<div className="text-center">
-							<h3 className="font-bold">Grace C.,</h3>
-							<p>Legal Adviser</p>
+						<div className="p-5 text-center">
+							<h3 className="font-bold text-lg text-neutral">
+								{member.name}
+							</h3>
+							<p className="text-sm text-neutral/70">
+								{member.role}
+							</p>
 						</div>
-					</div> */}
+					</div>
+				))}
 			</CascadeAnimation>
-		</div>
+		</section>
 	);
 }
 

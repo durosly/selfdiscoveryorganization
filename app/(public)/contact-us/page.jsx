@@ -5,6 +5,13 @@ import ContactForm from "./components/contact-form";
 
 export const metadata = {
 	title: "Contact Us",
+	description:
+		"Get in touch with Self Discovery Organization. Email, call, or visit us — we respond to every enquiry within 24 hours.",
+	openGraph: {
+		title: "Contact Self Discovery Organization",
+		description:
+			"Email, call or send us a message — we'd love to hear from you.",
+	},
 };
 
 function ContactUsPage() {

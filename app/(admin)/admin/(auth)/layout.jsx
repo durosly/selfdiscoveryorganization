@@ -2,7 +2,7 @@ import Link from "next/link";
 import {
 	LuCalendarDays,
 	LuChartLine,
-	LuLineChart,
+	LuHeartHandshake,
 	LuMail,
 	LuMailbox,
 	LuPanelLeftOpen,
@@ -40,6 +40,12 @@ function AdminLayout({ children }) {
 						<Link href="/admin/programs">
 							<LuCalendarDays />
 							Programs
+						</Link>
+					</li>
+					<li>
+						<Link href="/admin/donations">
+							<LuHeartHandshake />
+							Donations
 						</Link>
 					</li>
 					<li>

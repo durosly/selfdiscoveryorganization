@@ -1,4 +1,3 @@
-import roundImg from "@/public/images/banner-round.png";
 import logo from "@/public/images/logo.png";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,6 +12,7 @@ import {
 	FcPlanner,
 } from "react-icons/fc";
 import {
+	LuArrowRight,
 	LuAward,
 	LuCheck,
 	LuDroplets,
@@ -23,19 +23,135 @@ import {
 	LuMicVocal,
 	LuNetwork,
 	LuPersonStanding,
+	LuShield,
 	LuShrub,
 	LuSoup,
+	LuSparkles,
 	LuSyringe,
+	LuUsers,
 } from "react-icons/lu";
+import { TbWorld } from "react-icons/tb";
 import { TbSchool } from "react-icons/tb";
 import CascadeAnimation from "../components/animations/cascade-animation";
 import { AnimatedTestimonials } from "../components/ui/animated-testimonials";
+import CauseCard from "../components/ui/cause-card";
+import ImageCollage from "../components/ui/image-collage";
 import { ImagesSlider } from "../components/ui/images-slider";
+import SectionHeading from "../components/ui/section-heading";
+import StatCard from "../components/ui/stat-card";
+import StatCounter from "../components/ui/stat-counter";
 import { TextGenerateEffect } from "../components/ui/text-generate-effect";
 import ProgramListSummary from "./components/program-list";
 import Teams from "./components/teams";
 
 export const revalidate = 60;
+
+const focusAreas = [
+	{
+		title: "Education",
+		description:
+			"By supporting us, you contribute towards providing quality education and empowering children with knowledge for a better tomorrow.",
+		icon: TbSchool,
+		color: "bg-rose-500/10 text-rose-600",
+	},
+	{
+		title: "Food & Welfare",
+		description:
+			"Ensuring nutritious meals reach those who need them the most. Join us in fighting hunger and malnutrition.",
+		icon: LuSoup,
+		color: "bg-emerald-500/10 text-emerald-600",
+	},
+	{
+		title: "Medical Care",
+		description:
+			"Access to healthcare is a basic human right. Your donations bring quality healthcare closer to disadvantaged communities.",
+		icon: LuSyringe,
+		color: "bg-sky-500/10 text-sky-600",
+	},
+	{
+		title: "Clean Water",
+		description:
+			"Providing safe drinking water sources and sanitation facilities to communities without access. Together, we can quench their thirst.",
+		icon: LuDroplets,
+		color: "bg-amber-500/10 text-amber-600",
+	},
+];
+
+const causes = [
+	{
+		title: "Families & Prisoners Initiative (FAPI)",
+		description:
+			"Extending love to families in need and bringing hope to incarcerated individuals through tangible support and compassionate care.",
+		imageSrc: "/images/fapi.jpg",
+		tag: "Social Justice",
+		icon: LuHandHeart,
+		href: "/programs",
+		progress: 72,
+		raised: "£7,200",
+		goal: "£10,000",
+	},
+	{
+		title: "Menstrual Hygiene Day",
+		description:
+			"Empowering women and girls through awareness and access to dignity products. Together we break the stigma and promote healthier lives.",
+		imageSrc: "/images/pad.jpg",
+		tag: "Health & Equality",
+		icon: LuSyringe,
+		href: "/programs",
+		progress: 58,
+		raised: "£2,900",
+		goal: "£5,000",
+	},
+	{
+		title: "Send a Child to School Scheme",
+		description:
+			"Building brighter futures through access to education. SACTS ensures underprivileged children can pursue their dreams with the right support.",
+		imageSrc: "/images/child-to-school.jpg",
+		tag: "Education",
+		icon: LuGraduationCap,
+		href: "/programs",
+		progress: 84,
+		raised: "£8,400",
+		goal: "£10,000",
+	},
+	{
+		title: "Debate & Quiz Competition",
+		description:
+			"Inspiring young minds to think critically and creatively, shaping tomorrow's leaders through intellectual engagement.",
+		imageSrc: "/images/debate.jpg",
+		tag: "Education",
+		icon: LuNetwork,
+		href: "/programs",
+		progress: 45,
+		raised: "£1,800",
+		goal: "£4,000",
+	},
+	{
+		title: "Self-Discovery Podcast",
+		description:
+			"Sharing transformative journeys of purpose and growth so listeners can embrace their true potential and live meaningfully.",
+		imageSrc: "/images/podcast.jpg",
+		tag: "Personal Development",
+		icon: LuMicVocal,
+		href: "/programs",
+		progress: 30,
+		raised: "£900",
+		goal: "£3,000",
+	},
+];
+
+const galleryImages = [
+	"/images/slide/1.jpg",
+	"/images/slide/2.jpg",
+	"/images/slide/3.jpg",
+	"/images/slide/4.jpg",
+	"/images/slide/5.jpg",
+	"/images/slide/6.jpg",
+	"/images/slide/7.jpg",
+	"/images/global-happiness-1.jpg",
+	"/images/global-happiness-2.jpg",
+	"/images/more-people.jpg",
+];
 
 function PublicHomePage() {
 	return (
@@ -50,368 +166,323 @@ function PublicHomePage() {
 					`/images/slide/6.jpg`,
 					`/images/slide/7.jpg`,
 				]}
-				className={"h-[calc(100dvh-4rem)]"}
+				className={"h-[calc(100dvh-4rem)] min-h-[620px]"}
+				overlayClassName="bg-linear-to-r from-neutral/85 via-neutral/55 to-neutral/10"
 				direction="down">
-				<div className="relative z-50 text-center text-neutral-content px-5">
-					<div className="max-w-xl">
-						<h1 className="mb-5  font-bold flex flex-col">
-							<span>Welcome to</span>
-							<span className="text-5xl">
-								Self Discovery organization
+				<div className="relative z-50 w-full max-w-7xl mx-auto px-6 sm:px-10">
+					<div className="max-w-3xl text-base-100">
+						<span className="inline-flex items-center gap-2 bg-primary/95 text-primary-content text-xs font-bold uppercase tracking-[0.18em] rounded-full px-4 py-1.5 mb-6 shadow-lg">
+							<LuHeart className="w-3.5 h-3.5" />
+							Give them a chance
+						</span>
+						<h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.05] drop-shadow-md">
+							Give today.{" "}
+							<span className="text-primary">
+								Change a life.
 							</span>
 						</h1>
-						<p className="mb-5 backdrop-blur p-5 border rounded-2xl">
+						<p className="mt-6 max-w-2xl text-base sm:text-lg opacity-90">
 							Self Discovery is a UK-registered Charitable
-							Incorporated Organization (CIO) with
-							operations in Nigeria and Zimbabwe. We host
-							impactful charity events and initiatives
-							aimed at uplifting communities while
+							Incorporated Organisation with operations in
+							Nigeria and Zimbabwe. We host impactful
+							initiatives to uplift communities while
 							inspiring individuals to live purpose-driven
-							lives
+							lives.
 						</p>
-						<div className="flex flex-wrap gap-2 justify-center">
+						<div className="mt-8 flex flex-wrap items-center gap-4">
 							<Link
-								href={`${process.env.NEXT_PUBLIC_URL}/support`}
-								className="btn btn-primary">
-								Get Involved
+								href="/support"
+								className="btn btn-primary rounded-full px-7 shadow-xl hover:shadow-primary/40 transition-shadow">
+								<LuHeart className="w-4 h-4" /> Donate
+								now
 							</Link>
 							<Link
-								href={`${process.env.NEXT_PUBLIC_URL}/about-us`}
-								className="btn btn-outline btn-secondary">
-								Learn more
+								href="/about-us"
+								className="btn btn-ghost rounded-full px-7 text-base-100 border border-base-100/40 hover:bg-base-100 hover:text-neutral">
+								Learn more <LuArrowRight className="w-4 h-4" />
 							</Link>
+							<div className="flex items-center gap-3">
+								<div className="flex -space-x-3">
+									{[
+										"/images/team/team-1.jpg",
+										"/images/team/team-2.jpg",
+										"/images/team/team-3.jpg",
+										"/images/team/team-4.jpg",
+									].map((src) => (
+										<span
+											key={src}
+											className="relative w-9 h-9 rounded-full ring-2 ring-base-100 overflow-hidden">
+											<Image
+												src={src}
+												alt=""
+												fill
+												className="object-cover"
+												sizes="36px"
+											/>
+										</span>
+									))}
+								</div>
+								<span className="text-sm opacity-90">
+									Joined by{" "}
+									<strong>400+</strong> changemakers
+								</span>
+							</div>
+						</div>
+					</div>
+
+					<div className="hidden md:flex absolute right-10 bottom-6 items-center gap-6 text-base-100/90">
+						<div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] opacity-80">
+							<LuShield className="w-4 h-4" />
+							UK-registered CIO
+						</div>
+						<div className="h-4 w-px bg-base-100/30" />
+						<div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] opacity-80">
+							<TbWorld className="w-4 h-4" />
+							3 countries served
 						</div>
 					</div>
 				</div>
 			</ImagesSlider>
-			<CascadeAnimation
-				parentClassName="card mx-auto p-10 sm:flex-row flex-wrap gap-5"
-				animationDirection="down">
-				<div className="sm:w-[calc(50%-1.25rem)] md:flex-1 flex flex-col gap-3 border p-5 rounded-2xl">
-					<div className="w-16 aspect-square mx-auto bg-rose-600/10 rounded-full flex justify-center items-center">
-						<TbSchool className="w-10 h-10 stroke-rose-600" />
-					</div>
-					<h2 className="text-xl font-bold text-center">Education</h2>
-					<p className="text-sm ">
-						By supporting us, you contribute towards providing
-						quality education and empowering children with
-						knowledge for a better tomorrow. Remember, education
-						is the key to breaking the cycle of poverty.
-					</p>
-				</div>
-				<div className="sm:w-[calc(50%-1.25rem)] md:flex-1 flex flex-col gap-3 border p-5 rounded-2xl">
-					<div className="w-16 aspect-square mx-auto bg-green-600/10 rounded-full flex justify-center items-center">
-						<LuSoup className="w-10 h-10 stroke-green-600" />
-					</div>
-					<h2 className="text-xl font-bold text-center">Food</h2>
-					<p className="text-sm ">
-						Ensuring that nutritious meals reach those who need
-						them the most is our top-most priority. Join us in
-						fighting hunger and malnutrition.
-					</p>
-				</div>
-				<div className="sm:w-[calc(50%-1.25rem)] md:flex-1 flex flex-col gap-3 border p-5 rounded-2xl">
-					<div className="w-16 aspect-square mx-auto bg-blue-600/10 rounded-full flex justify-center items-center">
-						<LuSyringe className="w-10 h-10 stroke-blue-600" />
-					</div>
-					<h2 className="text-xl font-bold text-center">
-						Medical Care
-					</h2>
-					<p className="text-sm ">
-						Access to healthcare is a basic human right. Through
-						our organization, we strive to improve healthcare
-						services in disadvantaged areas and your donations
-						make it possible for us to bring quality healthcare
-						closer to those who need it most.
-					</p>
-				</div>
-				<div className="sm:w-[calc(50%-1.25rem)] md:flex-1 flex flex-col gap-3 border p-5 rounded-2xl">
-					<div className="w-16 aspect-square mx-auto bg-amber-600/10 rounded-full flex justify-center items-center">
-						<LuDroplets className="w-10 h-10 stroke-amber-600" />
-					</div>
-					<h2 className="text-xl font-bold text-center">Water</h2>
-					<p className="text-sm ">
-						Providing safe drinking water sources and sanitation
-						facilities to communities without access can be made
-						possible. Together, we can quench their thirst.
-					</p>
-				</div>
-			</CascadeAnimation>
 
-			<div className="flex flex-col sm:flex-row gap-10 px-10">
-				<div className="flex-1 relative">
-					<div className="relative">
-						<div className="relative overflow-hidden w-full rounded-full aspect-square">
-							<Image
-								fill
-								src="/images/global-happiness-1.jpg"
-								alt=""
-								className="object-cover brightness-75"
-								sizes="(min-width: 640px) calc(50vw - 60px), calc(100vw - 80px)"
-							/>
+			<section
+				aria-labelledby="focus-areas"
+				className="px-6 sm:px-10 max-w-7xl mx-auto -mt-20 relative z-10">
+				<CascadeAnimation
+					parentClassName="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+					animationDirection="down">
+					{focusAreas.map((area) => (
+						<div
+							key={area.title}
+							className="group relative bg-base-100 border border-base-300/60 rounded-3xl p-6 shadow-md hover:shadow-xl transition-all hover:-translate-y-1 overflow-hidden">
+							<span className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-primary/5 group-hover:bg-primary/10 transition-colors" />
+							<div
+								className={`relative w-14 h-14 rounded-2xl flex items-center justify-center ${area.color} mb-4 shadow-sm`}>
+								<area.icon className="w-7 h-7" />
+							</div>
+							<h2 className="relative text-lg font-bold text-neutral">
+								{area.title}
+							</h2>
+							<p className="relative text-sm text-neutral/70 mt-2 line-clamp-3">
+								{area.description}
+							</p>
+							<Link
+								href="/programs"
+								className="relative mt-4 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-primary group-hover:gap-2 transition-all">
+								Learn more <LuArrowRight className="w-3.5 h-3.5" />
+							</Link>
 						</div>
-						<div className="absolute w-1/3 aspect-square rounded-full border-4 overflow-hidden bottom-0 right-10">
-							<Image
-								fill
-								src="/images/global-happiness-2.jpg"
-								alt=""
-								className="object-cover"
-								sizes="(min-width: 640px) calc(16.65vw - 28px), calc(33.44vw - 35px)"
-							/>
+					))}
+				</CascadeAnimation>
+			</section>
+
+			<section
+				aria-labelledby="about-us"
+				className="px-6 sm:px-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+				<div className="relative">
+					<ImageCollage
+						primarySrc="/images/global-happiness-1.jpg"
+						secondarySrc="/images/global-happiness-2.jpg"
+						primaryAlt="Communities we serve"
+						secondaryAlt="Hope through purpose"
+					/>
+					<div className="absolute -top-2 right-2 sm:right-6 lg:right-0 bg-base-100 border border-base-300/60 rounded-2xl shadow-lg px-5 py-4 flex items-center gap-3">
+						<div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+							<LuSparkles className="w-6 h-6" />
 						</div>
-					</div>
-					<div className="absolute top-0 w-full overflow-hidden">
-						<Image
-							src={roundImg}
-							alt=""
-							className="animate-[spin_20s_linear_infinite] object-contain"
-						/>
+						<div>
+							<div className="text-2xl font-extrabold text-neutral leading-none">
+								<StatCounter value={5} />+
+							</div>
+							<div className="text-xs text-neutral/60 mt-1">
+								Years of impact
+							</div>
+						</div>
 					</div>
 				</div>
 				<CascadeAnimation
 					animationDirection="right"
-					parentClassName="flex-1 space-y-5">
-					<h2 className="flex gap-1 items-center text-primary">
-						<LuHexagon className="w-5 h-5" />
-						ABOUT US
-					</h2>
-					<h3 className="font-bold text-2xl sm:text-4xl">
-						Our Mission: Promoting Global Happiness Through
-						Humanitarian Efforts
-					</h3>
-					<p>
-						At Self Discovery organization, we are driven by a
-						profound belief that if we come together to help one
-						another, we can create a world filled with happiness
-						and prosperity. Our organization is dedicated to
-						making a positive impact on the lives of people
-						around the globe.
+					parentClassName="space-y-5">
+					<SectionHeading
+						eyebrow="Welcome to Self Discovery"
+						title="You're the hope of others."
+						align="left"
+						eyebrowIcon={LuHexagon}
+					/>
+					<p className="text-neutral/70 leading-relaxed">
+						At Self Discovery Organization, we are driven by a
+						profound belief that when people come together to
+						help one another, we can create a world filled
+						with happiness, dignity and prosperity. We are
+						dedicated to making a positive impact on lives
+						across the globe.
 					</p>
-
-					<ul>
-						<li className="flex gap-1 items-center">
-							<LuCheck className="stroke-primary" />
-							Honesty
-						</li>
-						<li className="flex gap-1 items-center">
-							<LuCheck className="stroke-primary" />
-							Transparency
-						</li>
-						<li className="flex gap-1 items-center">
-							<LuCheck className="stroke-primary" />
-							Improvement
-						</li>
+					<ul className="grid sm:grid-cols-2 gap-3 text-sm">
+						{["Honesty", "Transparency", "Improvement", "Compassion"].map(
+							(item) => (
+								<li
+									key={item}
+									className="flex items-center gap-2 bg-base-200 px-4 py-3 rounded-xl">
+									<span className="w-7 h-7 rounded-full bg-primary text-primary-content flex items-center justify-center">
+										<LuCheck className="w-4 h-4" />
+									</span>
+									<span className="font-semibold">
+										{item}
+									</span>
+								</li>
+							),
+						)}
 					</ul>
-					<div>
-						<Link href="/about-us" className="btn btn-primary">
-							Learn more
+					<div className="flex flex-wrap items-center gap-5 pt-2">
+						<Link
+							href="/about-us"
+							className="btn btn-primary rounded-full px-6 shadow-md hover:shadow-primary/30 transition-shadow">
+							Discover more <LuArrowRight className="w-4 h-4" />
 						</Link>
+						<a
+							href="tel:+447301046564"
+							className="text-sm flex items-center gap-3">
+							<span className="w-11 h-11 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+								<LuHeart className="w-5 h-5" />
+							</span>
+							<span>
+								<span className="block text-neutral/60 text-xs uppercase tracking-wider">
+									Call us anytime
+								</span>
+								<span className="font-bold text-primary">
+									+44 7301 046564
+								</span>
+							</span>
+						</a>
 					</div>
 				</CascadeAnimation>
-			</div>
-			<div className="px-10">
-				<CascadeAnimation
-					animationDirection="up"
-					parentClassName="text-center space-y-5 mb-10">
-					<p className="capitalize text-xl">
-						<LuHeart className="inline-block w-5 h-5 stroke-red-500" />{" "}
-						Helping People is what we love
-					</p>
-					<h2 className="flex flex-col text-4xl sm:text-6xl font-bold">
-						<span>Find a cause</span>
-						<span>and donate to them</span>
-					</h2>
-				</CascadeAnimation>
+			</section>
+
+			<section
+				aria-labelledby="impact-stats"
+				className="relative bg-neutral text-neutral-content py-20 px-6 sm:px-10 overflow-hidden">
+				<div className="absolute inset-0 bg-dots opacity-20" />
+				<span className="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-primary/10 blur-3xl" />
+				<span className="absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-secondary/10 blur-3xl" />
+				<div className="relative max-w-7xl mx-auto">
+					<div className="text-center mb-10 max-w-2xl mx-auto">
+						<span className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-primary">
+							<LuSparkles className="w-4 h-4" /> Our impact so far
+						</span>
+						<h2 className="text-3xl sm:text-4xl font-extrabold mt-3">
+							Real change, in real numbers.
+						</h2>
+					</div>
+					<CascadeAnimation
+						animationDirection="down"
+						parentClassName="grid grid-cols-2 lg:grid-cols-4 gap-5">
+						<StatCard
+							value={37}
+							suffix="+"
+							label="Children supported"
+							icon={LuGraduationCap}
+							className="bg-base-100/5 border-base-100/10 text-neutral-content backdrop-blur-sm"
+							iconClassName="bg-primary/15 text-primary"
+						/>
+						<StatCard
+							value={25}
+							label="Families fed"
+							icon={LuSoup}
+							className="bg-base-100/5 border-base-100/10 text-neutral-content backdrop-blur-sm"
+							iconClassName="bg-primary/15 text-primary"
+						/>
+						<StatCard
+							value={400}
+							suffix="+"
+							label="Lives reached"
+							icon={LuUsers}
+							className="bg-base-100/5 border-base-100/10 text-neutral-content backdrop-blur-sm"
+							iconClassName="bg-primary/15 text-primary"
+						/>
+						<StatCard
+							value={3}
+							label="Countries served"
+							icon={TbWorld}
+							className="bg-base-100/5 border-base-100/10 text-neutral-content backdrop-blur-sm"
+							iconClassName="bg-primary/15 text-primary"
+						/>
+					</CascadeAnimation>
+				</div>
+			</section>
+
+			<section
+				aria-labelledby="causes"
+				className="px-6 sm:px-10 max-w-7xl mx-auto">
+				<div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+					<SectionHeading
+						eyebrow="Popular Causes"
+						title="Find a cause and donate to them"
+						subtitle="Your gift fuels the programmes that change lives every day."
+						eyebrowIcon={LuHeart}
+						align="left"
+					/>
+					<Link
+						href="/programs"
+						className="hidden lg:inline-flex btn btn-outline btn-primary rounded-full px-6 shrink-0">
+						View all causes <LuArrowRight className="w-4 h-4" />
+					</Link>
+				</div>
 
 				<CascadeAnimation
 					animationDirection="down"
 					threshold={0.1}
-					parentClassName="sm:flex flex-col sm:flex-row gap-5 flex-wrap">
-					<div className="sm:w-[calc((100%-2*1.25rem)/3)] rounded-xl overflow-hidden">
-						<div className=" h-48 relative">
-							<Image
-								fill
-								src="/images/fapi.jpg"
-								alt=""
-								className="object-cover brightness-[0.7]"
-								sizes="(min-width: 1040px) calc(33.32vw - 39px), (min-width: 640px) calc(3.16vw + 268px), (min-width: 400px) calc(100vw - 80px), calc(13.75vw + 248px)"
-							/>
-							<div className="flex justify-center items-center absolute top-5 left-5 w-10 aspect-square rounded-full bg-white">
-								<LuHandHeart className="w-6 h-6 stroke-primary " />
-							</div>
-						</div>
-						<div className="p-5 bg-primary/10 space-y-5">
-							<h2 className="font-bold text-2xl">
-								Families and Prisoners Initiative
-								(FAPI)
-							</h2>
-							<p>
-								Our primary aim is to extend
-								God&apos;s love to families in need
-								and bring hope to incarcerated
-								individuals. FAPI bridges the gap by
-								providing essential resources,
-								offering support, and fostering
-								resilience to build stronger
-								communities.
-							</p>
-							<div className="text-right">
-								<span className="badge badge-primary rounded-2xl">
-									Social Justice
-								</span>
-							</div>
-						</div>
-					</div>
-					<div className="sm:w-[calc((100%-2*1.25rem)/3)] rounded-xl overflow-hidden">
-						<div className=" h-48 relative">
-							<Image
-								fill
-								src="/images/pad.jpg"
-								alt=""
-								className="object-cover brightness-[0.7]"
-								sizes="(min-width: 1040px) calc(33.32vw - 39px), (min-width: 640px) calc(3.16vw + 268px), (min-width: 400px) calc(100vw - 80px), calc(13.75vw + 248px)"
-							/>
-							<div className="flex justify-center items-center absolute top-5 left-5 w-10 aspect-square rounded-full bg-white">
-								<LuSyringe className="w-6 h-6 stroke-secondary " />
-							</div>
-						</div>
-						<div className="p-5 bg-secondary/10 space-y-5">
-							<h2 className="font-bold text-2xl">
-								Menstrual Hygiene Day
-							</h2>
-							<p>
-								Empowering women and girls through
-								awareness and access to menstrual
-								hygiene products. Together, we break
-								the stigma, ensure dignity, and
-								promote healthier lives for all.
-							</p>
-
-							<div className="text-right">
-								<span className="badge badge-secondary rounded-2xl">
-									Health and Gender Equality
-								</span>
-							</div>
-						</div>
-					</div>
-					<div className="sm:w-[calc((100%-2*1.25rem)/3)] rounded-xl overflow-hidden">
-						<div className=" h-48 relative">
-							<Image
-								fill
-								src="/images/debate.jpg"
-								alt=""
-								className="object-cover brightness-[0.7]"
-								sizes="(min-width: 1040px) calc(33.32vw - 39px), (min-width: 640px) calc(3.16vw + 268px), (min-width: 400px) calc(100vw - 80px), calc(13.75vw + 248px)"
-							/>
-							<div className="flex justify-center items-center absolute top-5 left-5 w-10 aspect-square rounded-full bg-white">
-								<LuNetwork className="w-6 h-6 stroke-primary " />
-							</div>
-						</div>
-						<div className="p-5 bg-primary/10 space-y-5">
-							<h2 className="font-bold text-2xl">
-								Debate and Quiz Competition
-							</h2>
-							<p>
-								Inspiring young minds to think
-								critically and creatively. This
-								initiative promotes education,
-								teamwork, and confidence, shaping
-								the leaders of tomorrow through
-								intellectual engagement.
-							</p>
-
-							<div className="text-right">
-								<span className="badge badge-primary rounded-2xl">
-									Education
-								</span>
-							</div>
-						</div>
-					</div>
-					<div className="sm:w-[calc((100%-2*1.25rem)/3)] rounded-xl overflow-hidden">
-						<div className=" h-48 relative">
-							<Image
-								fill
-								src="/images/child-to-school.jpg"
-								alt=""
-								className="object-cover brightness-[0.7]"
-								sizes="(min-width: 1040px) calc(33.32vw - 39px), (min-width: 640px) calc(3.16vw + 268px), (min-width: 400px) calc(100vw - 80px), calc(13.75vw + 248px)"
-							/>
-							<div className="flex justify-center items-center absolute top-5 left-5 w-10 aspect-square rounded-full bg-white">
-								<LuGraduationCap className="w-6 h-6 stroke-accent " />
-							</div>
-						</div>
-						<div className="p-5 bg-accent/10 space-y-5">
-							<h2 className="font-bold text-2xl">
-								Send a Child to School Scheme
-								(SACTS)
-							</h2>
-							<p>
-								Building brighter futures through
-								access to education. SACTS ensures
-								that underprivileged children can
-								pursue their dreams with the tools
-								and support they need to succeed.
-							</p>
-							<div className="text-right">
-								<span className="badge badge-accent rounded-2xl">
-									Education
-								</span>
-							</div>
-						</div>
-					</div>
-					<div className="sm:w-[calc((100%-2*1.25rem)/3)] rounded-xl overflow-hidden">
-						<div className=" h-48 relative">
-							<Image
-								fill
-								src="/images/podcast.jpg"
-								alt=""
-								className="object-cover brightness-[0.7]"
-								sizes="(min-width: 1040px) calc(33.32vw - 39px), (min-width: 640px) calc(3.16vw + 268px), (min-width: 400px) calc(100vw - 80px), calc(13.75vw + 248px)"
-							/>
-							<div className="flex justify-center items-center absolute top-5 left-5 w-10 aspect-square rounded-full bg-white">
-								<LuMicVocal className="w-6 h-6 stroke-primary " />
-							</div>
-						</div>
-						<div className="p-5 bg-primary/10 space-y-5">
-							<h2 className="font-bold text-2xl">
-								Monthly Podcast: My Self-Discovery
-								Story
-							</h2>
-							<p>
-								Sharing transformative journeys of
-								purpose and growth. This podcast
-								inspires listeners to embrace their
-								true potential and live meaningfully
-								through real stories of change.
-							</p>
-							<div className="text-right">
-								<span className="badge badge-primary rounded-2xl">
-									Personal Development
-								</span>
-							</div>
-						</div>
-					</div>
+					parentClassName="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+					{causes.map((cause) => (
+						<CauseCard key={cause.title} {...cause} />
+					))}
 				</CascadeAnimation>
-			</div>
 
-			<div className="flex flex-col sm:flex-row">
-				<div className="flex-1 relative overflow-hidden">
+				<div className="mt-10 text-center lg:hidden">
+					<Link
+						href="/programs"
+						className="btn btn-outline btn-primary rounded-full px-6">
+						View all causes <LuArrowRight className="w-4 h-4" />
+					</Link>
+				</div>
+			</section>
+
+			<section
+				aria-labelledby="values"
+				className="grid lg:grid-cols-2 overflow-hidden">
+				<div className="relative min-h-[420px] lg:min-h-full">
 					<Image
 						fill
 						src="/images/more-people.jpg"
-						alt=""
-						className="object-cover brightness-[0.7]"
-						sizes="(min-width: 1560px) 50vw, (min-width: 1360px) 776px, (min-width: 1100px) calc(-14.17vw + 1008px), (min-width: 960px) calc(-128.33vw + 2238px), (min-width: 640px) calc(-109.67vw + 2036px), 100vw"
+						alt="More people, more impact"
+						className="object-cover"
+						sizes="(min-width: 1024px) 50vw, 100vw"
 					/>
+					<div className="absolute inset-0 bg-linear-to-r from-neutral/60 via-neutral/20 to-transparent" />
+					<div className="absolute bottom-6 left-6 sm:bottom-10 sm:left-10 max-w-xs bg-base-100/95 backdrop-blur-sm rounded-2xl p-5 shadow-xl border border-base-300/60">
+						<div className="flex items-center gap-3">
+							<div className="w-10 h-10 rounded-full bg-primary text-primary-content flex items-center justify-center">
+								<LuHandHeart className="w-5 h-5" />
+							</div>
+							<div>
+								<div className="text-sm font-bold text-neutral">
+									Together we&apos;re stronger
+								</div>
+								<div className="text-xs text-neutral/60">
+									Volunteer-led, community-driven
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div className="flex-1 px-5 py-10 space-y-7 bg-base-200/50 overflow-hidden">
+				<div className="bg-base-200 px-6 sm:px-12 py-14 space-y-8">
 					<CascadeAnimation animationDirection="left">
-						<h2 className="text-3xl sm:text-4xl font-bold capitalize">
-							<LuPersonStanding className="inline-block stroke-amber-600" />
-							More people, more impact
-						</h2>
-						<p>
-							At Self Discovery organization, our mission
+						<SectionHeading
+							eyebrow="Our Values"
+							title="More people, more impact."
+							align="left"
+							eyebrowIcon={LuPersonStanding}
+						/>
+						<p className="text-neutral/70 mt-3">
+							At Self Discovery Organization, our mission
 							is to make a difference in the world. We
 							believe that by coming together, we can
 							create a greater impact and bring about
@@ -420,195 +491,229 @@ function PublicHomePage() {
 					</CascadeAnimation>
 					<CascadeAnimation
 						animationDirection="down"
-						parentClassName="pr-5 space-y-5 "
-						animationDelay={1}>
-						<div className="flex gap-5">
-							<div className="w-20 aspect-square bg-primary flex justify-center items-center self-start">
-								<LuShrub className="w-10 h-10 stroke-white" />
+						parentClassName="space-y-5"
+						animationDelay={0.4}>
+						{[
+							{
+								title: "Transparency",
+								desc: "We believe in open and honest communication with our supporters, partners, and beneficiaries.",
+								icon: LuShield,
+							},
+							{
+								title: "Strength",
+								desc: "Our programmes empower individuals and communities to overcome challenges and reach their full potential.",
+								icon: LuShrub,
+							},
+							{
+								title: "Unity",
+								desc: "When we come together as a community we can achieve remarkable, lasting things.",
+								icon: LuUsers,
+							},
+						].map((value) => (
+							<div
+								key={value.title}
+								className="group flex gap-5 p-5 bg-base-100 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all">
+								<div className="w-14 h-14 rounded-2xl bg-primary text-primary-content flex justify-center items-center self-start shrink-0 group-hover:scale-105 transition-transform">
+									<value.icon className="w-7 h-7" />
+								</div>
+								<div>
+									<h3 className="text-xl font-bold text-neutral group-hover:text-primary transition-colors">
+										{value.title}
+									</h3>
+									<p className="text-neutral/70 text-sm mt-1">
+										{value.desc}
+									</p>
+								</div>
 							</div>
-							<div>
-								<h3 className="text-2xl font-bold">
-									Transparency
-								</h3>
-								<p>
-									At Self Discovery
-									organization, transparency
-									is at the core of our
-									values. We believe in open
-									and honest communication
-									with our supporters,
-									partners, and beneficiaries.
-								</p>
-							</div>
-						</div>
-						<div className="flex gap-5">
-							<div className="w-20 aspect-square bg-primary flex justify-center items-center self-start">
-								<LuShrub className="w-10 h-10 stroke-white" />
-							</div>
-							<div>
-								<h3 className="text-2xl font-bold">
-									Strength
-								</h3>
-								<p>
-									Self Discovery organization
-									is committed to building
-									strength in our communities.
-									Through our programs and
-									initiatives, we empower
-									individuals and communities
-									to overcome challenges and
-									reach their full potential.
-								</p>
-							</div>
-						</div>
-						<div className="flex gap-5">
-							<div className="w-20 aspect-square bg-primary flex justify-center items-center self-start">
-								<LuShrub className="w-10 h-10 stroke-white" />
-							</div>
-							<div>
-								<h3 className="text-2xl font-bold">
-									Unity
-								</h3>
-								<p>
-									Unity is the driving force
-									behind Self Discovery
-									organization. We believe
-									that when we come together
-									as a community, we can
-									achieve remarkable things.
-								</p>
-							</div>
-						</div>
+						))}
 					</CascadeAnimation>
 				</div>
-			</div>
+			</section>
+
+			<section
+				aria-labelledby="community-gallery"
+				className="px-6 sm:px-10 max-w-7xl mx-auto">
+				<SectionHeading
+					eyebrow="Our Community"
+					title="The faces behind every story"
+					subtitle="From classrooms in Lagos to outreaches in Harare — every smile is a reminder of why we do what we do."
+					eyebrowIcon={LuUsers}
+				/>
+				<CascadeAnimation
+					animationDirection="down"
+					threshold={0.05}
+					delayIncrement={0.08}
+					parentClassName="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+					{galleryImages.map((src, idx) => (
+						<div
+							key={src}
+							className={`group relative overflow-hidden rounded-2xl ${
+								idx === 0 || idx === 5
+									? "row-span-2 aspect-3/4 sm:aspect-auto"
+									: "aspect-square"
+							}`}>
+							<Image
+								src={src}
+								alt="Self Discovery community"
+								fill
+								sizes="(min-width: 1024px) 18vw, (min-width: 640px) 30vw, 45vw"
+								className="object-cover transition-transform duration-700 group-hover:scale-110"
+							/>
+							<div className="absolute inset-0 bg-linear-to-t from-neutral/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+							<span className="absolute bottom-3 left-3 right-3 text-base-100 text-xs font-semibold tracking-wide opacity-0 group-hover:opacity-100 transition-opacity">
+								<LuHeart className="inline w-3.5 h-3.5 mr-1 text-primary" />
+								Lives we&apos;re changing together
+							</span>
+						</div>
+					))}
+				</CascadeAnimation>
+			</section>
 
 			<Teams />
 
-			<div
+			<section
+				aria-labelledby="donate-banner"
 				style={{
 					backgroundImage:
-						"linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.4)), url(/images/collab-2.jpg)",
+						"linear-gradient(to right, rgba(31,41,51,0.94), rgba(31,41,51,0.55)), url(/images/collab-2.jpg)",
 				}}
-				className="text-center py-20 px-10 space-y-5 bg-no-repeat bg-cover bg-center text-white overflow-hidden">
-				<CascadeAnimation animationDirection="left">
-					<h2 className="text-4xl font-bold">
-						Your Donation Matters
-					</h2>
-				</CascadeAnimation>
-				<CascadeAnimation animationDirection="right" animationDelay={0.5}>
-					<p>
-						We rely on generous donations and sponsorships from
-						people like you who share our vision of creating a
-						better world. Your contributions directly assist our
-						efforts to provide critical resources and services
-						to those in greatest need.
-					</p>
-				</CascadeAnimation>
+				className="relative text-center py-24 px-6 sm:px-10 space-y-6 bg-no-repeat bg-cover bg-center text-neutral-content overflow-hidden">
+				<span className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-primary/20 blur-3xl" />
+				<span className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-secondary/20 blur-3xl" />
+				<div className="relative max-w-4xl mx-auto space-y-6">
+					<CascadeAnimation animationDirection="left">
+						<span className="inline-flex items-center gap-2 bg-primary/15 backdrop-blur-sm border border-primary/30 text-primary text-xs uppercase tracking-[0.2em] font-bold rounded-full px-4 py-1.5">
+							<LuHeart className="w-3.5 h-3.5" /> Be the
+							reason
+						</span>
+						<h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mt-5 leading-tight">
+							Your donation matters more than you know.
+						</h2>
+					</CascadeAnimation>
+					<CascadeAnimation
+						animationDirection="right"
+						animationDelay={0.4}>
+						<p className="max-w-2xl mx-auto opacity-90 text-base sm:text-lg">
+							We rely on generous donations from people
+							like you who share our vision. Every
+							contribution directly supports families,
+							children and communities in greatest need.
+						</p>
+					</CascadeAnimation>
+					<CascadeAnimation
+						animationDirection="down"
+						animationDelay={0.7}
+						duration={2}
+						parentClassName="flex flex-wrap items-center justify-center gap-4 pt-4">
+						<Link
+							href="/support"
+							className="btn btn-primary rounded-full px-8 shadow-xl hover:shadow-primary/40 transition-shadow">
+							<LuHeart className="w-4 h-4" /> Donate now
+						</Link>
+						<Link
+							href="/programs"
+							className="btn btn-ghost rounded-full px-8 text-base-100 border border-base-100/40 hover:bg-base-100 hover:text-neutral">
+							See our work <LuArrowRight className="w-4 h-4" />
+						</Link>
+					</CascadeAnimation>
+				</div>
+			</section>
 
-				<CascadeAnimation
-					animationDirection="down"
-					animationDelay={1}
-					duration={2}>
-					<Link href="/support" className="btn btn-primary">
-						Donate now
-					</Link>
-				</CascadeAnimation>
-			</div>
-			<div>
-				<>
-					<div className="relative h-full w-full flex items-center justify-center">
-						<div className="profileCard_container relative p-10 border-2 border-dashed rounded-full border-spacing-4 border-gray-400/50">
-							<button className="profile_item left-[45px] top-[-4px] absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
-								<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-2 bg-white p-1">
-									<FcGraduationCap className="w-[30px] h-[30px]" />
+			<section className="px-6 sm:px-10 max-w-7xl mx-auto">
+				<div className="relative h-full w-full flex items-center justify-center">
+					<div className="profileCard_container relative p-10 border-2 border-dashed rounded-full border-base-300">
+						<button className="profile_item left-[45px] top-[-4px] absolute rounded-full bg-cover cursor-pointer border border-base-300 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
+							<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-2 bg-base-100 p-1">
+								<FcGraduationCap className="w-[30px] h-[30px]" />
+							</span>
+						</button>
+						<button className="profile_item right-[45px] top-[-4px] absolute rounded-full bg-cover cursor-pointer border border-base-300 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
+							<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-2 bg-base-100 p-1">
+								<FcHome className="w-[30px] h-[30px]" />
+							</span>
+						</button>
+						<button className="profile_item -left-4 top-20 absolute rounded-full bg-cover cursor-pointer border border-base-300 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
+							<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-2 bg-base-100 p-1">
+								<FcLike className="w-[30px] h-[30px]" />
+							</span>
+						</button>
+						<button className="profile_item -right-4 top-20 absolute rounded-full bg-cover cursor-pointer border border-base-300 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
+							<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-2 bg-base-100 p-1">
+								<FcPlanner className="w-[30px] h-[30px]" />
+							</span>
+						</button>
+						<button className="profile_item bottom-8 left-0 absolute rounded-full bg-cover cursor-pointer border border-base-300 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
+							<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-2 bg-base-100 p-1">
+								<FcBiotech className="w-[30px] h-[30px]" />
+							</span>
+						</button>
+						<button className="profile_item bottom-8 right-0 absolute rounded-full bg-cover cursor-pointer border border-base-300 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
+							<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-2 bg-base-100 p-1">
+								<FcConferenceCall className="w-[30px] h-[30px]" />
+							</span>
+						</button>
+						<button className="profile_item right-[40%] -bottom-4 absolute rounded-full bg-cover cursor-pointer border border-base-300 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
+							<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-2 bg-base-100 p-1">
+								<FcGlobe className="w-[30px] h-[30px]" />
+							</span>
+						</button>
+						<button className="profile_item w-[200px] h-[200px] p-1 border-2 rounded-full hover:border-base-300 cursor-pointer transition-all duration-500 z-0">
+							<div className="w-full bg-base-100 h-full flex items-center justify-center p-2 rounded-full active:scale-95 hover:scale-95 object-cover transition-all duration-500">
+								<span className="w-20 h-20 inline-block relative">
+									<Image
+										src={logo}
+										alt="self discovery"
+										fill
+										sizes="80px"
+									/>
 								</span>
-							</button>
-							<button className="profile_item right-[45px] top-[-4px] absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
-								<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-2 bg-white p-1">
-									<FcHome className="w-[30px] h-[30px]" />
-								</span>
-							</button>
-							<button className="profile_item -left-4 top-20 absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
-								<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-2 bg-white p-1">
-									<FcLike className="w-[30px] h-[30px]" />
-								</span>
-							</button>
-							<button className="profile_item -right-4 top-20 absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
-								<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-2 bg-white p-1">
-									<FcPlanner className="w-[30px] h-[30px]" />
-								</span>
-							</button>
-							<button className="profile_item bottom-8 left-0 absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
-								<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-2 bg-white p-1">
-									<FcBiotech className="w-[30px] h-[30px]" />
-								</span>
-							</button>
-							<button className="profile_item bottom-8 right-0 absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
-								<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-2 bg-white p-1">
-									<FcConferenceCall className="w-[30px] h-[30px]" />
-								</span>
-							</button>
-							<button className="profile_item right-[40%] -bottom-4 absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500">
-								<span className="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-2 bg-white p-1">
-									<FcGlobe className="w-[30px] h-[30px]" />
-								</span>
-							</button>
-							<button className="profile_item w-[200px] h-[200px] p-1 border-2 rounded-full hover:border-gray-400/50 cursor-pointer transition-all duration-500 z-0">
-								<div className="w-full bg-white h-full flex items-center justify-center p-2 rounded-full active:scale-95 hover:scale-95 object-cover transition-all duration-500">
-									<span className="w-20 h-20 inline-block relative">
-										<Image
-											src={logo}
-											alt="self discovery"
-											fill
-											sizes="80px"
-										/>
-									</span>
-								</div>
-							</button>
-						</div>
+							</div>
+						</button>
 					</div>
-				</>
+				</div>
 
 				<div className="py-10 px-5 text-center">
 					<TextGenerateEffect
 						words={
 							"A helping hand can be a ray of sunshine in a cloudy world."
 						}
-						className="border text-2xl rounded-xl italic border-dashed inline-block p-5"
+						className="border text-2xl rounded-2xl italic border-dashed inline-block p-5 border-base-300"
 					/>
 				</div>
-			</div>
-			<div className="px-5">
-				<div className="flex justify-center">
-					<h2 className="flex gap-1 items-center text-secondary">
-						<LuAward className="w-5 h-5" />
-						Associates
-					</h2>
-				</div>
+			</section>
+
+			<section
+				aria-labelledby="testimonials"
+				className="px-6 sm:px-10 max-w-7xl mx-auto">
+				<SectionHeading
+					eyebrow="Associates"
+					title="Voices from the field"
+					subtitle="Hear from team leads, volunteers and partners around the world."
+					eyebrowIcon={LuAward}
+				/>
 				<AnimatedTestimonials
 					autoplay={true}
 					testimonials={[
 						{
-							quote: "The impact of charity isn’t in the size of the gift but in the love, care, and hope it carries into someone’s heart.",
+							quote: "The impact of charity isn't in the size of the gift but in the love, care, and hope it carries into someone's heart.",
 							name: "Rosemary Emmanuel",
 							designation: "Team Lead, FCT",
 							src: "/images/team/team-1.jpg",
 						},
 						{
-							quote: "True giving is when you expect nothing in return but offer everything you can to light up someone else’s life.",
+							quote: "True giving is when you expect nothing in return but offer everything you can to light up someone else's life.",
 							name: "Temi Esther Aiyegbayo",
 							designation: "Team Lead, Ibadan",
 							src: "/images/team/team-2.jpg",
 						},
 						{
-							quote: "Charity is a universal language of love that reminds us we are never too small to make a difference in someone else’s life.",
+							quote: "Charity is a universal language of love that reminds us we are never too small to make a difference in someone else's life.",
 							name: "Wisdom Madunwe",
 							designation: "Admin, FCT",
 							src: "/images/team/team-3.jpg",
 						},
 						{
-							quote: "Helping one person might not change the world, but it could change the world for that one person. That’s the beauty of charity.",
+							quote: "Helping one person might not change the world, but it could change the world for that one person. That's the beauty of charity.",
 							name: "Thompson Ubong",
 							designation: "Team Lead, Lagos",
 							src: "/images/team/team-4.jpg",
@@ -626,13 +731,13 @@ function PublicHomePage() {
 							src: "/images/team/team-6.jpg",
 						},
 						{
-							quote: "Every act of kindness, no matter how simple, plants a seed of hope in someone’s life and blossoms into a brighter tomorrow.",
+							quote: "Every act of kindness, no matter how simple, plants a seed of hope in someone's life and blossoms into a brighter tomorrow.",
 							name: "Rhema Obadife",
 							designation: "Admin, Imo",
 							src: "/images/team/team-7.jpg",
 						},
 						{
-							quote: "True charity isn’t about giving what’s easy; it’s about giving what makes a difference, no matter how small it seems to you.",
+							quote: "True charity isn't about giving what's easy; it's about giving what makes a difference, no matter how small it seems to you.",
 							name: "Tola Abigael Aiyegbayo",
 							designation: "Admin, Ibadan",
 							src: "/images/team/team-8.jpg",
@@ -645,7 +750,8 @@ function PublicHomePage() {
 						},
 					]}
 				/>
-			</div>
+			</section>
+
 			<Suspense fallback={<div>Loading...</div>}>
 				<ProgramListSummary />
 			</Suspense>

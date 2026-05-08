@@ -7,7 +7,7 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const viewport = {
-	themeColor: "#FFD360",
+	themeColor: "#f5a623",
 };
 
 export const metadata = {
@@ -27,6 +27,14 @@ export const metadata = {
 		url: process.env.NEXT_PUBLIC_URL,
 		siteName: "Self Discovery organization",
 		type: "website",
+		locale: "en_GB",
+	},
+	robots: {
+		index: true,
+		follow: true,
+	},
+	alternates: {
+		canonical: "/",
 	},
 	twitter: {
 		card: "summary_large_image",

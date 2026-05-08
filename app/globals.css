@@ -5,19 +5,50 @@
 	themes: bumblebee --default;
 }
 
-/* Brand overrides (replaces former bumblebee theme extension) */
+/* Brand palette — Charius-inspired warm amber + teal on cream */
 :root {
-	--color-primary: #ffd360;
-	--color-secondary: #ff6600;
+	--color-primary: #f5a623;
+	--color-primary-content: #1f2933;
+	--color-secondary: #14b88a;
+	--color-secondary-content: #ffffff;
+	--color-accent: #ff7a59;
+	--color-accent-content: #ffffff;
+	--color-base-100: #fffaf3;
+	--color-base-200: #f4ecdf;
+	--color-base-300: #e8dcc4;
+	--color-neutral: #1f2933;
+	--color-neutral-content: #fffaf3;
 }
-
-/* * {
-	background-color: rgba(0, 255, 0, 0.1);
-} */
 
 .line-clamp {
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
+}
+
+.line-clamp-3 {
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+/* Decorative dotted background used in Charius-style sections */
+.bg-dots {
+	background-image: radial-gradient(
+		rgba(31, 41, 51, 0.12) 1px,
+		transparent 1px
+	);
+	background-size: 18px 18px;
+}
+
+/* Subtle wave divider helper */
+.wave-divider {
+	mask-image: radial-gradient(circle at top, transparent 0, black 70%);
+	-webkit-mask-image: radial-gradient(
+		circle at top,
+		transparent 0,
+		black 70%
+	);
 }

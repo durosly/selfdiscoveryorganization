@@ -19,7 +19,7 @@ export default function PublicLayout({ children }) {
 				<NavBar />
 
 				{/* Page content here */}
-				<main className="space-y-20">{children}</main>
+				<main className="space-y-24 pb-10 bg-base-100">{children}</main>
 				<Footer />
 			</div>
 			<div className="drawer-side z-9999">

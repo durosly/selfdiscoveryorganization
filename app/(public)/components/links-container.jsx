@@ -7,16 +7,16 @@ function LinksWrapper() {
 				<Link href="/">Home</Link>
 			</li>
 			<li>
-				<Link href="/programs">Programs</Link>
-			</li>
-			<li>
 				<Link href="/about-us">About Us</Link>
 			</li>
 			<li>
-				<Link href="/contact-us">Contact</Link>
+				<Link href="/programs">Programs</Link>
 			</li>
 			<li>
-				<Link href="/support">Sponsorship</Link>
+				<Link href="/support">Donate</Link>
+			</li>
+			<li>
+				<Link href="/contact-us">Contact</Link>
 			</li>
 		</>
 	);
