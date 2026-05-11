@@ -9,6 +9,7 @@ import {
 	LuMail,
 	LuMailbox,
 	LuPanelLeftOpen,
+	LuSettings,
 	LuUsers,
 } from "react-icons/lu";
 import LogoutButton from "./logout-btn";
@@ -33,6 +34,12 @@ export default function AdminSidebar() {
 				<li className="opacity-50 text-sm px-4 py-2">Loading menu…</li>
 			) : (
 				<>
+					<li>
+						<Link href="/admin/settings">
+							<LuSettings />
+							Settings
+						</Link>
+					</li>
 					{can(permissions, "events") ? (
 						<li>
 							<Link href="/admin/programs">
