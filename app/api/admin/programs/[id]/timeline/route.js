@@ -1,3 +1,8 @@
 import createTimeline from "./createTimeline";
+import { requirePermission } from "@/lib/guard-permission";
 
-export { createTimeline as POST };
+export async function POST(request, ctx) {
+	const guard = await requirePermission("events");
+	if (!guard.ok) return guard.response;
+	return createTimeline(request, ctx);
+}

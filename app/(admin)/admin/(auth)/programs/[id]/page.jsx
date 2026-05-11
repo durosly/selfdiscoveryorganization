@@ -13,10 +13,12 @@ import {
 	LuClock5,
 	LuMapPin,
 	LuTag,
+	LuScanLine,
 	LuUsers,
 } from "react-icons/lu";
 import ArticleSummary from "./components/article-summary";
 import CoverImage from "./components/cover-image";
+import CopyProgramLinkBtn from "./components/copy-program-link-btn";
 import DeleteBtn from "./components/delete-btn";
 import ProgramGallery from "./components/gallery";
 import StatusBtn from "./components/status-btn";
@@ -31,11 +33,20 @@ async function AdminProgramsDetailsPage({ params }) {
 		notFound();
 	}
 
+	const base = (process.env.NEXT_PUBLIC_URL || "").replace(/\/$/, "");
+	const registrationUrl = program.slug
+		? `${base}/programs/${program.slug}`
+		: "";
+
 	const article = await ArticleModel.findOne({ program_id: id });
 	const articleGallery = await GalleryModel.findOne({ program_id: id });
 	const confirmedCount = await EventRegistrationModel.countDocuments({
 		program: program._id,
 		status: "confirmed",
+	});
+	const checkedInCount = await EventRegistrationModel.countDocuments({
+		program: program._id,
+		checkedInAt: { $ne: null },
 	});
 
 	return (
@@ -98,16 +109,24 @@ async function AdminProgramsDetailsPage({ params }) {
 							{program.attendee_limit
 								? ` of ${program.attendee_limit}`
 								: ""}{" "}
-							attendees ·{" "}
+							confirmed · <strong>{checkedInCount}</strong> checked in ·{" "}
 							{program.registrations_open === false
 								? "registrations closed"
 								: "registrations open"}
 						</p>
-						<Link
-							href={`/admin/programs/${id}/attendees`}
-							className="btn btn-sm btn-outline mt-2">
-							<LuUsers className="w-4 h-4" /> Manage attendees
-						</Link>
+						<div className="flex flex-wrap gap-2 mt-2">
+							<CopyProgramLinkBtn url={registrationUrl} />
+							<Link
+								href={`/admin/programs/${id}/attendees`}
+								className="btn btn-sm btn-outline">
+								<LuUsers className="w-4 h-4" /> Manage attendees
+							</Link>
+							<Link
+								href={`/admin/programs/${id}/check-in`}
+								className="btn btn-sm btn-primary">
+								<LuScanLine className="w-4 h-4" /> Check-in
+							</Link>
+						</div>
 					</div>
 				</div>
 			</div>

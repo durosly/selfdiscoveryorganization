@@ -1,10 +1,10 @@
 import connectMongo from "@/lib/connectDB";
-import { requireAdmin } from "@/lib/require-admin";
+import { requirePermission } from "@/lib/guard-permission";
 import EventRegistrationModel from "@/models/event-registration";
 import ProgramModel from "@/models/program";
 
 export async function GET(request, { params }) {
-	const guard = await requireAdmin();
+	const guard = await requirePermission("events");
 	if (!guard.ok) return guard.response;
 
 	try {
@@ -44,6 +44,11 @@ export async function GET(request, { params }) {
 			{ confirmed: 0, waitlisted: 0, cancelled: 0 },
 		);
 
+		const checkedIn = await EventRegistrationModel.countDocuments({
+			program: program._id,
+			checkedInAt: { $ne: null },
+		});
+
 		return Response.json({
 			status: true,
 			message: "success",
@@ -54,7 +59,7 @@ export async function GET(request, { params }) {
 				registrations_open: program.registrations_open ?? true,
 			},
 			data,
-			summary,
+			summary: { ...summary, checkedIn },
 		});
 	} catch (error) {
 		return Response.json(

@@ -3,8 +3,6 @@ import CoverImage from "../components/cover";
 import ExistingPrograms from "./components/existing-programs";
 import ProgramModel from "@/models/program";
 
-export const dynamic = "force-dynamic";
-
 export const metadata = {
 	title: "Programs",
 	description:
@@ -18,7 +16,8 @@ export const metadata = {
 
 async function ProgramsPage() {
 	await connectMongo();
-	const query = {};
+	// Match app/api/programs/getPrograms.js so initialData matches client fetches.
+	const query = { status: "publish" };
 	const data = await ProgramModel.paginate(query, {
 		page: 1,
 		sort: { start_date: -1, start_time: 1 },

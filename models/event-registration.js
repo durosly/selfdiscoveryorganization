@@ -19,12 +19,24 @@ const eventRegistrationSchema = new mongoose.Schema(
 			enum: ["confirmed", "waitlisted", "cancelled"],
 			default: "confirmed",
 		},
+		ticketCode: {
+			type: String,
+			required: true,
+			index: true,
+		},
+		checkedInAt: { type: Date, default: null },
+		checkedInBy: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "User",
+			default: null,
+		},
 	},
 	{ timestamps: true },
 );
 
 eventRegistrationSchema.plugin(paginate);
 eventRegistrationSchema.index({ program: 1, email: 1 }, { unique: true });
+eventRegistrationSchema.index({ program: 1, ticketCode: 1 }, { unique: true });
 
 const EventRegistrationModel =
 	mongoose.models.EventRegistration ||

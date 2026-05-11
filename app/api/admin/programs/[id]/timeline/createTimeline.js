@@ -1,7 +1,8 @@
 import connectMongo from "@/lib/connectDB";
 import TimelineModel, { TimelineValidationSchema } from "@/models/timeline";
 
-async function createTimeline(request, { params: { id } }) {
+async function createTimeline(request, { params }) {
+	const { id } = await params;
 	try {
 		const body = await request.json();
 

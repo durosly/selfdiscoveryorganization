@@ -9,7 +9,16 @@ import toast from "react-hot-toast";
 import { LuDownload } from "react-icons/lu";
 
 function toCsv(rows, programTitle) {
-	const header = ["Name", "Email", "Phone", "Status", "Notes", "Registered at"];
+	const header = [
+		"Name",
+		"Email",
+		"Phone",
+		"Ticket",
+		"Status",
+		"Notes",
+		"Registered at",
+		"Checked in at",
+	];
 	const escape = (val) => {
 		if (val === null || val === undefined) return "";
 		const s = String(val);
@@ -23,9 +32,13 @@ function toCsv(rows, programTitle) {
 			r.name,
 			r.email,
 			r.phone || "",
+			r.ticketCode || "",
 			r.status,
 			r.notes || "",
 			DateTime.fromISO(r.createdAt).toISO(),
+			r.checkedInAt
+				? DateTime.fromISO(r.checkedInAt).toISO()
+				: "",
 		]
 			.map(escape)
 			.join(","),
@@ -66,11 +79,16 @@ function AttendeesTable({ programId, programTitle, attendeeLimit }) {
 		URL.revokeObjectURL(a.href);
 	}
 
-	const summary = data?.summary || { confirmed: 0, waitlisted: 0, cancelled: 0 };
+	const summary = data?.summary || {
+		confirmed: 0,
+		waitlisted: 0,
+		cancelled: 0,
+		checkedIn: 0,
+	};
 
 	return (
 		<div className="space-y-5">
-			<div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+			<div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
 				<div className="rounded-2xl bg-base-200 p-5">
 					<div className="text-xs uppercase text-neutral/60">
 						Confirmed
@@ -99,6 +117,14 @@ function AttendeesTable({ programId, programTitle, attendeeLimit }) {
 					</div>
 					<div className="text-2xl font-extrabold">
 						{summary.cancelled}
+					</div>
+				</div>
+				<div className="rounded-2xl bg-base-200 p-5">
+					<div className="text-xs uppercase text-neutral/60">
+						Checked in
+					</div>
+					<div className="text-2xl font-extrabold">
+						{summary.checkedIn ?? 0}
 					</div>
 				</div>
 				<div className="rounded-2xl bg-base-200 p-5 flex items-center justify-between">
@@ -134,7 +160,9 @@ function AttendeesTable({ programId, programTitle, attendeeLimit }) {
 							<th>Name</th>
 							<th>Email</th>
 							<th>Phone</th>
+							<th>Ticket</th>
 							<th>Status</th>
+							<th>Checked in</th>
 							<th>Notes</th>
 							<th>Registered</th>
 						</tr>
@@ -142,7 +170,7 @@ function AttendeesTable({ programId, programTitle, attendeeLimit }) {
 					<tbody>
 						{isPending ? (
 							<tr>
-								<td colSpan={6} className="text-center py-10">
+								<td colSpan={8} className="text-center py-10">
 									Loading…
 								</td>
 							</tr>
@@ -153,6 +181,9 @@ function AttendeesTable({ programId, programTitle, attendeeLimit }) {
 									<td className="text-xs">{r.email}</td>
 									<td className="text-xs">
 										{r.phone || "—"}
+									</td>
+									<td className="text-xs font-mono">
+										{r.ticketCode || "—"}
 									</td>
 									<td>
 										<span
@@ -166,6 +197,13 @@ function AttendeesTable({ programId, programTitle, attendeeLimit }) {
 											{r.status}
 										</span>
 									</td>
+									<td className="text-xs">
+										{r.checkedInAt
+											? DateTime.fromISO(r.checkedInAt).toFormat(
+													"dd LLL yyyy, HH:mm",
+												)
+											: "—"}
+									</td>
 									<td className="text-xs max-w-xs truncate">
 										{r.notes || "—"}
 									</td>
@@ -178,7 +216,7 @@ function AttendeesTable({ programId, programTitle, attendeeLimit }) {
 							))
 						) : (
 							<tr>
-								<td colSpan={6} className="text-center py-10">
+								<td colSpan={8} className="text-center py-10">
 									No attendees yet.
 								</td>
 							</tr>

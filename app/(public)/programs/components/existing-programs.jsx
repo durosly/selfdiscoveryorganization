@@ -43,7 +43,12 @@ function ExistingPrograms({ initialData }) {
 		queryKey: ["programs", { page, status, search }],
 		queryFn: fetchPrograms,
 		initialData,
+		staleTime: 60_000,
 	});
+
+	// Avoid SSR/client branch on isPending when initialData is present; keeps grid HTML in sync for hydration.
+	const displayData = data ?? initialData;
+	const showLoadingGrid = isPending && !displayData?.docs?.length;
 
 	function loadNew(newPage) {
 		setPage(newPage);
@@ -86,7 +91,7 @@ function ExistingPrograms({ initialData }) {
 			</form>
 
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-				{isPending
+				{showLoadingGrid
 					? new Array(3).fill(0).map((_, i) => (
 							<CascadeAnimation
 								animationDirection="down"
@@ -99,8 +104,8 @@ function ExistingPrograms({ initialData }) {
 								</div>
 							</CascadeAnimation>
 						))
-					: data && data?.docs?.length
-						? data.docs.map((d) => (
+					: displayData && displayData?.docs?.length
+						? displayData.docs.map((d) => (
 								<Link
 									href={`/programs/${d.slug}`}
 									key={d._id}
@@ -115,9 +120,9 @@ function ExistingPrograms({ initialData }) {
 										/>
 										<span className="absolute top-4 left-4 inline-flex items-center gap-2 bg-primary text-primary-content text-xs font-semibold rounded-full px-3 py-1 shadow">
 											<LuCalendar className="w-3.5 h-3.5" />
-											{DateTime.fromISO(
-												d.start_date,
-											).toFormat("dd LLL yyyy")}
+											{DateTime.fromISO(d.start_date)
+												.setLocale("en-GB")
+												.toFormat("dd LLL yyyy")}
 										</span>
 										{d.attendee_limit ? (
 											<span className="absolute top-4 right-4 inline-flex items-center gap-1 bg-secondary text-secondary-content text-xs font-semibold rounded-full px-2 py-1 shadow">
@@ -161,30 +166,30 @@ function ExistingPrograms({ initialData }) {
 						: null}
 			</div>
 
-			{!isPending && (!data?.docs?.length) ? (
+			{!isPending && !displayData?.docs?.length ? (
 				<div className="text-center text-neutral/60 py-10">
 					No events to show right now. Please check back soon.
 				</div>
 			) : null}
 
-			{data?.totalPages > 1 ? (
+			{displayData?.totalPages > 1 ? (
 				<div className="flex flex-col items-center gap-3 mt-10">
 					<div className="join">
 						<button
-							disabled={!data.hasPrevPage}
+							disabled={!displayData.hasPrevPage}
 							onClick={() => loadNew(page - 1)}
 							className="btn btn-sm btn-primary btn-outline join-item">
 							<LuArrowLeft />
 						</button>
 						<button
-							disabled={!data.hasNextPage}
+							disabled={!displayData.hasNextPage}
 							onClick={() => loadNew(page + 1)}
 							className="btn btn-sm btn-primary btn-outline join-item">
 							<LuArrowRight />
 						</button>
 					</div>
 					<div className="text-sm text-neutral/60">
-						Page {data.page} of {data.totalPages}
+						Page {displayData.page} of {displayData.totalPages}
 					</div>
 				</div>
 			) : null}

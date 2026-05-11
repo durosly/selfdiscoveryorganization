@@ -1,11 +1,17 @@
 import EventRegistrationEmail from "@/emails/event-registration-email";
 import connectMongo from "@/lib/connectDB";
 import transporter from "@/lib/transporter";
+import {
+	generateTicketSegment,
+	getTicketSecret,
+	signTicketPayload,
+} from "@/lib/ticket-code";
 import EventRegistrationModel, {
 	EventRegistrationSchema,
 } from "@/models/event-registration";
 import ProgramModel from "@/models/program";
 import { DateTime } from "luxon";
+import QRCode from "qrcode";
 import { render } from "react-email";
 
 export async function POST(request, { params }) {
@@ -66,6 +72,16 @@ export async function POST(request, { params }) {
 			}
 		}
 
+		let ticketCode = generateTicketSegment(8);
+		for (let attempt = 0; attempt < 40; attempt++) {
+			const clash = await EventRegistrationModel.findOne({
+				program: program._id,
+				ticketCode,
+			}).lean();
+			if (!clash) break;
+			ticketCode = generateTicketSegment(8);
+		}
+
 		const registration = await EventRegistrationModel.create({
 			program: program._id,
 			name: safe.data.name,
@@ -73,7 +89,29 @@ export async function POST(request, { params }) {
 			phone: safe.data.phone || null,
 			notes: safe.data.notes || null,
 			status: registrationStatus,
+			ticketCode,
 		});
+
+		const base = (process.env.NEXT_PUBLIC_URL || "").replace(/\/$/, "");
+		const secret = getTicketSecret();
+		const sig = secret
+			? signTicketPayload(String(program._id), ticketCode, secret)
+			: "";
+		const checkInUrl = sig
+			? `${base}/admin/programs/${program._id}/check-in?code=${encodeURIComponent(ticketCode)}&sig=${encodeURIComponent(sig)}`
+			: `${base}/admin/programs/${program._id}/check-in?code=${encodeURIComponent(ticketCode)}`;
+
+		let qrDataUrl = "";
+		try {
+			qrDataUrl = await QRCode.toDataURL(checkInUrl, {
+				width: 220,
+				margin: 2,
+				errorCorrectionLevel: "M",
+				type: "image/png",
+			});
+		} catch (qrErr) {
+			console.error("QR generation failed:", qrErr);
+		}
 
 		try {
 			const html = await render(
@@ -88,6 +126,8 @@ export async function POST(request, { params }) {
 					eventLocation: program.location || "",
 					status: registration.status,
 					eventUrl: `${process.env.NEXT_PUBLIC_URL || ""}/programs/${program.slug}`,
+					ticketCode: registration.ticketCode,
+					qrDataUrl,
 				}),
 			);
 			await transporter.sendMail({

@@ -7,7 +7,8 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"email:dev": "email dev -p 5500"
+		"email:dev": "email dev -p 5500",
+		"add-owner": "node scripts/add-owner.mjs"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^5.2.2",
@@ -22,14 +23,17 @@
 		"easymde": "^2.18.0",
 		"eslint": "8.49.0",
 		"eslint-config-next": "^13.5.3",
+		"html5-qrcode": "^2.3.8",
 		"lodash": "^4.17.21",
 		"luxon": "^3.4.3",
-		"mongoose": "^7.5.3",
+		"mongoose": "^9.1.1",
 		"mongoose-paginate-v2": "^1.7.4",
 		"motion": "^12.38.0",
 		"next": "^16.2.6",
 		"nodemailer": "^6.10.1",
+		"phone": "^3.1.71",
 		"postcss": "8.4.29",
+		"qrcode": "^1.5.4",
 		"react": "^19.2.6",
 		"react-dom": "^19.2.6",
 		"react-email": "^6.0.5",

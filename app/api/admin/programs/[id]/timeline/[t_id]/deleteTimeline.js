@@ -1,7 +1,8 @@
 import connectMongo from "@/lib/connectDB";
 import TimelineModel from "@/models/timeline";
 
-async function deleteTimeline(_, { params: { id, t_id } }) {
+async function deleteTimeline(_, { params }) {
+	const { id, t_id } = await params;
 	try {
 		await connectMongo();
 		await TimelineModel.findOneAndDelete({ _id: t_id, program_id: id });

@@ -1,7 +1,8 @@
 import connectMongo from "@/lib/connectDB";
 import ProgramModel from "@/models/program";
 
-async function updateProgramStatus(request, { params: { id } }) {
+async function updateProgramStatus(request, { params }) {
+	const { id } = await params;
 	try {
 		const { status } = await request.json();
 

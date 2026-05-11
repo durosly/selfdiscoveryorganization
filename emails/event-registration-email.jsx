@@ -21,6 +21,8 @@ export const EventRegistrationEmail = ({
 	eventLocation = "",
 	status = "confirmed",
 	eventUrl = baseUrl,
+	ticketCode = "",
+	qrDataUrl = "",
 }) => {
 	const isWaitlisted = status === "waitlisted";
 	return (
@@ -67,6 +69,31 @@ export const EventRegistrationEmail = ({
 							<Text className="text-[#1f2933] text-[14px] leading-[22px]">
 								<strong>Where:</strong> {eventLocation}
 							</Text>
+						) : null}
+						{ticketCode ? (
+							<Section className="mt-[20px] p-[16px] bg-[#f9fafb] rounded-lg border border-solid border-[#e5e7eb]">
+								<Text className="text-[#1f2933] text-[14px] font-semibold m-0 mb-[8px]">
+									Your entry details
+								</Text>
+								<Text className="text-[#1f2933] text-[16px] font-mono font-bold tracking-wide m-0 mb-[12px]">
+									{ticketCode}
+								</Text>
+								<Text className="text-[#6b7280] text-[12px] leading-[18px] m-0 mb-[12px]">
+									Show this code or the QR below at check-in. Staff may also look you up by
+									name or email.
+								</Text>
+								{qrDataUrl ? (
+									<Section className="text-center">
+										<Img
+											src={qrDataUrl}
+											width="220"
+											height="220"
+											alt="Check-in QR code"
+											className="mx-auto border border-solid border-[#e5e7eb] rounded-lg bg-white"
+										/>
+									</Section>
+								) : null}
+							</Section>
 						) : null}
 						<Section className="text-center mt-[24px]">
 							<Link

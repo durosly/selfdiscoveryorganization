@@ -2,7 +2,8 @@ import connectMongo from "@/lib/connectDB";
 import ProgramModel from "@/models/program";
 import { v2 as cloudinary } from "cloudinary";
 
-async function updateCover(request, { params: { id } }) {
+async function updateCover(request, { params }) {
+	const { id } = await params;
 	try {
 		const { image } = await request.json();
 

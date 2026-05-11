@@ -7,6 +7,9 @@ const userSchema = new mongoose.Schema(
 		email: String,
 		password: String, // legacy field; credential hash lives in `account` collection for better-auth
 		account_type: { type: String, default: null },
+		/** owner | staff — legacy account_type "admin" is treated as owner in app logic */
+		role: { type: String, enum: ["owner", "staff"], default: "staff" },
+		permissions: [{ type: String }],
 		emailVerified: { type: Date, default: null },
 		name: String,
 	},

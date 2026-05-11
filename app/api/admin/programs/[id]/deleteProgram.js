@@ -1,7 +1,8 @@
 import connectMongo from "@/lib/connectDB";
 import ProgramModel from "@/models/program";
 
-async function deleteProgram(_, { params: { id } }) {
+async function deleteProgram(_, { params }) {
+	const { id } = await params;
 	try {
 		if (!id) {
 			return Response.json(

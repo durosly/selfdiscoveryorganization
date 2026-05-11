@@ -1,9 +1,9 @@
 import connectMongo from "@/lib/connectDB";
-import { requireAdmin } from "@/lib/require-admin";
+import { requirePermission } from "@/lib/guard-permission";
 import DonationModel from "@/models/donation";
 
 export async function GET(request) {
-	const guard = await requireAdmin();
+	const guard = await requirePermission("donations");
 	if (!guard.ok) return guard.response;
 
 	try {

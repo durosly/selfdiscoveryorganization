@@ -57,11 +57,12 @@ async function ProgramsDetailsPage({ params }) {
 
 	return (
 		<>
-			<section className="px-6 sm:px-10 max-w-6xl mx-auto">
+			<section className="px-6 sm:px-10 max-w-6xl mx-auto mt-5">
 				<Link
 					href="/programs"
-					className="inline-flex items-center gap-2 text-sm text-neutral/70 hover:text-primary transition-colors">
-					<LuArrowLeft className="w-4 h-4" /> Back to all events
+					className="group inline-flex items-center gap-2 rounded-full border border-base-300/70 bg-base-200/80 px-4 py-2 text-sm font-medium text-neutral/80 shadow-sm backdrop-blur-sm transition hover:border-primary/40 hover:bg-base-200 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+					<LuArrowLeft className="h-4 w-4 shrink-0 transition-transform group-hover:-translate-x-0.5" />
+					Back to all events
 				</Link>
 				<div className="relative h-72 sm:h-96 w-full rounded-3xl overflow-hidden mt-6 shadow-lg">
 					<Image
@@ -80,8 +81,8 @@ async function ProgramsDetailsPage({ params }) {
 					</div>
 				</div>
 
-				<div className="mt-8 grid lg:grid-cols-[2fr_1fr] gap-8">
-					<div className="space-y-6">
+				<div className="mt-8 gap-8">
+					<div className="space-y-6 mb-10">
 						<p className="text-lg text-neutral/80 leading-relaxed">
 							{program.desc}
 						</p>
