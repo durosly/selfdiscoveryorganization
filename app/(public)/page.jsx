@@ -86,9 +86,9 @@ const causes = [
 		tag: "Social Justice",
 		icon: LuHandHeart,
 		href: "/programs",
-		progress: 72,
-		raised: "£7,200",
-		goal: "£10,000",
+		progress: 15,
+		raised: "£3,000",
+		goal: "£20,000",
 	},
 	{
 		title: "Menstrual Hygiene Day",
@@ -98,8 +98,8 @@ const causes = [
 		tag: "Health & Equality",
 		icon: LuSyringe,
 		href: "/programs",
-		progress: 58,
-		raised: "£2,900",
+		progress: 10,
+		raised: "£500",
 		goal: "£5,000",
 	},
 	{
@@ -110,8 +110,8 @@ const causes = [
 		tag: "Education",
 		icon: LuGraduationCap,
 		href: "/programs",
-		progress: 84,
-		raised: "£8,400",
+		progress: 10,
+		raised: "£1,000",
 		goal: "£10,000",
 	},
 	{
@@ -122,21 +122,21 @@ const causes = [
 		tag: "Education",
 		icon: LuNetwork,
 		href: "/programs",
-		progress: 45,
-		raised: "£1,800",
-		goal: "£4,000",
+		progress: 20,
+		raised: "£1,000",
+		goal: "£5,000",
 	},
 	{
-		title: "Self-Discovery Podcast",
+		title: "Self-Discovery Podcast and Conferences",
 		description:
 			"Sharing transformative journeys of purpose and growth so listeners can embrace their true potential and live meaningfully.",
 		imageSrc: "/images/podcast.jpg",
 		tag: "Personal Development",
 		icon: LuMicVocal,
 		href: "/programs",
-		progress: 30,
-		raised: "£900",
-		goal: "£3,000",
+		progress: 20,
+		raised: "£2,000",
+		goal: "£10,000",
 	},
 ];
 
@@ -376,7 +376,7 @@ function PublicHomePage() {
 						animationDirection="down"
 						parentClassName="grid grid-cols-2 lg:grid-cols-4 gap-5">
 						<StatCard
-							value={37}
+							value={100}
 							suffix="+"
 							label="Children supported"
 							icon={LuGraduationCap}
@@ -384,22 +384,23 @@ function PublicHomePage() {
 							iconClassName="bg-primary/15 text-primary"
 						/>
 						<StatCard
-							value={25}
+							value={200}
+							suffix="+"
 							label="Families fed"
 							icon={LuSoup}
 							className="bg-base-100/5 border-base-100/10 text-neutral-content backdrop-blur-sm"
 							iconClassName="bg-primary/15 text-primary"
 						/>
 						<StatCard
-							value={400}
-							suffix="+"
+							value={10}
+							suffix="k+"
 							label="Lives reached"
 							icon={LuUsers}
 							className="bg-base-100/5 border-base-100/10 text-neutral-content backdrop-blur-sm"
 							iconClassName="bg-primary/15 text-primary"
 						/>
 						<StatCard
-							value={3}
+							value={4}
 							label="Countries served"
 							icon={TbWorld}
 							className="bg-base-100/5 border-base-100/10 text-neutral-content backdrop-blur-sm"

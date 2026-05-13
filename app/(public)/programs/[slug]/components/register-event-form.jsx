@@ -249,7 +249,7 @@ function RegisterEventForm({
 								<span className="label-text font-semibold text-neutral">
 									Phone
 								</span>
-								<span className="label-text-alt text-neutral/60 text-xs font-normal text-right max-w-[14rem] leading-snug">
+								<span className="label-text-alt text-neutral/60 text-xs font-normal text-right max-w-56 leading-snug">
 									Optional · include country code with + (international
 									format)
 								</span>
@@ -313,7 +313,7 @@ function RegisterEventForm({
 									className={cn(
 										"grow min-h-[72px] w-full resize-y bg-transparent text-base leading-relaxed outline-none placeholder:text-neutral/50 disabled:cursor-not-allowed disabled:opacity-50",
 										errors.notes &&
-											"placeholder:text-error/60",
+										"placeholder:text-error/60",
 									)}
 									rows={3}
 									maxLength={NOTES_MAX}
