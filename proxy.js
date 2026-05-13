@@ -5,11 +5,15 @@ export default function proxy(request) {
 	const sessionCookie = getSessionCookie(request);
 	if (!sessionCookie) {
 		const url = new URL("/login", request.url);
+		url.searchParams.set(
+			"callbackUrl",
+			request.nextUrl.pathname + request.nextUrl.search,
+		);
 		return NextResponse.redirect(url);
 	}
 	return NextResponse.next();
 }
 
 export const config = {
-	matcher: ["/admin/:path*", "/api/admin/:path*"],
+	matcher: ["/admin/:path*", "/api/admin/:path*", "/check-in/:path*"],
 };

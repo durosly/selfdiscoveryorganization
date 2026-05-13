@@ -14,6 +14,9 @@ import {
 
 const baseUrl = process.env.NEXT_PUBLIC_URL;
 
+/** Inline PNG attachment id (Nodemailer `attachments[].cid`); Gmail strips `data:` URLs but accepts CID images. */
+export const REGISTRATION_EMAIL_QR_CID = "checkin-qr@selfdiscovery.email";
+
 export const EventRegistrationEmail = ({
 	name = "Friend",
 	eventTitle = "Self Discovery Event",
@@ -22,7 +25,9 @@ export const EventRegistrationEmail = ({
 	status = "confirmed",
 	eventUrl = baseUrl,
 	ticketCode = "",
-	qrDataUrl = "",
+	checkInUrl = "",
+	/** When true, HTML references an inline attachment with {@link REGISTRATION_EMAIL_QR_CID}. */
+	includeCheckInQrImage = false,
 }) => {
 	const isWaitlisted = status === "waitlisted";
 	return (
@@ -82,14 +87,14 @@ export const EventRegistrationEmail = ({
 									Show this code or the QR below at check-in. Staff may also look you up by
 									name or email.
 								</Text>
-								{qrDataUrl ? (
+								{includeCheckInQrImage ? (
 									<Section className="text-center">
 										<Img
-											src={qrDataUrl}
+											src={`cid:${REGISTRATION_EMAIL_QR_CID}`}
 											width="220"
 											height="220"
 											alt="Check-in QR code"
-											className="mx-auto border border-solid border-[#e5e7eb] rounded-lg bg-white"
+											className="mx-auto block border border-solid border-[#e5e7eb] rounded-lg bg-white"
 										/>
 									</Section>
 								) : null}

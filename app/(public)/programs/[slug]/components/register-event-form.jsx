@@ -76,6 +76,7 @@ function FieldError({ message }) {
 
 function RegisterEventForm({
 	programId,
+	programSlug,
 	programTitle,
 	registrationsOpen = true,
 	attendeeLimit = null,
@@ -111,8 +112,9 @@ function RegisterEventForm({
 
 	async function onSubmit(data) {
 		const toastId = toast.loading("Sending your registration…");
+		const routeSegment = programSlug || programId;
 		try {
-			const res = await axios.post(`/api/programs/${programId}/register`, {
+			const res = await axios.post(`/api/programs/${routeSegment}/register`, {
 				name: data.name.trim(),
 				email: data.email.trim(),
 				phone: data.phone || undefined,

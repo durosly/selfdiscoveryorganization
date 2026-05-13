@@ -181,6 +181,7 @@ async function ProgramsDetailsPage({ params }) {
 					<div>
 						<RegisterEventForm
 							programId={String(program._id)}
+							programSlug={slug}
 							programTitle={program.title}
 							registrationsOpen={
 								program.registrations_open !== false

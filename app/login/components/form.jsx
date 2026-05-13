@@ -6,7 +6,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { signIn } from "@/lib/auth-client";
 
-function LoginForm() {
+function LoginForm({ callbackUrl = "/admin/dashboard" }) {
 	const router = useRouter();
 	const [info, setInfo] = useState({ email: "", password: "" });
 	// const [show, setShow] = useState(false);
@@ -27,7 +27,7 @@ function LoginForm() {
 				throw new Error(res.error.message || "Invalid credentials");
 			}
 			toast.success("Login successful", { id: toastId });
-			router.push("/admin/dashboard");
+			router.push(callbackUrl);
 		} catch (error) {
 			const message = handleError(error);
 			toast.error(message, { id: toastId });
