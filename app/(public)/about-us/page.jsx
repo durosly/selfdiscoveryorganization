@@ -212,13 +212,6 @@ function AboutUsPage() {
 								menstrual education.
 							</p>
 							<p>
-								In commemoration of World Menstrual
-								Hygiene Day, we distribute sanitary
-								products to young girls and women,
-								promoting health, dignity, and
-								menstrual education.
-							</p>
-							<p>
 								We also host a monthly podcast where
 								we encourage people to live
 								purpose-driven lives.
