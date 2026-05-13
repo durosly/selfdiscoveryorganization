@@ -217,22 +217,23 @@ function DonatePage() {
 
 					<div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
 						<StatCard
-							value={37}
+							value={100}
 							suffix="+"
 							label="Children supported in one intervention"
 							icon={LuGraduationCap}
 							className="bg-base-100/5 border-base-100/10 text-neutral-content"
 						/>
 						<StatCard
-							value={25}
+							value={200}
+							suffix="+"
 							label="Families reached with food support"
 							icon={LuSoup}
 							className="bg-base-100/5 border-base-100/10 text-neutral-content"
 						/>
 						<StatCard
-							value={400}
-							suffix="+"
-							label="Hundreds fed through outreach"
+							value={10}
+							suffix="k+"
+							label="Lives reached through outreach"
 							icon={LuUsers}
 							className="bg-base-100/5 border-base-100/10 text-neutral-content"
 						/>
