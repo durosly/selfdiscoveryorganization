@@ -3,14 +3,11 @@
 import { handleError } from "@/lib/handleError";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-	PayPalButtons,
-	PayPalScriptProvider,
-} from "@paypal/react-paypal-js";
 import axios from "axios";
 import { useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { BsCreditCard2Front } from "react-icons/bs";
 import {
 	LuBanknote,
 	LuCircleAlert,
@@ -46,13 +43,6 @@ export const DESIGNATION_OPTIONS = [
 	"Send a Child to School Scheme",
 	"General Fund",
 ];
-
-const PLAN_IDS = {
-	10: process.env.NEXT_PUBLIC_PAYPAL_PLAN_10 || "",
-	25: process.env.NEXT_PUBLIC_PAYPAL_PLAN_25 || "",
-	50: process.env.NEXT_PUBLIC_PAYPAL_PLAN_50 || "",
-	100: process.env.NEXT_PUBLIC_PAYPAL_PLAN_100 || "",
-};
 
 const MESSAGE_MAX = 500;
 
@@ -99,11 +89,6 @@ const donationSchema = z
 		}
 	});
 
-function getPlanIdForAmount(amount) {
-	if (!amount) return null;
-	return PLAN_IDS[Math.round(amount)] || null;
-}
-
 function FieldError({ message }) {
 	if (!message) return null;
 	return (
@@ -116,7 +101,6 @@ function FieldError({ message }) {
 
 function DonationForm() {
 	const formTopRef = useRef(null);
-	const [success, setSuccess] = useState(null);
 	const [submitting, setSubmitting] = useState(false);
 
 	const {
@@ -124,7 +108,6 @@ function DonationForm() {
 		watch,
 		setValue,
 		getValues,
-		reset,
 		trigger,
 		formState: { errors, isValid },
 	} = useForm({
@@ -156,24 +139,7 @@ function DonationForm() {
 		return Number(selectedTier) || 0;
 	}, [selectedTier, customAmount, isCustom]);
 
-	const planId = recurring ? getPlanIdForAmount(amount) : null;
-	const subscriptionsUnavailable = recurring && !planId;
-	const ready = isValid && amount >= 1 && !subscriptionsUnavailable;
-
-	const clientId =
-		process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test";
-	const currency = process.env.NEXT_PUBLIC_PAYPAL_CURRENCY || "GBP";
-
-	const scriptOptions = useMemo(
-		() => ({
-			clientId,
-			currency,
-			intent: recurring ? "subscription" : "capture",
-			vault: recurring ? true : undefined,
-			components: "buttons",
-		}),
-		[clientId, currency, recurring],
-	);
+	const ready = isValid && amount >= 1;
 
 	function selectTier(tier) {
 		setValue("selectedTier", tier, {
@@ -185,42 +151,33 @@ function DonationForm() {
 		}
 	}
 
-	async function confirmDonation(payload) {
+	async function startStripeCheckout() {
+		const valid = await trigger();
+		if (!valid || amount < 1) return;
+
+		const v = getValues();
 		setSubmitting(true);
-		const toastId = toast.loading("Confirming your donation…");
+		const toastId = toast.loading("Redirecting to secure checkout…");
+
 		try {
-			const res = await axios.post(
-				"/api/donations/confirm",
-				payload,
-			);
-			if (!res.data?.status) {
+			const res = await axios.post("/api/stripe/checkout", {
+				amount,
+				designation: v.designation,
+				donorName: v.donorName,
+				donorEmail: v.donorEmail,
+				message: v.message || undefined,
+				recurring: v.recurring,
+			});
+
+			if (!res.data?.url) {
 				throw new Error(
-					res.data?.message || "Could not confirm donation",
+					res.data?.message || "Could not start checkout",
 				);
 			}
-			toast.success(res.data.message || "Thank you for your gift!", {
-				id: toastId,
-			});
-			setSuccess({
-				amount: payload.amount,
-				currency: payload.currency,
-				recurring: payload.recurring,
-				designation: payload.designation,
-				donorName: payload.donorName,
-			});
-			reset({
-				selectedTier: 25,
-				customAmount: "",
-				recurring: false,
-				designation: DESIGNATION_OPTIONS[0],
-				donorName: "",
-				donorEmail: "",
-				message: "",
-			});
-			formTopRef.current?.scrollIntoView({ behavior: "smooth" });
+
+			window.location.href = res.data.url;
 		} catch (error) {
 			toast.error(handleError(error), { id: toastId });
-		} finally {
 			setSubmitting(false);
 		}
 	}
@@ -338,17 +295,6 @@ function DonationForm() {
 					</div>
 				</label>
 
-				{subscriptionsUnavailable ? (
-					<div className="alert alert-warning mt-4 text-sm">
-						<LuCircleAlert className="w-5 h-5" />
-						<span>
-							Monthly giving for £{amount} is being set up.
-							Please choose a different amount, or give a
-							one-time gift.
-						</span>
-					</div>
-				) : null}
-
 				<fieldset className="fieldset mt-8 bg-base-200/40 border border-base-300/60 rounded-2xl p-5 sm:p-6">
 					<legend className="fieldset-legend px-3 py-1 bg-base-100 border border-base-300/60 rounded-full text-sm font-semibold text-neutral inline-flex items-center gap-2 shadow-sm">
 						<span className="w-5 h-5 rounded-full bg-primary text-primary-content inline-flex items-center justify-center">
@@ -359,15 +305,11 @@ function DonationForm() {
 
 					<div className="grid sm:grid-cols-2 gap-4">
 						<div>
-							<label
-								htmlFor="donorName"
-								className="label">
+							<label htmlFor="donorName" className="label">
 								<span className="label-text font-semibold text-neutral">
 									Full name
 								</span>
-								<span
-									className="text-error"
-									aria-hidden="true">
+								<span className="text-error" aria-hidden="true">
 									*
 								</span>
 							</label>
@@ -386,21 +328,15 @@ function DonationForm() {
 									{...register("donorName")}
 								/>
 							</label>
-							<FieldError
-								message={errors.donorName?.message}
-							/>
+							<FieldError message={errors.donorName?.message} />
 						</div>
 
 						<div>
-							<label
-								htmlFor="donorEmail"
-								className="label">
+							<label htmlFor="donorEmail" className="label">
 								<span className="label-text font-semibold text-neutral">
 									Email address
 								</span>
-								<span
-									className="text-error"
-									aria-hidden="true">
+								<span className="text-error" aria-hidden="true">
 									*
 								</span>
 							</label>
@@ -419,22 +355,16 @@ function DonationForm() {
 									{...register("donorEmail")}
 								/>
 							</label>
-							<FieldError
-								message={errors.donorEmail?.message}
-							/>
+							<FieldError message={errors.donorEmail?.message} />
 						</div>
 					</div>
 
 					<div className="mt-2">
-						<label
-							htmlFor="designation"
-							className="label">
+						<label htmlFor="designation" className="label">
 							<span className="label-text font-semibold text-neutral">
 								What are you giving towards?
 							</span>
-							<span
-								className="text-error"
-								aria-hidden="true">
+							<span className="text-error" aria-hidden="true">
 								*
 							</span>
 						</label>
@@ -455,9 +385,7 @@ function DonationForm() {
 								))}
 							</select>
 						</label>
-						<FieldError
-							message={errors.designation?.message}
-						/>
+						<FieldError message={errors.designation?.message} />
 					</div>
 				</fieldset>
 
@@ -472,7 +400,6 @@ function DonationForm() {
 						</span>
 					</legend>
 
-					{/* Icon + textarea as siblings (same pattern as daisyUI label.input), not stacked — otherwise the textarea paints over the icon on focus */}
 					<label
 						htmlFor="message"
 						className={cn(
@@ -489,8 +416,7 @@ function DonationForm() {
 							id="message"
 							className={cn(
 								"grow min-h-[88px] w-full resize-y bg-transparent text-base leading-relaxed outline-none placeholder:text-neutral/50 disabled:cursor-not-allowed disabled:opacity-50",
-								errors.message &&
-									"placeholder:text-error/60",
+								errors.message && "placeholder:text-error/60",
 							)}
 							rows={3}
 							maxLength={MESSAGE_MAX}
@@ -517,7 +443,7 @@ function DonationForm() {
 			<aside className="rounded-3xl bg-linear-to-br from-primary/15 via-base-200 to-secondary/10 p-6 sm:p-7 border border-base-300/60 flex flex-col">
 				<div className="flex items-center gap-2 text-sm text-neutral/70">
 					<LuLock className="w-4 h-4 text-secondary" />
-					Secure checkout via PayPal
+					Secure checkout via Stripe
 				</div>
 				<div className="mt-3">
 					<div className="text-sm text-neutral/70">
@@ -538,127 +464,24 @@ function DonationForm() {
 				</div>
 
 				<div className="mt-5">
-					{success ? (
-						<div className="alert alert-success text-sm">
-							<LuShieldCheck className="w-5 h-5" />
-							<div>
-								<div className="font-bold">
-									Thank you,{" "}
-									{success.donorName || "friend"}!
-								</div>
-								<div>
-									Your{" "}
-									{success.recurring
-										? "monthly"
-										: "one-time"}{" "}
-									gift of {success.currency}{" "}
-									{success.amount.toFixed(2)} for{" "}
-									<strong>
-										{success.designation}
-									</strong>{" "}
-									has been received.
-								</div>
-							</div>
-						</div>
-					) : null}
-
 					{!ready ? (
 						<div className="rounded-2xl border-2 border-dashed border-base-300 p-5 text-center text-sm text-neutral/60">
-							{subscriptionsUnavailable
-								? "Monthly giving for this amount is unavailable right now."
-								: "Fill in your name, a valid email and pick an amount to enable secure PayPal checkout."}
+							Fill in your name, a valid email and pick an
+							amount to continue to secure card checkout.
 						</div>
 					) : (
-						<PayPalScriptProvider options={scriptOptions}>
-							<PayPalButtons
-								key={`${recurring ? "sub" : "one"}-${amount}-${currency}`}
-								disabled={submitting}
-								style={{
-									layout: "vertical",
-									shape: "pill",
-									label: "donate",
-									color: "gold",
-								}}
-								createOrder={
-									recurring
-										? undefined
-										: (data, actions) =>
-											actions.order.create({
-												purchase_units: [
-													{
-														description: `Donation — ${designation}`,
-														custom_id: designation,
-														amount: {
-															value: amount.toFixed(2),
-															currency_code: currency,
-														},
-													},
-												],
-												application_context: {
-													shipping_preference: "NO_SHIPPING",
-												},
-											})
-								}
-								createSubscription={
-									recurring
-										? (data, actions) => {
-											const v = getValues();
-											return actions.subscription.create({
-												plan_id: planId,
-												custom_id: designation,
-												subscriber: {
-													name: { given_name: v.donorName },
-													email_address: v.donorEmail,
-												},
-											});
-										}
-										: undefined
-								}
-								onApprove={async (data, actions) => {
-									const v = getValues();
-									if (recurring) {
-										await confirmDonation({
-											provider: "paypal",
-											mode: "subscription",
-											subscriptionId: data.subscriptionID,
-											amount,
-											currency,
-											designation: v.designation,
-											recurring: true,
-											donorName: v.donorName,
-											donorEmail: v.donorEmail,
-											message: v.message || undefined,
-										});
-									} else {
-										if (actions?.order?.capture) {
-											try {
-												await actions.order.capture();
-											} catch (e) {
-												/* server confirm will still verify */
-											}
-										}
-										await confirmDonation({
-											provider: "paypal",
-											mode: "one-time",
-											orderId: data.orderID,
-											amount,
-											currency,
-											designation: v.designation,
-											recurring: false,
-											donorName: v.donorName,
-											donorEmail: v.donorEmail,
-											message: v.message || undefined,
-										});
-									}
-								}}
-								onError={(err) => {
-									toast.error(
-										"PayPal payment could not be completed.",
-									);
-									console.error("PayPal error", err);
-								}}
-							/>
-						</PayPalScriptProvider>
+						<button
+							type="button"
+							disabled={submitting}
+							onClick={startStripeCheckout}
+							className="btn btn-primary rounded-full w-full gap-2 shadow-lg">
+							{submitting ? (
+								<span className="loading loading-spinner loading-sm" />
+							) : (
+								<BsCreditCard2Front className="w-5 h-5" />
+							)}
+							Continue to secure checkout
+						</button>
 					)}
 				</div>
 

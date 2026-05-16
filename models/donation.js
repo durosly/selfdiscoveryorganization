@@ -28,9 +28,14 @@ const donationSchema = new mongoose.Schema(
 		recurring: { type: Boolean, default: false },
 		message: { type: String, default: null },
 
-		provider: { type: String, default: "paypal" },
-		providerOrderId: { type: String, index: true, default: null },
-		providerSubscriptionId: { type: String, index: true, default: null },
+		provider: {
+			type: String,
+			enum: ["paypal", "stripe"],
+			default: "paypal",
+		},
+		providerOrderId: { type: String, default: null },
+		providerSubscriptionId: { type: String, default: null },
+		providerCheckoutSessionId: { type: String, default: null },
 		providerCaptureId: { type: String, default: null },
 
 		status: {
@@ -48,6 +53,19 @@ donationSchema.plugin(paginate);
 donationSchema.index({ createdAt: -1 });
 donationSchema.index({ providerOrderId: 1 }, { unique: true, sparse: true });
 donationSchema.index({ providerSubscriptionId: 1 }, { unique: true, sparse: true });
+donationSchema.index(
+	{ providerCheckoutSessionId: 1 },
+	{ unique: true, sparse: true },
+);
+
+export const StripeCheckoutSchema = z.object({
+	amount: z.coerce.number().min(1),
+	designation: z.enum(DONATION_DESIGNATIONS),
+	donorName: z.string().trim().min(2).max(120),
+	donorEmail: z.string().trim().email(),
+	message: z.string().max(500).optional(),
+	recurring: z.boolean().default(false),
+});
 
 const DonationModel =
 	mongoose.models.Donation || mongoose.model("Donation", donationSchema);

@@ -3,10 +3,8 @@ import {
 	verifyPaypalOrder,
 	verifyPaypalSubscription,
 } from "@/lib/paypal";
-import DonationModel, {
-	DonationConfirmSchema,
-} from "@/models/donation";
-import DonorModel from "@/models/donor";
+import { recordDonation } from "@/lib/record-donation";
+import { DonationConfirmSchema } from "@/models/donation";
 
 export async function POST(request) {
 	try {
@@ -35,7 +33,10 @@ export async function POST(request) {
 		if (data.mode === "one-time") {
 			if (!data.orderId) {
 				return Response.json(
-					{ status: false, message: "orderId is required for one-time donations" },
+					{
+						status: false,
+						message: "orderId is required for one-time donations",
+					},
 					{ status: 400 },
 				);
 			}
@@ -47,7 +48,9 @@ export async function POST(request) {
 				capture?.amount?.value ?? purchase?.amount?.value ?? "0",
 			);
 			verifiedCurrency =
-				capture?.amount?.currency_code ?? purchase?.amount?.currency_code ?? data.currency;
+				capture?.amount?.currency_code ??
+				purchase?.amount?.currency_code ??
+				data.currency;
 
 			if (
 				providerPayload?.status === "COMPLETED" ||
@@ -62,12 +65,15 @@ export async function POST(request) {
 				return Response.json(
 					{
 						status: false,
-						message: "subscriptionId is required for subscription donations",
+						message:
+							"subscriptionId is required for subscription donations",
 					},
 					{ status: 400 },
 				);
 			}
-			providerPayload = await verifyPaypalSubscription(data.subscriptionId);
+			providerPayload = await verifyPaypalSubscription(
+				data.subscriptionId,
+			);
 			const billing = providerPayload?.billing_info?.last_payment;
 			verifiedAmount = parseFloat(
 				billing?.amount?.value ?? data.amount.toString(),
@@ -87,49 +93,23 @@ export async function POST(request) {
 		const finalAmount = verifiedAmount || data.amount;
 		const finalCurrency = verifiedCurrency || data.currency;
 
-		const donor = await DonorModel.findOneAndUpdate(
-			{ email: data.donorEmail.toLowerCase() },
-			{
-				$setOnInsert: { email: data.donorEmail.toLowerCase() },
-				$set: { name: data.donorName },
-				$inc:
-					providerStatus === "completed"
-						? { totalGiven: finalAmount, donationCount: 1 }
-						: {},
-				...(providerStatus === "completed"
-					? { $currentDate: { lastDonationAt: true } }
-					: {}),
-			},
-			{ upsert: true, new: true, setDefaultsOnInsert: true },
-		);
-
-		const donation = await DonationModel.findOneAndUpdate(
-			data.mode === "one-time"
-				? { providerOrderId: data.orderId }
-				: { providerSubscriptionId: data.subscriptionId },
-			{
-				$setOnInsert: {
-					provider: "paypal",
-					providerOrderId: data.mode === "one-time" ? data.orderId : null,
-					providerSubscriptionId:
-						data.mode === "subscription" ? data.subscriptionId : null,
-				},
-				$set: {
-					donor: donor._id,
-					donorEmail: data.donorEmail.toLowerCase(),
-					donorName: data.donorName,
-					amount: finalAmount,
-					currency: finalCurrency,
-					designation: data.designation,
-					recurring: data.mode === "subscription",
-					message: data.message ?? null,
-					providerCaptureId: captureId,
-					status: providerStatus,
-					rawProviderPayload: providerPayload,
-				},
-			},
-			{ upsert: true, new: true, setDefaultsOnInsert: true },
-		);
+		const { donation } = await recordDonation({
+			provider: "paypal",
+			providerOrderId:
+				data.mode === "one-time" ? data.orderId : null,
+			providerSubscriptionId:
+				data.mode === "subscription" ? data.subscriptionId : null,
+			providerCaptureId: captureId,
+			amount: finalAmount,
+			currency: finalCurrency,
+			designation: data.designation,
+			recurring: data.mode === "subscription",
+			donorName: data.donorName,
+			donorEmail: data.donorEmail,
+			message: data.message ?? null,
+			status: providerStatus,
+			rawProviderPayload: providerPayload,
+		});
 
 		return Response.json({
 			status: true,
@@ -151,7 +131,8 @@ export async function POST(request) {
 		return Response.json(
 			{
 				status: false,
-				message: error?.message || "Unable to confirm donation right now.",
+				message:
+					error?.message || "Unable to confirm donation right now.",
 			},
 			{ status: 500 },
 		);

@@ -1,40 +1,107 @@
-/**
- * Stripe checkout — scaffold.
- *
- * This route is intentionally a stub so the donation page can wire up a
- * "Pay with card" button later without a UI rewrite. Activate it by
- * installing `stripe`, adding STRIPE_SECRET_KEY / NEXT_PUBLIC_STRIPE_KEY
- * to env, and replacing the body below with a real Checkout Session.
- *
- * Suggested final shape:
- *   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
- *   const session = await stripe.checkout.sessions.create({
- *     mode: recurring ? "subscription" : "payment",
- *     line_items: [{ price_data: { currency, product_data: { name: designation }, unit_amount: amount * 100 }, quantity: 1 }],
- *     success_url: `${origin}/support?success=1`,
- *     cancel_url: `${origin}/support?canceled=1`,
- *   });
- *   return Response.json({ url: session.url });
- */
+import connectMongo from "@/lib/connectDB";
+import { recordDonation } from "@/lib/record-donation";
+import { getAppOrigin, getStripe, isStripeConfigured } from "@/lib/stripe";
+import { StripeCheckoutSchema } from "@/models/donation";
 
-export async function POST() {
-	return Response.json(
-		{
-			status: false,
-			message:
-				"Stripe checkout is not enabled yet. Please use PayPal or bank transfer for now.",
+const CURRENCY = "gbp";
+
+function buildLineItem(amount, designation, recurring) {
+	const productName = `Donation — ${designation}`;
+	const unitAmount = Math.round(amount * 100);
+
+	if (recurring) {
+		return {
+			price_data: {
+				currency: CURRENCY,
+				product_data: { name: productName },
+				unit_amount: unitAmount,
+				recurring: { interval: "month" },
+			},
+			quantity: 1,
+		};
+	}
+
+	return {
+		price_data: {
+			currency: CURRENCY,
+			product_data: { name: productName },
+			unit_amount: unitAmount,
 		},
-		{ status: 501 },
-	);
+		quantity: 1,
+	};
 }
 
-export async function GET() {
-	return Response.json(
-		{
-			status: false,
-			message:
-				"Stripe checkout is not enabled yet. Please use PayPal or bank transfer for now.",
-		},
-		{ status: 501 },
-	);
+export async function POST(request) {
+	try {
+		if (!isStripeConfigured()) {
+			return Response.json(
+				{
+					status: false,
+					message: "Card payments are not configured yet.",
+				},
+				{ status: 503 },
+			);
+		}
+
+		const body = await request.json();
+		const safe = StripeCheckoutSchema.safeParse(body);
+		if (!safe.success) {
+			const issue = safe.error.issues[0];
+			return Response.json(
+				{
+					status: false,
+					message: `${issue.message} for ${issue.path.join(".")}`,
+				},
+				{ status: 400 },
+			);
+		}
+
+		const data = safe.data;
+		const stripe = getStripe();
+		const origin = getAppOrigin();
+
+		const session = await stripe.checkout.sessions.create({
+			mode: data.recurring ? "subscription" : "payment",
+			line_items: [
+				buildLineItem(data.amount, data.designation, data.recurring),
+			],
+			customer_email: data.donorEmail,
+			metadata: {
+				designation: data.designation,
+				donorName: data.donorName,
+				donorEmail: data.donorEmail,
+				message: data.message || "",
+				recurring: data.recurring ? "true" : "false",
+				amount: String(data.amount),
+			},
+			success_url: `${origin}/support/thank-you?session_id={CHECKOUT_SESSION_ID}`,
+			cancel_url: `${origin}/support?canceled=1`,
+		});
+
+		await connectMongo();
+		await recordDonation({
+			provider: "stripe",
+			providerCheckoutSessionId: session.id,
+			amount: data.amount,
+			currency: "GBP",
+			designation: data.designation,
+			recurring: data.recurring,
+			donorName: data.donorName,
+			donorEmail: data.donorEmail,
+			message: data.message ?? null,
+			status: "pending",
+		});
+
+		return Response.json({ status: true, url: session.url });
+	} catch (error) {
+		console.error("/api/stripe/checkout error", error);
+		return Response.json(
+			{
+				status: false,
+				message:
+					error?.message || "Unable to start checkout right now.",
+			},
+			{ status: 500 },
+		);
+	}
 }

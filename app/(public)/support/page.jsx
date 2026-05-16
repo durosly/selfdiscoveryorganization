@@ -5,7 +5,8 @@ import { ImagesSlider } from "@/app/components/ui/images-slider";
 import SectionHeading from "@/app/components/ui/section-heading";
 import StatCard from "@/app/components/ui/stat-card";
 import Link from "next/link";
-import { BsBank2, BsCreditCard2Front, BsPaypal } from "react-icons/bs";
+import { Suspense } from "react";
+import { BsBank2, BsCreditCard2Front } from "react-icons/bs";
 import {
 	LuArrowRight,
 	LuCheck,
@@ -19,6 +20,7 @@ import {
 	LuTarget,
 	LuUsers,
 } from "react-icons/lu";
+import DonationCanceledBanner from "./components/donation-canceled-banner";
 import DonationForm from "./components/donation-form";
 
 export const revalidate = 60;
@@ -174,9 +176,12 @@ function DonatePage() {
 				<SectionHeading
 					eyebrow="Choose an Amount"
 					title="Make a gift in under a minute."
-					subtitle="Pick a tier, choose a focus area, and check out securely with PayPal."
+					subtitle="Pick a tier, choose a focus area, and check out securely with Stripe."
 					eyebrowIcon={LuTarget}
 				/>
+				<Suspense fallback={null}>
+					<DonationCanceledBanner />
+				</Suspense>
 				<div className="mt-12">
 					<DonationForm />
 				</div>
@@ -273,7 +278,7 @@ function DonatePage() {
 						},
 						{
 							title: "Secure Payment Processing",
-							desc: "Donations processed through PayPal's enterprise-grade security.",
+							desc: "Donations processed securely through Stripe.",
 							icon: LuCheck,
 						},
 						{
@@ -305,53 +310,27 @@ function DonatePage() {
 				<SectionHeading
 					eyebrow="Ways to Give"
 					title="Pick what works for you."
-					subtitle="More payment methods are coming soon."
+					subtitle="Give online by card or transfer directly to our bank account."
 					eyebrowIcon={LuHeart}
 				/>
 
-				<div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
+				<div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5">
 					<div className="rounded-3xl bg-base-100 border-2 border-primary/40 p-6 shadow-sm flex flex-col">
 						<div className="w-12 h-12 rounded-2xl bg-primary/15 text-primary flex items-center justify-center mb-3">
-							<BsPaypal className="w-6 h-6" />
+							<BsCreditCard2Front className="w-6 h-6" />
 						</div>
 						<h3 className="font-bold text-lg text-neutral">
-							PayPal
+							Card / Stripe
 						</h3>
 						<p className="text-sm text-neutral/70 mt-1 grow">
-							Donate securely with your PayPal account, debit
-							or credit card. One-time and monthly giving
-							supported.
+							Donate securely by debit or credit card. One-time
+							and monthly giving supported via Stripe Checkout.
 						</p>
 						<a
 							href="#donation-form"
 							className="btn btn-primary rounded-full mt-4">
-							Give with PayPal
+							Give with card
 						</a>
-					</div>
-
-					<div className="rounded-3xl bg-base-100 border border-base-300/60 p-6 shadow-sm flex flex-col opacity-90">
-						<div className="w-12 h-12 rounded-2xl bg-base-200 text-neutral/60 flex items-center justify-center mb-3">
-							<BsCreditCard2Front className="w-6 h-6" />
-						</div>
-						<div className="flex items-center gap-2">
-							<h3 className="font-bold text-lg text-neutral">
-								Card / Stripe
-							</h3>
-							<span className="badge badge-ghost text-xs">
-								Coming soon
-							</span>
-						</div>
-						<p className="text-sm text-neutral/70 mt-1 grow">
-							Direct card checkout via Stripe will launch
-							soon to give you another secure way to support
-							our work.
-						</p>
-						<button
-							type="button"
-							disabled
-							className="btn rounded-full mt-4 btn-disabled">
-							Coming soon
-						</button>
 					</div>
 
 					<div className="rounded-3xl bg-base-100 border border-base-300/60 p-6 shadow-sm flex flex-col">

@@ -55,7 +55,10 @@ function toCsv(rows) {
 			r.recurring ? "yes" : "no",
 			r.status,
 			r.provider,
-			r.providerOrderId ?? r.providerSubscriptionId ?? "",
+			r.providerCheckoutSessionId ??
+				r.providerOrderId ??
+				r.providerSubscriptionId ??
+				"",
 		]
 			.map(escape)
 			.join(","),
