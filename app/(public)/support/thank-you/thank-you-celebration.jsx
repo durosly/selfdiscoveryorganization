@@ -13,6 +13,15 @@ import {
 	LuShieldCheck,
 } from "react-icons/lu";
 
+export const PREVIEW_DONATION = {
+	amount: 25,
+	currency: "GBP",
+	designation: "Send a Child to School Scheme",
+	donorName: "Jane Doe",
+	recurring: false,
+	paymentStatus: "paid",
+};
+
 function fireConfetti() {
 	import("canvas-confetti").then(({ default: confetti }) => {
 		const duration = 2800;
@@ -48,83 +57,67 @@ function fireConfetti() {
 	});
 }
 
-function ThankYouCelebration({ sessionId }) {
+function parsePreviewDonation(previewOptions = {}) {
+	const amount = Number(previewOptions.amount);
+	return {
+		amount: Number.isFinite(amount) && amount > 0 ? amount : PREVIEW_DONATION.amount,
+		currency: "GBP",
+		designation: previewOptions.designation || PREVIEW_DONATION.designation,
+		donorName: previewOptions.name || PREVIEW_DONATION.donorName,
+		recurring:
+			previewOptions.recurring === "1" ||
+			previewOptions.recurring === "true",
+		paymentStatus: "paid",
+	};
+}
+
+export function DevPreviewBanner() {
+	return (
+		<div className="px-4 sm:px-10 pt-6 max-w-2xl mx-auto">
+			<div className="alert alert-warning text-sm shadow-md">
+				<span>
+					<strong>Dev preview</strong> — mock data only. Remove{" "}
+					<code className="text-xs bg-base-100 px-1 rounded">?preview=1</code>{" "}
+					to test a real Stripe session.
+				</span>
+			</div>
+		</div>
+	);
+}
+
+export function ThankYouSuccessView({ donation, isPreview = false }) {
 	const iconRef = useRef(null);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(null);
-	const [donation, setDonation] = useState(null);
 
 	useEffect(() => {
-		if (!sessionId) {
-			setError("No donation session found.");
-			setLoading(false);
-			return;
-		}
+		fireConfetti();
+	}, []);
+
+	useEffect(() => {
+		const el = iconRef.current;
+		if (!el) return;
 
 		let cancelled = false;
 
-		async function load() {
-			try {
-				const res = await fetch(
-					`/api/stripe/session?session_id=${encodeURIComponent(sessionId)}`,
-				);
-				const json = await res.json();
-				if (!res.ok || !json.status) {
-					throw new Error(json.message || "Could not verify payment.");
-				}
-				if (!cancelled) {
-					setDonation(json.data);
-					fireConfetti();
-				}
-			} catch (err) {
-				if (!cancelled) {
-					setError(err.message || "Something went wrong.");
-				}
-			} finally {
-				if (!cancelled) setLoading(false);
-			}
-		}
+		(async () => {
+			await animate(el, { scale: 0.5, rotate: -8 }, { duration: 0 });
+			if (cancelled) return;
+			await animate(
+				el,
+				{ scale: 1.12, rotate: 0 },
+				{ type: "spring", stiffness: 280, damping: 14 },
+			);
+			if (cancelled) return;
+			animate(
+				el,
+				{ scale: 1 },
+				{ type: "spring", stiffness: 320, damping: 18 },
+			);
+		})();
 
-		load();
 		return () => {
 			cancelled = true;
 		};
-	}, [sessionId]);
-
-	useEffect(() => {
-		if (!donation || !iconRef.current) return;
-		animate(
-			iconRef.current,
-			{ scale: [0.5, 1.15, 1], rotate: [0, -8, 0] },
-			{ type: "spring", stiffness: 260, damping: 12 },
-		);
 	}, [donation]);
-
-	if (loading) {
-		return (
-			<div className="min-h-[60vh] flex flex-col items-center justify-center gap-4 px-6">
-				<span className="loading loading-spinner loading-lg text-primary" />
-				<p className="text-neutral/70">Confirming your gift…</p>
-			</div>
-		);
-	}
-
-	if (error || !donation) {
-		return (
-			<div className="min-h-[60vh] flex flex-col items-center justify-center gap-6 px-6 text-center max-w-lg mx-auto">
-				<div className="w-16 h-16 rounded-full bg-base-200 flex items-center justify-center">
-					<LuShieldCheck className="w-8 h-8 text-neutral/50" />
-				</div>
-				<h1 className="text-2xl font-bold text-neutral">
-					We couldn&apos;t verify your payment
-				</h1>
-				<p className="text-neutral/70">{error}</p>
-				<Link href="/support#donation-form" className="btn btn-primary rounded-full">
-					Return to donate
-				</Link>
-			</div>
-		);
-	}
 
 	const symbol =
 		donation.currency === "GBP"
@@ -132,7 +125,7 @@ function ThankYouCelebration({ sessionId }) {
 			: `${donation.currency} `;
 
 	return (
-		<div className="min-h-[70vh] flex flex-col items-center justify-center px-6 py-16 max-w-2xl mx-auto text-center">
+		<div className="flex flex-col items-center px-6 max-w-2xl mx-auto text-center">
 			<CascadeAnimation animationDirection="down" parentClassName="space-y-6">
 				<div
 					ref={iconRef}
@@ -185,7 +178,9 @@ function ThankYouCelebration({ sessionId }) {
 						"rounded-3xl border border-base-300/60 bg-base-100 p-6 shadow-sm text-left space-y-2",
 					)}>
 					<p className="text-sm text-neutral/60">
-						A receipt has been sent to your email from Stripe.
+						{isPreview
+							? "In production, Stripe sends a receipt to the donor's email."
+							: "A receipt has been sent to your email from Stripe."}
 					</p>
 					<p className="text-sm text-neutral/70">
 						Your generosity fuels education, welfare, and
@@ -211,6 +206,92 @@ function ThankYouCelebration({ sessionId }) {
 			</CascadeAnimation>
 		</div>
 	);
+}
+
+function ThankYouCelebration({ sessionId, preview = false, previewOptions = {} }) {
+	const [loading, setLoading] = useState(!preview);
+	const [error, setError] = useState(null);
+	const [donation, setDonation] = useState(
+		preview ? parsePreviewDonation(previewOptions) : null,
+	);
+
+	useEffect(() => {
+		if (preview) return;
+
+		if (!sessionId) {
+			setError("No donation session found.");
+			setLoading(false);
+			return;
+		}
+
+		let cancelled = false;
+
+		async function load() {
+			try {
+				const res = await fetch(
+					`/api/stripe/session?session_id=${encodeURIComponent(sessionId)}`,
+				);
+				const json = await res.json();
+				if (!res.ok || !json.status) {
+					throw new Error(json.message || "Could not verify payment.");
+				}
+				if (!cancelled) {
+					setDonation(json.data);
+				}
+			} catch (err) {
+				if (!cancelled) {
+					setError(err.message || "Something went wrong.");
+				}
+			} finally {
+				if (!cancelled) setLoading(false);
+			}
+		}
+
+		load();
+		return () => {
+			cancelled = true;
+		};
+	}, [sessionId, preview]);
+
+	if (loading) {
+		return (
+			<div className="flex flex-col items-center justify-center gap-4 px-6 py-20">
+				<span className="loading loading-spinner loading-lg text-primary" />
+				<p className="text-neutral/70">Confirming your gift…</p>
+			</div>
+		);
+	}
+
+	if (error || !donation) {
+		return (
+			<div className="flex flex-col items-center justify-center gap-6 px-6 py-20 text-center max-w-lg mx-auto">
+				<div className="w-16 h-16 rounded-full bg-base-200 flex items-center justify-center">
+					<LuShieldCheck className="w-8 h-8 text-neutral/50" />
+				</div>
+				<h1 className="text-2xl font-bold text-neutral">
+					We couldn&apos;t verify your payment
+				</h1>
+				<p className="text-neutral/70">{error}</p>
+				{process.env.NODE_ENV === "development" ? (
+					<p className="text-sm text-neutral/50">
+						Styling the success screen? Open{" "}
+						<Link
+							href="/support/thank-you?preview=1"
+							className="link link-primary">
+							/support/thank-you?preview=1
+						</Link>
+					</p>
+				) : null}
+				<Link
+					href="/support#donation-form"
+					className="btn btn-primary rounded-full">
+					Return to donate
+				</Link>
+			</div>
+		);
+	}
+
+	return <ThankYouSuccessView donation={donation} isPreview={preview} />;
 }
 
 export default ThankYouCelebration;
