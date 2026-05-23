@@ -9,7 +9,7 @@ import UserModel from "@/models/user";
 import crypto from "crypto";
 import mongoose from "mongoose";
 import { render } from "react-email";
-import transporter from "@/lib/transporter";
+import transactionalTransporter from "@/lib/transactional-transporter";
 
 const INVITE_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 
@@ -65,8 +65,8 @@ export async function POST(request) {
 			}),
 		);
 
-		await transporter.sendMail({
-			from: process.env.SMTP_INFO,
+		await transactionalTransporter.sendMail({
+			from: `SelfDiscoveryOrganization <${process.env.TRANSACTIONAL_SMTP_INFO}>`,
 			to: emailLower,
 			subject: "You are invited - admin access",
 			html,

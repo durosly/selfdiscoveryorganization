@@ -2,7 +2,7 @@ import EventRegistrationEmail, {
 	REGISTRATION_EMAIL_QR_CID,
 } from "@/emails/event-registration-email";
 import connectMongo from "@/lib/connectDB";
-import transporter from "@/lib/transporter";
+import transactionalTransporter from "@/lib/transactional-transporter";
 import { generateTicketSegment, getTicketSecret, signTicketPayload } from "@/lib/ticket-code";
 import EventRegistrationModel, { EventRegistrationSchema } from "@/models/event-registration";
 import ProgramModel from "@/models/program";
@@ -143,7 +143,7 @@ export async function POST(request, { params }) {
 					includeCheckInQrImage={Boolean(checkInQrBuffer)}
 				/>,
 			);
-			const fromInfo = `${process.env.SMTP_INFO} <${process.env.SMTP_USERNAME}>`;
+			const fromInfo = `SelfDiscoveryOrganization <${process.env.TRANSACTIONAL_SMTP_INFO}>`;
 			const options = {
 				from: fromInfo,
 				to: registration.email,
@@ -163,7 +163,7 @@ export async function POST(request, { params }) {
 					: {}),
 			};
 			// console.log("Sending email with options:", options);
-			await transporter.sendMail(options);
+			await transactionalTransporter.sendMail(options);
 		} catch (mailError) {
 			console.error("Registration email failed:", mailError);
 		}
