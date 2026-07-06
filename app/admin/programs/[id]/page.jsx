@@ -21,6 +21,7 @@ import CoverImage from "./components/cover-image";
 import CopyProgramLinkBtn from "./components/copy-program-link-btn";
 import DeleteBtn from "./components/delete-btn";
 import ProgramGallery from "./components/gallery";
+import RegistrationsOpenBtn from "./components/registrations-open-btn";
 import StatusBtn from "./components/status-btn";
 import TimelineDisplay from "./components/timeline";
 
@@ -148,7 +149,13 @@ async function AdminProgramsDetailsPage({ params }) {
 			/>
 
 			<div className="divider">Actions</div>
-			<StatusBtn id={id} status={program.status} />
+			<div className="flex flex-wrap gap-2">
+				<StatusBtn id={id} status={program.status} />
+				<RegistrationsOpenBtn
+					id={id}
+					registrationsOpen={program.registrations_open !== false}
+				/>
+			</div>
 			<DeleteBtn id={id} />
 		</div>
 	);
